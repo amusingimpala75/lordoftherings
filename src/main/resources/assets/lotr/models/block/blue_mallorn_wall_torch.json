@@ -1,0 +1,6 @@
+{
+    "parent": "block/torch_wall",
+    "textures": {
+        "torch": "lotr:block/blue_mallorn_torch"
+    }
+}
