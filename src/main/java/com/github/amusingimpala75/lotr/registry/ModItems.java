@@ -25,7 +25,7 @@ public class ModItems {
     public static final Item URUK_STEEL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item URUK_BERSERKER_HELMET = new ArmorItem(ModArmorMaterial.URUK, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
     public static final Item FUR = new Item(new Item.Settings().group(LOTR_MATERIALS));
-    public static final Item MITHRIL_PICKAXE = new ModPickaxe(ModToolMaterial.MITHRIL, 5, 9.0F, new Item.Settings().group(LOTR_TOOLS));
+    public static final Item MITHRIL_PICKAXE = new ModPickaxe(ModToolMaterial.MITHRIL, -5, 9.0F, new Item.Settings().group(LOTR_TOOLS));
 
     public static void registerItems() {
         /*
@@ -101,23 +101,23 @@ public class ModItems {
         Tools and Combat
          */
         Registry.register(Registry.ITEM, new Identifier("lotr", "mithril_pickaxe"), MITHRIL_PICKAXE);
-        ItemReg.axe("mithril_axe", ModToolMaterial.MITHRIL, 5, 9.0F);
-        ItemReg.shovel("mithril_shovel", ModToolMaterial.MITHRIL, 5, 9.0F);
-        ItemReg.sword("mithril_sword", ModToolMaterial.MITHRIL, 5, 9.0F);
-        ItemReg.hoe("mithril_hoe", ModToolMaterial.MITHRIL, 5, 9.0F);
-        ItemReg.toolSet("bronze", "sword", ModToolMaterial.BRONZE, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
-        ItemReg.toolSet("mordor", "scimitar", ModToolMaterial.MORDOR, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
+        ItemReg.axe("mithril_axe", ModToolMaterial.MITHRIL, 0, 9.0F);
+        ItemReg.shovel("mithril_shovel", ModToolMaterial.MITHRIL, -2, 9.0F);
+        ItemReg.sword("mithril_sword", ModToolMaterial.MITHRIL, 1, 9.0F);
+        ItemReg.hoe("mithril_hoe", ModToolMaterial.MITHRIL, -7, 9.0F);
+        ItemReg.toolSet("bronze", "sword", ModToolMaterial.BRONZE,  5.0F, -3.5F, 5.0F,  5.0F,  5.0F,  5.0F);
+        ItemReg.toolSet("mordor", "scimitar", ModToolMaterial.MORDOR,  6.0F, -4.5F, 6.0F,  6.0F,  6.0F, 6.0F);
         ItemReg.sword("gondor_sword", ModToolMaterial.GONDOR, 1, 6.0F);
         ItemReg.sword("rohan_sword", ModToolMaterial.ROHAN, 1, 6.0F);
-        ItemReg.toolSet("dwarven", "sword", ModToolMaterial.DWARVEN, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
-        ItemReg.toolSet("lindon", "sword", ModToolMaterial.LINDON, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
-        ItemReg.toolSet("rivendell", "sword", ModToolMaterial.RIVENDELL, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
-        ItemReg.toolSet("galadhrim", "sword", ModToolMaterial.GALADHIRM, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
-        ItemReg.toolSet("wood_elven", "sword", ModToolMaterial.WOOD_ELVEN, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
-        ItemReg.sword("harad_sword", ModToolMaterial.HARAD, 1, 2.5F);
-        ItemReg.toolSet("uruk", "cleaver", ModToolMaterial.RIVENDELL, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
-        ItemReg.sword("uruk_berserker_cleaver", ModToolMaterial.URUK, 1, 3.0F);
-        ItemReg.sword("umbar_scimitar", ModToolMaterial.UMBAR, 1, 2.5F);
-        ItemReg.toolSet("blue_dwarven", "sword", ModToolMaterial.BLUE_DWARVEN, new Number[] {1.0F, 1.0F, 1, 1.0F, 1}, new float[] {1.0F, 1.0F, 1.0F, 1.0F, 1.0F});
+        ItemReg.toolSet("dwarven", "sword", ModToolMaterial.DWARVEN, 7.0F, -5.0F, 7.0F,  7.0F,  7.0F,  7.0F);
+        ItemReg.toolSet("lindon", "sword", ModToolMaterial.LINDON,  8.0F, -5.0F, 8.0F,  8.0F,  8.0F,  8.0F);
+        ItemReg.toolSet("rivendell", "sword", ModToolMaterial.RIVENDELL,  8.0F, -5.0F, 8.0F,  8.0F,  8.0F,  8.0F);
+        ItemReg.toolSet("galadhrim", "sword", ModToolMaterial.GALADHIRM,  7.0F, -5.0F, 7.0F,  7.0F,  7.0F,  7.0F);
+        ItemReg.toolSet("wood_elven", "sword", ModToolMaterial.WOOD_ELVEN,  9.0F, -5.0F, 9.0F,  9.0F,  9.0F,  9.0F);
+        ItemReg.sword("harad_sword", ModToolMaterial.HARAD, 1, 6.0F);
+        ItemReg.toolSet("uruk", "cleaver", ModToolMaterial.URUK,  6.0F, -5.0F, 6.0F,  6.0F,  6.0F,  6.0F);
+        ItemReg.sword("uruk_berserker_cleaver", ModToolMaterial.URUK, 2, 6.0F);
+        ItemReg.sword("umbar_scimitar", ModToolMaterial.UMBAR, -4, 6.0F);
+        ItemReg.toolSet("blue_dwarven", "sword", ModToolMaterial.BLUE_DWARVEN,  7.0F, -5.0F, 7.0F,  7.0F,  7.0F,  7.0F);
     }
 }

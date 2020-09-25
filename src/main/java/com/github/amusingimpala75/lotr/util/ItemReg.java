@@ -55,12 +55,11 @@ public class ItemReg {
     public static void hoe(String name, ToolMaterial material, float attackDamage, float attackSpeed) {
         Registry.register(Registry.ITEM, new Identifier("lotr", name), new ModAxe(material, attackDamage, attackSpeed, new Item.Settings().group(LOTR_TOOLS)));
     }
-    public static void toolSet(String type, String name, ToolMaterial material, Number[] attackDamage, float[] attackSpeed) {
-
-        axe(type+"_axe", material, (float) attackDamage[0], attackSpeed[0]);
-        hoe(type+"_hoe", material, (float) attackDamage[1], attackSpeed[1]);
-        pickaxe(type+"_pickaxe", material, (int) attackDamage[2], attackSpeed[2]);
-        shovel(type+"_shovel", material, (float) attackDamage[3], attackSpeed[3]);
-        sword(type+"_"+name, material, (int) attackDamage[4], attackSpeed[4]);
+    public static void toolSet(String type, String name, ToolMaterial material, float axeAS, float hoeAD, float hoeAS, float pickaxeAS, float shovelAS, float swordAS) {
+        axe(type+"_axe", material, 0.0F, axeAS);
+        hoe(type+"_hoe", material, hoeAD, hoeAS);
+        pickaxe(type+"_pickaxe", material, -1, pickaxeAS);
+        shovel(type+"_shovel", material, -2.0F, shovelAS);
+        sword(type+"_"+name, material, 1, swordAS);
     }
 }

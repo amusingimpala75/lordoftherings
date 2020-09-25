@@ -11,46 +11,46 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterial implements ToolMaterial {
-    MITHRIL("mithril", 1, 9.0F, 5.0F, 4, 10, () -> {
+    MITHRIL("mithril", 2400, 9.0F, 8.0F, 4, 10, () -> {
         return Ingredient.ofItems(ModItems.MITHRIL_INGOT);
     }),
-    BRONZE("bronze", 1, 5.0F, 1.5F, 2, 10, () -> {
+    BRONZE("bronze", 230, 5.0F, 4.5F, 2, 10, () -> {
         return Ingredient.ofItems(ModItems.BRONZE_INGOT);
     }),
-    MORDOR("mordor", 1, 6.0F, 2.5F, 2, 7, () -> {
+    MORDOR("mordor", 400, 6.0F, 5.5F, 2, 7, () -> {
         return Ingredient.ofItems(ModItems.ORC_STEEL_INGOT);
     }),
-    GONDOR("gondor", 1, 6.0F, 2.5F, 2, 10, () -> {
+    GONDOR("gondor", 450, 6.0F, 5.5F, 2, 10, () -> {
         return Ingredient.ofItems(Items.IRON_INGOT);
     }),
-    ROHAN("rohan", 1, 6.0F, 2.5F, 2, 10, () -> {
+    ROHAN("rohan", 300, 6.0F, 5.5F, 2, 10, () -> {
         return Ingredient.ofItems(Items.IRON_INGOT);
     }),
-    DWARVEN("dwarven", 1, 7.0F, 3.0F, 3, 10, () -> {
+    DWARVEN("dwarven", 700, 7.0F, 6.0F, 3, 10, () -> {
         return Ingredient.ofItems(ModItems.DWARVEN_STEEL_INGOT);
     }),
-    LINDON("lindon", 1, 8.0F, 3.0F, 2, 15, () -> {
+    LINDON("lindon", 700, 8.0F, 6.0F, 2, 15, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    RIVENDELL("rivendell", 1, 8.0F, 3.0F, 2, 15, () -> {
+    RIVENDELL("rivendell", 700, 8.0F, 6.0F, 2, 15, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    GALADHIRM("galadhrim", 1, 7.0F, 3.0F, 2, 15, () -> {
+    GALADHIRM("galadhrim", 600, 7.0F, 6.0F, 2, 15, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    WOOD_ELVEN("wood_elven", 1, 9.0F, 3.0F, 2, 15, () -> {
+    WOOD_ELVEN("wood_elven", 500, 9.0F, 6.0F, 2, 15, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    HARAD("harad", 1, 6.0F, 2.5F, 2, 10, () -> {
+    HARAD("harad", 300, 6.0F, 5.5F, 2, 10, () -> {
         return Ingredient.ofItems(ModItems.BRONZE_INGOT);
     }),
-    URUK("uruk", 1, 6.0F, 3.0F, 2, 5, () -> {
+    URUK("uruk", 550, 6.0F, 6.0F, 2, 5, () -> {
         return Ingredient.ofItems(ModItems.URUK_STEEL_INGOT);
     }),
-    UMBAR("umbar",1, 6.0F, 2.5F, 2, 10, () -> {
+    UMBAR("umbar",400, 6.0F, 5.5F, 2, 10, () -> {
         return Ingredient.ofItems(Items.IRON_INGOT);
     }),
-    BLUE_DWARVEN("blue_dwarven", 1, 7.0F, 3.0F, 3, 12, () -> {
+    BLUE_DWARVEN("blue_dwarven", 650, 7.0F, 6.0F, 3, 12, () -> {
         return Ingredient.ofItems(ModItems.DWARVEN_STEEL_INGOT);
     });
 
