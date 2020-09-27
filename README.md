@@ -1,7 +1,7 @@
 # Lord of the Fabric
 Fabric port of the Lord of the Rings mod by Mevans
 
-##Issues (Relative to Renewed 2.1.3):
+#Issues (Relative to Renewed 2.1.3):
 - Items
     - Tool Attack Speed
         - Not sure how these work

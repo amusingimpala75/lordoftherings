@@ -1,6 +1,8 @@
 package com.github.amusingimpala75.lotr.util;
 
+import com.github.amusingimpala75.lotr.materials.ModToolMaterial;
 import com.github.amusingimpala75.lotr.tools.ModAxe;
+import com.github.amusingimpala75.lotr.tools.ModHoe;
 import com.github.amusingimpala75.lotr.tools.ModPickaxe;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
@@ -52,12 +54,12 @@ public class ItemReg {
     public static void axe(String name, ToolMaterial material, float attackDamage, float attackSpeed) {
         Registry.register(Registry.ITEM, new Identifier("lotr", name), new ModAxe(material, attackDamage, attackSpeed, new Item.Settings().group(LOTR_TOOLS)));
     }
-    public static void hoe(String name, ToolMaterial material, float attackDamage, float attackSpeed) {
-        Registry.register(Registry.ITEM, new Identifier("lotr", name), new ModAxe(material, attackDamage, attackSpeed, new Item.Settings().group(LOTR_TOOLS)));
+    public static void hoe(String name, ToolMaterial material, int attackDamage, float attackSpeed) {
+        Registry.register(Registry.ITEM, new Identifier("lotr", name), new ModHoe(material, attackDamage, attackSpeed, new Item.Settings().group(LOTR_TOOLS)));
     }
-    public static void toolSet(String type, String name, ToolMaterial material, float axeAS, float hoeAD, float hoeAS, float pickaxeAS, float shovelAS, float swordAS) {
+    public static void toolSet(String type, String name, ModToolMaterial material, float axeAS, int hoeAD, float hoeAS, float pickaxeAS, float shovelAS, float swordAS) {
         axe(type+"_axe", material, 0.0F, axeAS);
-        hoe(type+"_hoe", material, hoeAD, hoeAS);
+        hoe(type+"_hoe", material, Math.round(hoeAD), hoeAS);
         pickaxe(type+"_pickaxe", material, -1, pickaxeAS);
         shovel(type+"_shovel", material, -2.0F, shovelAS);
         sword(type+"_"+name, material, 1, swordAS);

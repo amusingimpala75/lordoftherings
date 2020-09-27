@@ -8,4 +8,5 @@ public class ModHoe extends HoeItem {
     public ModHoe(ToolMaterial material, int attackDamage, float attackSpeed, Item.Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
+
 }

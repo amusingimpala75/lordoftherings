@@ -6,6 +6,7 @@ import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
 public class Lotr implements ModInitializer {
@@ -31,6 +32,10 @@ public class Lotr implements ModInitializer {
     public static final ItemGroup LOTR_TOOLS = FabricItemGroupBuilder.build(
             new Identifier("lotr", "tools"),
             () -> new ItemStack(ModItems.MITHRIL_PICKAXE)
+    );
+    public static final ItemGroup LOTR_BLOCKS = FabricItemGroupBuilder.build(
+            new Identifier("lotr", "blocks"),
+            () -> new ItemStack(Items.ITEM_FRAME)
     );
 
     @Override
