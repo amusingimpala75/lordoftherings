@@ -8,7 +8,8 @@ Fabric port of the Lord of the Rings mod by Mevans
     - Armour
         - Need to fix durability and protections
         - Armour types with multiple textures (ie. harad helmet vs harad warlord helmet)
-    - Hoes
-        - Tilling ability does not work, pickaxe and axe may also have issues    
+- Block
+    - Rendering of partial blocks
+    - Much functionality missing
 - Dimension and Biomes
     - Completely missing
