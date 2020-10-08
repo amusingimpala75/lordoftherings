@@ -6,4 +6,5 @@ public class ModFoodBlock extends CakeBlock {
     public ModFoodBlock(Settings settings) {
         super(settings);
     }
+
 }
