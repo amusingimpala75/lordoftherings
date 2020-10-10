@@ -1,6 +1,7 @@
 package com.github.amusingimpala75.lotr;
 
 import com.github.amusingimpala75.lotr.registry.ModBiomes;
+import com.github.amusingimpala75.lotr.registry.ModEntities;
 import com.github.amusingimpala75.lotr.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
 import com.github.amusingimpala75.lotr.registry.ModBlocks;
@@ -43,6 +44,7 @@ public class Lotr implements ModInitializer {
     public void onInitialize() {
         ModBlocks.registerBlocks();
         ModItems.registerItems();
+        ModEntities.registerEntities();
         ModBiomes.registerBiomes();
     }
 }

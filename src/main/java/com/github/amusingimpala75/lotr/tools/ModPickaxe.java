@@ -8,4 +8,5 @@ public class ModPickaxe extends PickaxeItem {
     public ModPickaxe(ToolMaterial material, int attackDamage, float attackSpeed, Item.Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
+
 }

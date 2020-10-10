@@ -90,7 +90,7 @@ public class BlockReg {
         Registry.register(Registry.BLOCK, new Identifier("lotr", name), PRESSURE_PLATE);
     }
     public static void wall(Material material, ItemGroup group, boolean blockItem, String name) {
-        final Block WALL = new WallBlock(FabricBlockSettings.of(material));
+        final Block WALL = /*new WallBlock(FabricBlockSettings.of(material));*/ new FenceBlock(FabricBlockSettings.of(material));
         if (blockItem) {
             Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(WALL, new Item.Settings().group(group)));
         }

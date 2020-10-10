@@ -353,7 +353,7 @@
     "block.lotr.maple_trapdoor": "カエデのトラップドア",
     "block.lotr.maple_pressure_plate": "カエデの感圧板",
     "block.lotr.maple_button": "カエデのボタン",
-    "block.lotr.stripped_maple_log": "S樹皮を剥いだカエデの原木",
+    "block.lotr.stripped_maple_log": "樹皮を剥いだカエデの原木",
     "block.lotr.stripped_maple_wood": "樹皮を剥いだカエデの木",
     "block.lotr.maple_beam": "カエデの梁",
     "block.lotr.maple_sign": "カエデの看板",
@@ -876,7 +876,7 @@
     "item.lotr.mordor_leggings": "モルドールのレギンス",
     "item.lotr.mordor_boots": "モルドールのブーツ",
     "item.lotr.gondor_sword": "ゴンドールの剣",
-    "item.lotr.gondor_helmet": "ゴンドールの ヘルメット",
+    "item.lotr.gondor_helmet": "ゴンドールのヘルメット",
     "item.lotr.gondor_chestplate": "ゴンドールのチェストプレート",
     "item.lotr.gondor_leggings": "ゴンドールのレギンス",
     "item.lotr.gondor_boots": "ゴンドールのブーツ",
@@ -1063,7 +1063,7 @@
 	"container.lotr.ranger_crafting": "野伏のクラフト",
 	"container.lotr.dol_amroth_crafting": "ドル・アムロスのクラフト",
 	
-	"container.lotr.alloy_forge": "合金炉",
+	"container.lotr.alloy_forge": "溶融炉",
 	"container.lotr.dwarven_forge": "ドワーフの溶融炉",
 	"container.lotr.elven_forge": "エルフの溶融炉",
 	"container.lotr.orc_forge": "オークの溶融炉",
@@ -1137,7 +1137,7 @@
 	"biome.lotr.dor_en_ernil": "ドル＝エン＝エアニル",
 	"biome.lotr.emyn_en_ernil": "エミン＝エン＝エアニル",
 
-	"gui.lotr.map.title": "%s マップ",
+	"gui.lotr.map.title": "%sマップ",
 	"gui.lotr.map.title.middle_earth": "中つ国",
 	"gui.lotr.map.coords": "x: %d, z: %d",
 	"gui.lotr.map.tp": "Press %s to /tp",
@@ -1153,7 +1153,7 @@
 	
 	"stat.lotr.interact_faction_crafting_table": "種族別のクラフトを行う",
 	"stat.lotr.throw_ring_in_fire": "指輪を火中に放る",
-	"stat.lotr.interact_alloy_forge": "合金炉を使用する",
+	"stat.lotr.interact_alloy_forge": "溶融炉を使用する",
 	"stat.lotr.interact_dwarven_forge": "ドワーフの溶融炉を使用する",
 	"stat.lotr.interact_elven_forge": "エルフの溶融炉を使用する",
 	"stat.lotr.interact_orc_forge": "オークの溶融炉を使用する",
@@ -1173,7 +1173,7 @@
 	"subtitles.lotr.item.mug_fill": "マグはいっぱいです",
 
 	"key.categories.mod.lotr": "指輪物語MOD",
-	"key.lotr.map_menu": "中つ国　マップメニュー",
+	"key.lotr.map_menu": "中つ国マップメニュー",
 	"key.lotr.map_teleport": "マップ内移動",
 	
 	"config.lotr.modSky": "中つ国の空",

@@ -1,9 +1,11 @@
 package com.github.amusingimpala75.lotr.registry;
 
+import com.github.amusingimpala75.lotr.item.ModBoatItem;
 import com.github.amusingimpala75.lotr.materials.ModArmorMaterial;
 import com.github.amusingimpala75.lotr.materials.ModToolMaterial;
 import com.github.amusingimpala75.lotr.tools.ModPickaxe;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import com.github.amusingimpala75.lotr.util.ItemReg;
@@ -26,6 +28,24 @@ public class ModItems {
     public static final Item URUK_BERSERKER_HELMET = new ArmorItem(ModArmorMaterial.URUK, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
     public static final Item FUR = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item MITHRIL_PICKAXE = new ModPickaxe(ModToolMaterial.MITHRIL, -5, 9.0F, new Item.Settings().group(LOTR_TOOLS));
+    public static final Item PINE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item MALLORN_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item MIRK_OAK_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item CHARRED_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item APPLE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item PEAR_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item CHERRY_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item LEBETHRON_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item BEECH_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item MAPLE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item ASPEN_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item LAIRELOSSE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item CEDAR_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item FIR_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item LARCH_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item HOLLY_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item GREEN_OAK_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+
 
     public static void registerItems() {
         /*
@@ -119,5 +139,25 @@ public class ModItems {
         ItemReg.sword("uruk_berserker_cleaver", ModToolMaterial.URUK, 2, 6.0F);
         ItemReg.sword("umbar_scimitar", ModToolMaterial.UMBAR, -4, 6.0F);
         ItemReg.toolSet("blue_dwarven", "sword", ModToolMaterial.BLUE_DWARVEN,  7.0F, -5, 7.0F,  7.0F,  7.0F,  7.0F);
+        /*
+        Boats
+         */
+        Registry.register(Registry.ITEM, new Identifier("lotr", "pine_boat"), PINE_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "mallorn_boat"), MALLORN_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "mirk_oak_boat"), MIRK_OAK_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "charred_boat"), CHARRED_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "apple_boat"), APPLE_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "pear_boat"), PEAR_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "cherry_boat"), CHERRY_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "lebethron_boat"), LEBETHRON_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "beech_boat"), BEECH_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "maple_boat"), MAPLE_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "aspen_boat"), ASPEN_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "lairelosse_boat"), LAIRELOSSE_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "cedar_boat"), CEDAR_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "fir_boat"), FIR_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "larch_boat"), LARCH_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "holly_boat"), HOLLY_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "green_oak_boat"), GREEN_OAK_BOAT);
     }
 }

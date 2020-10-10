@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "lotr:wooden_mug",
+    "lotr:ceramic_mug",
+    "lotr:golden_goblet"
+  ]
+}
