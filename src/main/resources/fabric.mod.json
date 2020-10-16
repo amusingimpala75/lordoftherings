@@ -15,6 +15,9 @@
     ],
     "main": [
       "com.github.amusingimpala75.lotr.Lotr"
+    ],
+    "mm:early_risers": [
+      "com.github.amusingimpala75.lotr.earlyrisers.LotrEarlyRisers"
     ]
   },
   "mixins": [
@@ -23,6 +26,7 @@
   "depends": {
     "fabricloader": ">=0.9.3+build.207",
     "fabric": "*",
-    "minecraft": "1.16.3"
+    "minecraft": "1.16.3",
+    "mm": ">=2.1"
   }
 }

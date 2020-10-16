@@ -1,5 +1,7 @@
 package com.github.amusingimpala75.lotr.registry;
 
+import com.chocohead.mm.api.ClassTinkerers;
+import com.github.amusingimpala75.lotr.item.GoldRingItem;
 import com.github.amusingimpala75.lotr.item.ModBoatItem;
 import com.github.amusingimpala75.lotr.materials.ModArmorMaterial;
 import com.github.amusingimpala75.lotr.materials.ModToolMaterial;
@@ -16,7 +18,7 @@ import static com.github.amusingimpala75.lotr.Lotr.*;
 
 public class ModItems {
     public static final Item MITHRIL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
-    public static final Item GOLD_RING = new Item(new Item.Settings().group(LOTR_MISC));
+    public static final Item GOLD_RING = new GoldRingItem(new Item.Settings().group(LOTR_MISC));
     public static final Item LEMBAS = new Item(new Item.Settings().group(LOTR_FOOD));
     public static final Item BRONZE_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item ORC_STEEL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
@@ -28,23 +30,23 @@ public class ModItems {
     public static final Item URUK_BERSERKER_HELMET = new ArmorItem(ModArmorMaterial.URUK, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
     public static final Item FUR = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item MITHRIL_PICKAXE = new ModPickaxe(ModToolMaterial.MITHRIL, -5, 9.0F, new Item.Settings().group(LOTR_TOOLS));
-    public static final Item PINE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item MALLORN_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item MIRK_OAK_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item CHARRED_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item APPLE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item PEAR_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item CHERRY_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item LEBETHRON_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item BEECH_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item MAPLE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item ASPEN_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item LAIRELOSSE_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item CEDAR_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item FIR_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item LARCH_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item HOLLY_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
-    public static final Item GREEN_OAK_BOAT = (new ModBoatItem(BoatEntity.Type.OAK, (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item PINE_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "PINE"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item MALLORN_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "MALLORN"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item MIRK_OAK_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "MIRK_OAK"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item CHARRED_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "CHARRED"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item APPLE_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "APPLE"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item PEAR_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "PEAR"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item CHERRY_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "CHERRY"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item LEBETHRON_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "LEBETHRON"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item BEECH_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "BEECH"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item MAPLE_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "MAPLE"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item ASPEN_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "ASPEN"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item LAIRELOSSE_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "LAIRELOSSE"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item CEDAR_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "CEDAR"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item FIR_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "FIR"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item LARCH_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "LARCH"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item HOLLY_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "HOLLY"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item GREEN_OAK_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "GREEN_OAK"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
 
 
     public static void registerItems() {

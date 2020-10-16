@@ -53,7 +53,6 @@ public class ModBoatItem extends Item {
 
             if (hitResult.getType() == net.minecraft.util.hit.HitResult.Type.BLOCK) {
                 BoatEntity boatEntity = new BoatEntity(world, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z);
-                System.out.println(type.ordinal());
                 boatEntity.setBoatType(this.type);
                 boatEntity.yaw = user.yaw;
                 if (!world.isSpaceEmpty(boatEntity, boatEntity.getBoundingBox().expand(-0.1D))) {
