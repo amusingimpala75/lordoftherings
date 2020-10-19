@@ -26,6 +26,8 @@ public class ModEntities {
     public static final EntityType<BoatEntity> LARCH_BOAT = Registry.register(Registry.ENTITY_TYPE, new Identifier("lotr", "larch_boat"), FabricEntityTypeBuilder.<BoatEntity>create(SpawnGroup.MISC, BoatEntity::new).dimensions(EntityDimensions.fixed(1.375F, 0.5625F)).build());
     public static final EntityType<BoatEntity> GREEN_OAK_BOAT = Registry.register(Registry.ENTITY_TYPE, new Identifier("lotr", "green_oak_boat"), FabricEntityTypeBuilder.<BoatEntity>create(SpawnGroup.MISC, BoatEntity::new).dimensions(EntityDimensions.fixed(1.375F, 0.5625F)).build());
     public static final EntityType<BoatEntity> HOLLY_BOAT = Registry.register(Registry.ENTITY_TYPE, new Identifier("lotr", "holly_boat"), FabricEntityTypeBuilder.<BoatEntity>create(SpawnGroup.MISC, BoatEntity::new).dimensions(EntityDimensions.fixed(1.375F, 0.5625F)).build());
+    public static final EntityType<BoatEntity> CYPRESS_BOAT = Registry.register(Registry.ENTITY_TYPE, new Identifier("lotr", "cypress_boat"), FabricEntityTypeBuilder.<BoatEntity>create(SpawnGroup.MISC, BoatEntity::new).dimensions(EntityDimensions.fixed(1.375F, 0.5625F)).build());
+
 
 
     public static void registerEntities() {

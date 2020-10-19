@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "waypoint.lotr.archet",
+    "translate": true
+  },
+  "lore": {
+    "text": "waypoint.lotr.archet.lore",
+    "translate": true
+  },
+  "x": 929,
+  "z": 726,
+  "travel_region": "lotr:bree_land",
+  "faction": ""
+}

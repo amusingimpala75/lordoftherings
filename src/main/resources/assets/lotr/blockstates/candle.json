@@ -1,8 +1,8 @@
 {
     "variants": {
-        "candles=1": { "model": "lotr:block/candle_1" },
-        "candles=2": { "model": "lotr:block/candle_2" },
-        "candles=3": { "model": "lotr:block/candle_3" },
-        "candles=4": { "model": "lotr:block/candle_4" }
+        "pickles=1": { "model": "lotr:block/candle_1" },
+        "pickles=2": { "model": "lotr:block/candle_2" },
+        "pickles=3": { "model": "lotr:block/candle_3" },
+        "pickles=4": { "model": "lotr:block/candle_4" }
     }
 }

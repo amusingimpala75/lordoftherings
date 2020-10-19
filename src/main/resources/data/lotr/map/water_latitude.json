@@ -1,0 +1,12 @@
+{
+  "north_color_z": 417.5,
+  "south_color_z": 1980,
+  "ice_start_z": 500,
+  "ice_full_z": 260,
+  "sandy_start_z": 1000,
+  "sandy_full_z": 1650,
+  "coral_start_z": 1250,
+  "coral_full_z": 1730,
+   
+  "_comment": "values are in terms of pixel positions on the map image (NOT relative to the world origin)"
+}

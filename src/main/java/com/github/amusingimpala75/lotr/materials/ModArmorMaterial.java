@@ -17,52 +17,58 @@ public enum ModArmorMaterial implements ArmorMaterial {
     /*
     Armour Types
      */
-    MITHRIL("mithril", Math.round(2400*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> {
+    MITHRIL("mithril", Math.round(2400*0.06F), new int[] {3,8,6,3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.MITHRIL_INGOT);
     }),
-    BRONZE("bronze", Math.round(230*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    BRONZE("bronze", Math.round(230*0.06F), new int[] {2,5,4,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.BRONZE_INGOT);
     }),
-    MORDOR("mordor", Math.round(400*0.06F), new int[] {1,1,1,1}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    MORDOR("mordor", Math.round(400*0.06F), new int[] {2,6,5,2}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.ORC_STEEL_INGOT);
     }),
-    GONDOR("gondor", Math.round(450*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    GONDOR("gondor", Math.round(450*0.06F), new int[] {2,6,5,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(Items.IRON_INGOT);
     }),
-    ROHAN("rohan", Math.round(300*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    ROHAN("rohan", Math.round(300*0.06F), new int[] {2,5,4,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(Items.IRON_INGOT);
     }),
-    DWARVEN("dwarven", Math.round(700*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    DWARVEN("dwarven", Math.round(700*0.06F), new int[] {2,7,6,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.DWARVEN_STEEL_INGOT);
     }),
-    BLUE_DWARVEN("blue_dwarven", Math.round(650*0.06F), new int[] {1,1,1,1}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    BLUE_DWARVEN("blue_dwarven", Math.round(650*0.06F), new int[] {2,7,6,2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.DWARVEN_STEEL_INGOT);
     }),
-    LINDON("lindon", Math.round(700*0.06F), new int[] {1,1,1,1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    LINDON("lindon", Math.round(700*0.06F), new int[] {2,6,5,2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    RIVENDELL("rivendell", Math.round(700*0.06F), new int[] {1,1,1,1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    RIVENDELL("rivendell", Math.round(700*0.06F), new int[] {2,6,5,2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    GALADHRIM("galadhrim", Math.round(600*0.06F), new int[] {1,1,1,1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    GALADHRIM("galadhrim", Math.round(600*0.06F), new int[] {2,6,5,2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    WOOD_ELVEN("wood_elven", Math.round(500*0.06F), new int[] {1,1,1,1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    WOOD_ELVEN("wood_elven", Math.round(500*0.06F), new int[] {2,6,5,2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.ELVEN_STEEL_INGOT);
     }),
-    HARAD("harad", Math.round(300*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+    HARAD("harad", Math.round(300*0.06F), new int[] {2,5,4,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.BRONZE_INGOT);
     }),
-    UMBAR("umbar", Math.round(450*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    HARAD_WARLORD("harad_warlord_helmet", Math.round(300*0.06F), new int[] {2,5,4,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+        return Ingredient.ofItems(ModItems.BRONZE_INGOT);
+    }),
+    UMBAR("umbar", Math.round(450*0.06F), new int[] {2,6,5,2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(Items.IRON_INGOT);
     }),
-    URUK("uruk", Math.round(550*0.06F), new int[] {1,1,1,1}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    URUK("uruk", Math.round(550*0.06F), new int[] {2,7,6,2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.URUK_STEEL_INGOT);
     }),
-    BLUER_DWARVEN("blue_dwarven", Math.round(650*0.06F), new int[] {1,1,1,1}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-        return Ingredient.ofItems(ModItems.DWARVEN_STEEL_INGOT);
+    URUK_CHIEFTAIN("uruk_chieftain", Math.round(550*0.06F), new int[] {2,7,6,2}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+        return Ingredient.ofItems(ModItems.URUK_STEEL_INGOT);
     }),
-    FUR("fur", Math.round(230*0.06F), new int[] {1,1,1,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+    //BLUER_DWARVEN("blue_dwarven", Math.round(650*0.06F), new int[] {1,1,1,1}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    //    return Ingredient.ofItems(ModItems.DWARVEN_STEEL_INGOT);
+    //}),
+    FUR("fur", Math.round(230*0.06F), new int[] {1,4,3,1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.FUR);
     });
 

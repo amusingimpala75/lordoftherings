@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "waypoint.lotr.rivendell",
+    "translate": true
+  },
+  "lore": {
+    "text": "waypoint.lotr.rivendell.lore",
+    "translate": true
+  },
+  "x": 1173,
+  "z": 721,
+  "travel_region": "lotr:lone_lands",
+  "faction": "lotr:high_elf"
+}

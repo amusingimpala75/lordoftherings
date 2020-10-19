@@ -14,7 +14,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:candle",
                   "properties": {
-                    "candles": "2"
+                    "pickles": "2"
                   }
                 }
               ],
@@ -27,7 +27,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:candle",
                   "properties": {
-                    "candles": "3"
+                    "pickles": "3"
                   }
                 }
               ],
@@ -40,7 +40,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:candle",
                   "properties": {
-                    "candles": "4"
+                    "pickles": "4"
                   }
                 }
               ],

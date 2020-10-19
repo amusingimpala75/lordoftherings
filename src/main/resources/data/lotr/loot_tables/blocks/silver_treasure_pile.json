@@ -14,7 +14,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:silver_treasure_pile",
                   "properties": {
-                    "level": "2"
+                    "layers": "2"
                   }
                 }
               ],
@@ -27,7 +27,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:silver_treasure_pile",
                   "properties": {
-                    "level": "3"
+                    "layers": "3"
                   }
                 }
               ],
@@ -40,7 +40,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:silver_treasure_pile",
                   "properties": {
-                    "level": "4"
+                    "layers": "4"
                   }
                 }
               ],
@@ -53,7 +53,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:silver_treasure_pile",
                   "properties": {
-                    "level": "5"
+                    "layers": "5"
                   }
                 }
               ],
@@ -66,7 +66,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:silver_treasure_pile",
                   "properties": {
-                    "level": "6"
+                    "layers": "6"
                   }
                 }
               ],
@@ -79,7 +79,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:silver_treasure_pile",
                   "properties": {
-                    "level": "7"
+                    "layers": "7"
                   }
                 }
               ],
@@ -92,7 +92,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "lotr:silver_treasure_pile",
                   "properties": {
-                    "level": "8"
+                    "layers": "8"
                   }
                 }
               ],

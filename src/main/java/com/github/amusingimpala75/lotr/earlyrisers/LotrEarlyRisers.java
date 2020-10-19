@@ -1,9 +1,11 @@
 package com.github.amusingimpala75.lotr.earlyrisers;
 
+import com.github.amusingimpala75.lotr.mixin.BlockEntityTypeAccessor;
 import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import com.chocohead.mm.api.ClassTinkerers;
+import net.minecraft.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +20,7 @@ public class LotrEarlyRisers implements Runnable{
 
         String boat = remapper.mapClassName("intermediary", "net.minecraft.class_1690$class_1692");
         String block = 'L' + remapper.mapClassName("intermediary", "net.minecraft.class_2248") + ';';
+
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("PINE", () -> new Object[] {ModBlocks.PINE_PLANKS, "pine"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("MALLORN", () -> new Object[] {ModBlocks.MALLORN_PLANKS, "mallorn"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("MIRK_OAK", () -> new Object[] {ModBlocks.MIRK_OAK_PLANKS, "mirk"}).build();
@@ -35,5 +38,18 @@ public class LotrEarlyRisers implements Runnable{
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("LARCH", () -> new Object[] {ModBlocks.LARCH_PLANKS, "larch"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("HOLLY", () -> new Object[] {ModBlocks.HOLLY_PLANKS, "holly"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("GREEN_OAK", () -> new Object[] {ModBlocks.GREEN_OAK_PLANKS, "green_oak"}).build();
+        ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("CYPRESS", () -> new Object[] {ModBlocks.CYPRESS_PLANKS, "cypress"}).build();
+
+
+        String slabType = remapper.mapClassName("intermediary", "net.minecraft.class_2771");
+
+        ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("NORTH", () -> new Object[] {"north"}).build();
+        ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("SOUTH", () -> new Object[] {"south"}).build();
+        ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("EAST", () -> new Object[] {"east"}).build();
+        ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("WEST", () -> new Object[] {"west"}).build();
+
+        String wallShape = remapper.mapClassName("intermediary", "net.minecraft.class_4778");
+
+        ClassTinkerers.enumBuilder(wallShape, "Ljava/lang/String;").addEnum("TRUE", () -> new Object[] {"true"}).build();
     }
 }

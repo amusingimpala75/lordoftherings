@@ -1,0 +1,13 @@
+{
+  "name": {
+    "type": "text",
+    "text": "maplabel.lotr.anorien",
+    "translate": true
+  },
+  "x": 1370,
+  "z": 1205,
+  "scale": 1.5,
+  "angle": 15,
+  "min_zoom": -2.5,
+  "max_zoom": 2.5
+}

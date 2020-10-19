@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "waypoint.lotr.ford_of_bruinen",
+    "translate": true
+  },
+  "lore": {
+    "text": "waypoint.lotr.ford_of_bruinen.lore",
+    "translate": true
+  },
+  "x": 1163,
+  "z": 723,
+  "travel_region": "lotr:lone_lands",
+  "faction": "lotr:high_elf"
+}

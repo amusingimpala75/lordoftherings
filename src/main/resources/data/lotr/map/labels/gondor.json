@@ -1,0 +1,12 @@
+{
+  "name": {
+    "type": "biome",
+    "biome": "lotr:gondor"
+  },
+  "x": 1150,
+  "z": 1250,
+  "scale": 8.0,
+  "angle": 10,
+  "min_zoom": -4.5,
+  "max_zoom": -0.5
+}

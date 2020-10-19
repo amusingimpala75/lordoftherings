@@ -22,6 +22,7 @@
     "lotr:fir_log",
     "lotr:larch_log",
     "lotr:holly_log",
-    "lotr:green_oak_log"
+    "lotr:green_oak_log",
+    "lotr:cypress_log"
   ]
 }

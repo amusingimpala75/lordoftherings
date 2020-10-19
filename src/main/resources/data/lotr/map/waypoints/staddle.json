@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "waypoint.lotr.staddle",
+    "translate": true
+  },
+  "lore": {
+    "text": "waypoint.lotr.staddle.lore",
+    "translate": true
+  },
+  "x": 923,
+  "z": 736,
+  "travel_region": "lotr:bree_land",
+  "faction": ""
+}

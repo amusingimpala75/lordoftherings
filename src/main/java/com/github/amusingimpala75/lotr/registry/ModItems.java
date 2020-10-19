@@ -1,14 +1,17 @@
 package com.github.amusingimpala75.lotr.registry;
 
 import com.chocohead.mm.api.ClassTinkerers;
+import com.github.amusingimpala75.lotr.Lotr;
 import com.github.amusingimpala75.lotr.item.GoldRingItem;
 import com.github.amusingimpala75.lotr.item.ModBoatItem;
+import com.github.amusingimpala75.lotr.item.PocketMatchItem;
 import com.github.amusingimpala75.lotr.materials.ModArmorMaterial;
 import com.github.amusingimpala75.lotr.materials.ModToolMaterial;
 import com.github.amusingimpala75.lotr.tools.ModPickaxe;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
 import com.github.amusingimpala75.lotr.util.ItemReg;
 import net.minecraft.util.Identifier;
@@ -25,9 +28,9 @@ public class ModItems {
     public static final Item DWARVEN_STEEL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item ELVEN_STEEL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item MITHRIL_HELMET = new ArmorItem(ModArmorMaterial.MITHRIL, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
-    public static final Item HARAD_WARLORD_HELMET = new ArmorItem(ModArmorMaterial.HARAD, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
+    public static final Item HARAD_WARLORD_HELMET = new ArmorItem(ModArmorMaterial.HARAD_WARLORD, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
     public static final Item URUK_STEEL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
-    public static final Item URUK_BERSERKER_HELMET = new ArmorItem(ModArmorMaterial.URUK, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
+    public static final Item URUK_BERSERKER_HELMET = new ArmorItem(ModArmorMaterial.URUK_CHIEFTAIN, EquipmentSlot.HEAD, new Item.Settings().group(LOTR_COMBAT));
     public static final Item FUR = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item MITHRIL_PICKAXE = new ModPickaxe(ModToolMaterial.MITHRIL, -5, 9.0F, new Item.Settings().group(LOTR_TOOLS));
     public static final Item PINE_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "PINE"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
@@ -47,11 +50,14 @@ public class ModItems {
     public static final Item LARCH_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "LARCH"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
     public static final Item HOLLY_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "HOLLY"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
     public static final Item GREEN_OAK_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "GREEN_OAK"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Item POCKET_MATCH = new PocketMatchItem(new Item.Settings().group(LOTR_TOOLS).maxCount(64));
+    public static final Item CYPRESS_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "CYPRESS"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+
 
 
     public static void registerItems() {
         /*
-        Material Items
+        Material Items - complete
         */
         Registry.register(Registry.ITEM, new Identifier("lotr", "bronze_ingot"), BRONZE_INGOT);
         Registry.register(Registry.ITEM, new Identifier("lotr", "mithril_ingot"), MITHRIL_INGOT);
@@ -80,12 +86,14 @@ public class ModItems {
         ItemReg.material("gulduril");
         ItemReg.material("bronze_nugget");
         /*
-        Misc Items
+        Misc Items - Red Book functionality, match ony lighting opposite side of block
          */
         Registry.register(Registry.ITEM, new Identifier("lotr", "gold_ring"), GOLD_RING);
         ItemReg.misc("pipeweed");
+        ItemReg.misc("red_book");
+        Registry.register(Registry.ITEM, new Identifier("lotr", "pocket_match"), POCKET_MATCH);
         /*
-        Food Items
+        Food Items - drink functionality
          */
         Registry.register(Registry.ITEM, new Identifier("lotr", "lembas"), LEMBAS);
         ItemReg.food("gammon");
@@ -97,8 +105,36 @@ public class ModItems {
         ItemReg.food("clay_plate");
         ItemReg.food("clay_mug");
         ItemReg.food("mallorn_nut");
+        ItemReg.food("pipeweed_seeds");
+        ItemReg.food("flax_seeds");
+        ItemReg.food("lettuce_item");
+        ItemReg.food("wooden_mug");
+        ItemReg.food("ceramic_mug");
+        ItemReg.food("ale");
+        ItemReg.food("cider");
+        ItemReg.food("perry");
+        ItemReg.food("cherry_liqueur");
+        ItemReg.food("mead");
+        ItemReg.food("golden_goblet");
+        ItemReg.food("water_drink");
+        ItemReg.food("milk_drink");
+        ItemReg.food("chocolate_drink");
+        ItemReg.food("miruvor");
+        ItemReg.food("orc_draught");
+        ItemReg.food("dwarven_ale");
+        ItemReg.food("dwarven_tonic");
+        ItemReg.food("athelas_brew");
+        ItemReg.food("rum");
+        ItemReg.food("vodka");
+        ItemReg.food("maple_beer");
+        ItemReg.food("apple_juice");
+        ItemReg.food("carrot_wine");
+        ItemReg.food("cactus_liqueur");
+        ItemReg.food("melon_liqueur");
+        ItemReg.food("soured_milk");
+        ItemReg.food("sweet_berry_juice");
         /*
-        Armour Items
+        Armour Items - complete
          */
         Registry.register(Registry.ITEM, new Identifier("lotr", "mithril_helmet"), MITHRIL_HELMET);
         ItemReg.chestplate("mithril_chestplate", ModArmorMaterial.MITHRIL);
@@ -120,7 +156,7 @@ public class ModItems {
         ItemReg.armourSet("blue_dwarven", ModArmorMaterial.BLUE_DWARVEN);
         ItemReg.armourSet("fur", ModArmorMaterial.FUR);
         /*
-        Tools and Combat
+        Tools and Combat - fix attack speed
          */
         Registry.register(Registry.ITEM, new Identifier("lotr", "mithril_pickaxe"), MITHRIL_PICKAXE);
         ItemReg.axe("mithril_axe", ModToolMaterial.MITHRIL, 0, 9.0F);
@@ -142,7 +178,7 @@ public class ModItems {
         ItemReg.sword("umbar_scimitar", ModToolMaterial.UMBAR, -4, 6.0F);
         ItemReg.toolSet("blue_dwarven", "sword", ModToolMaterial.BLUE_DWARVEN,  7.0F, -5, 7.0F,  7.0F,  7.0F,  7.0F);
         /*
-        Boats
+        Boats - complete :)
          */
         Registry.register(Registry.ITEM, new Identifier("lotr", "pine_boat"), PINE_BOAT);
         Registry.register(Registry.ITEM, new Identifier("lotr", "mallorn_boat"), MALLORN_BOAT);
@@ -161,5 +197,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier("lotr", "larch_boat"), LARCH_BOAT);
         Registry.register(Registry.ITEM, new Identifier("lotr", "holly_boat"), HOLLY_BOAT);
         Registry.register(Registry.ITEM, new Identifier("lotr", "green_oak_boat"), GREEN_OAK_BOAT);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "cypress_boat"), CYPRESS_BOAT);
+
     }
 }

@@ -1,7 +1,10 @@
 # Lord of the Fabric
 Fabric port of the Lord of the Rings mod by Mevans
 
-## Issues (Relative to Renewed 2.2):
+# Help
+If anyone knows how to add to enums without Fabric-ASM enumBuilder, feel free to add pull request
+
+## Issues (Relative to Renewed 2.3):
 - Items
     - Tool Attack Speed
         - Not sure how these work

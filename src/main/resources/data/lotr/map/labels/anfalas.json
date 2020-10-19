@@ -1,0 +1,13 @@
+{
+  "name": {
+    "type": "text",
+    "text": "maplabel.lotr.anfalas",
+    "translate": true
+  },
+  "x": 1045,
+  "z": 1320,
+  "scale": 2.0,
+  "angle": -15,
+  "min_zoom": -2.5,
+  "max_zoom": 1.5
+}

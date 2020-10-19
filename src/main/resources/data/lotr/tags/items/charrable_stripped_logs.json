@@ -22,6 +22,7 @@
     "lotr:stripped_fir_log",
     "lotr:stripped_larch_log",
     "lotr:stripped_holly_log",
-    "lotr:stripped_green_oak_log"
+    "lotr:stripped_green_oak_log",
+    "lotr:stripped_cypress_log"
   ]
 }

@@ -5,8 +5,14 @@ import com.github.amusingimpala75.lotr.registry.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityType;
+
+import static com.github.amusingimpala75.lotr.registry.ModBlocks.*;
 
 @Environment(EnvType.CLIENT)
 public class LotrClient implements ClientModInitializer {
@@ -63,5 +69,11 @@ public class LotrClient implements ClientModInitializer {
         EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.GREEN_OAK_BOAT, (dispatcher, context) -> {
             return new ModBoatRenderer(dispatcher, "green_oak");
         });
+        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.CYPRESS_BOAT, (dispatcher, context) -> {
+            return new ModBoatRenderer(dispatcher, "cypress");
+        });
+
+        // SIGNS BlockEntityRendererRegistry.INSTANCE.register();
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), MALLORN_LADDER, ASPEN_LEAVES, POTTED_ASPEN, ASPEN_SAPLING, BRONZE_LANTERN, CANDLE, ORC_TORCH);
     }
 }

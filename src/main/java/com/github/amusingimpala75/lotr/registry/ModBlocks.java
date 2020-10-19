@@ -1,7 +1,7 @@
 package com.github.amusingimpala75.lotr.registry;
 
 import com.github.amusingimpala75.lotr.Lotr;
-import com.github.amusingimpala75.lotr.block.ModSaplingBlock;
+import com.github.amusingimpala75.lotr.block.*;
 import com.github.amusingimpala75.lotr.block.crafting.FactionCraftingTable;
 import com.github.amusingimpala75.lotr.faction.Faction;
 import com.github.amusingimpala75.lotr.util.BlockReg;
@@ -55,7 +55,7 @@ public class ModBlocks {
     public static final Block POTTED_BLUEBELL = new FlowerPotBlock(BLUEBELL, FabricBlockSettings.of(Material.ORGANIC_PRODUCT).breakInstantly());
     public static final Block LAVENDER = new FlowerBlock(StatusEffects.GLOWING, 1, FabricBlockSettings.of(Material.ORGANIC_PRODUCT).breakInstantly().noCollision());
     public static final Block POTTED_LAVENDER = new FlowerPotBlock(LAVENDER, FabricBlockSettings.of(Material.ORGANIC_PRODUCT).breakInstantly());
-    public static final Block ASPEN_LEAVES = new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT));
+    public static final Block ASPEN_LEAVES = new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).nonOpaque());
     public static final Block ASPEN_LOG = new PillarBlock(FabricBlockSettings.of(Material.WOOD, (blockState) -> {
         return blockState.get(PillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.BROWN : MaterialColor.BROWN;
     }).strength(2.0F).sounds(BlockSoundGroup.WOOD));
@@ -78,11 +78,52 @@ public class ModBlocks {
     public static final Block LARCH_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD));
     public static final Block HOLLY_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD));
     public static final Block GREEN_OAK_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD));
+    public static final Block PINE_SIGN = new SignBlock(FabricBlockSettings.of(Material.WOOD).noCollision(), ModSignType.PINE);
+    public static final Block PINE_WALL_SIGN = new WallSignBlock(FabricBlockSettings.of(Material.WOOD).noCollision(), ModSignType.PINE);
+    public static final Block ORC_STEEL_BLOCK = new OrcUrukSteelBlock(FabricBlockSettings.of(Material.STONE));
+    public static final Block URUK_STEEL_BLOCK = new OrcUrukSteelBlock(FabricBlockSettings.of(Material.STONE));
+    public static final Block MALLORN_LADDER = new ModLadderBlock(FabricBlockSettings.of(Material.WOOD).nonOpaque());
+    public static final Block BRONZE_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().luminance((state) -> {
+        return 15;
+    }));
+    public static final Block CANDLE = new ModCandleBlock(AbstractBlock.Settings.of(Material.UNDERWATER_PLANT).luminance((state) -> {
+        return SeaPickleBlock.isDry(state) ? 3 + 3 * (Integer)state.get(SeaPickleBlock.PICKLES) : 0;
+    }).sounds(BlockSoundGroup.SLIME).nonOpaque());
+    public static final Block ORC_TORCH = new ModOrcTorch(AbstractBlock.Settings.of(Material.WOOD).nonOpaque().luminance((state) -> {
+        return 15;
+    }).noCollision());
+    public static final Block DORWINION_CRAFTING_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.WOOD), Faction.DORWINION, "container.lotr.dorwinion_crafting");
+    public static final Block CYPRESS_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD));
+    public static final Block KEG = new Keg(FabricBlockSettings.of(Material.WOOD));
+    //public static BlockEntityType<?> SIGN2;
 
 
     public static void registerBlocks() {
         /*
-        Slab
+        Sign - don't render into world
+         */
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "pine_sign"), PINE_SIGN);
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "pine_wall_sign"), PINE_WALL_SIGN);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "pine_sign"), new BlockItem(PINE_SIGN, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn", ModSignType.MALLORN);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak", ModSignType.MIRK_OAK);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "charred", ModSignType.CHARRED);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple", ModSignType.APPLE);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear", ModSignType.PEAR);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry", ModSignType.CHERRY);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron", ModSignType.LEBETHRON);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech", ModSignType.BEECH);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple", ModSignType.MAPLE);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "aspen", ModSignType.ASPEN);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse", ModSignType.LAIRELOSSE);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar", ModSignType.CEDAR);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir", ModSignType.FIR);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch", ModSignType.LARCH);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly", ModSignType.HOLLY);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak", ModSignType.GREEN_OAK);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress", ModSignType.CYPRESS);
+        /*
+        Slab - still need to fix models
          */
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock_slab");
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_slab");
@@ -194,15 +235,52 @@ public class ModBlocks {
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_umbar_brick_slab");
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_umbar_brick_slab");
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_pillar_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "orange_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "magenta_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_blue_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "lime_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "pink_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "gray_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_gray_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cyan_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "brown_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_wool_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_plating_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "rusted_orc_plating_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_pillar_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "polished_chalk_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "dorwinion_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dorwinion_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_dorwinion_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_dorwinion_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_red_dorwinion_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_red_dorwinion_brick_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "dorwinion_pillar_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sandstone_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cut_white_sandstone_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "smooth_white_sandstone_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_slab");
         /*
-        Ore
+        Ore - complete
          */
         Registry.register(Registry.BLOCK, new Identifier("lotr", "copper_ore"), COPPER_ORE);
         Registry.register(Registry.ITEM, new Identifier("lotr", "copper_ore"), new BlockItem(COPPER_ORE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.BLOCK, new Identifier("lotr", "tin_ore"), TIN_ORE);
         Registry.register(Registry.ITEM, new Identifier("lotr", "tin_ore"), new BlockItem(TIN_ORE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.BLOCK, new Identifier("lotr", "silver_ore"), SILVER_ORE);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "sliver_ore"), new BlockItem(SILVER_ORE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        Registry.register(Registry.ITEM, new Identifier("lotr", "silver_ore"), new BlockItem(SILVER_ORE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mithril_ore");
         Registry.register(Registry.BLOCK, new Identifier("lotr", "salt_ore"), SALT_ORE);
         Registry.register(Registry.ITEM, new Identifier("lotr", "salt_ore"), new BlockItem(SALT_ORE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
@@ -218,7 +296,7 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gulduril_ore_mordor");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gulduril_ore_stone");
         /*
-        Stair
+        Stair - complete
          */
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock_stairs");
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_stairs");
@@ -307,8 +385,42 @@ public class ModBlocks {
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_clay_tiling_stairs");
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_umbar_brick_stairs");
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_umbar_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "orange_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "magenta_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_blue_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "lime_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "pink_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "gray_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_gray_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cyan_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "brown_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_wool_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "rusted_orc_plating_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_plating_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "polished_chalk_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "dorwinion_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dorwinion_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_dorwinion_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_dorwinion_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_red_dorwinion_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_red_dorwinion_brick_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sandstone_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "smooth_white_sandstone_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_stairs");
         /*
-        Wall
+        Wall - don't connect properly
          */
         BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock_wall");
         BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_brick_wall");
@@ -380,45 +492,22 @@ public class ModBlocks {
         BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_clay_tiling_wall");
         BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_umbar_brick_wall");
         BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_umbar_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "polished_chalk_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "dorwinion_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dorwinion_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_dorwinion_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_dorwinion_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_red_dorwinion_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_red_dorwinion_brick_wall");
+        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sandstone_wall");
         /*
-        Sign
-         */
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "charred_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "charred_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "aspen_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "aspen_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_wall_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_wall_sign");
-        /*
-        Planks
+        Planks - complete
          */
         Registry.register(Registry.BLOCK, new Identifier("lotr", "pine_planks"), PINE_PLANKS);
         Registry.register(Registry.ITEM, new Identifier("lotr", "pine_planks"), new BlockItem(PINE_PLANKS, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
@@ -454,33 +543,37 @@ public class ModBlocks {
         Registry.register(Registry.ITEM, new Identifier("lotr", "holly_planks"), new BlockItem(HOLLY_PLANKS, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.BLOCK, new Identifier("lotr", "green_oak_planks"), GREEN_OAK_PLANKS);
         Registry.register(Registry.ITEM, new Identifier("lotr", "green_oak_planks"), new BlockItem(GREEN_OAK_PLANKS, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "cypress_planks"), CYPRESS_PLANKS);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "cypress_planks"), new BlockItem(CYPRESS_PLANKS, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+
         /*
-        Leaves
+        Leaves - will need refactor for terrain gen
          */
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_leaves_red");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_leaves_green");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_leaves_fruit");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_leaves_fruit");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_leaves_red");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_leaves_green");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_leaves_fruit");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_leaves_fruit");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_leaves");
         Registry.register(Registry.BLOCK, new Identifier("lotr", "aspen_leaves"), ASPEN_LEAVES);
         Registry.register(Registry.ITEM, new Identifier("lotr", "aspen_leaves"), new BlockItem(ASPEN_LEAVES, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_leaves");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_oak_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_oak_leaves");
+        BlockReg.leaves(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_leaves");
         /*
-        Crafting Table
+        Crafting Table - individual recipes need to be fixed
          */
         Registry.register(Registry.BLOCK, new Identifier("lotr", "gondor_crafting_table"), GONDOR_TABLE);
         Registry.register(Registry.BLOCK, new Identifier("lotr", "mordor_crafting_table"), MORDOR_TABLE);
@@ -498,6 +591,8 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier("lotr", "ranger_crafting_table"), RANGER_TABLE);
         Registry.register(Registry.BLOCK, new Identifier("lotr", "dol_amroth_crafting_table"), DOL_AMROTH_TABLE);
         Registry.register(Registry.BLOCK, new Identifier("lotr", "angmar_crafting_table"), ANGMAR_TABLE);
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "dorwinion_craftin_table"), DORWINION_CRAFTING_TABLE);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "dorwinion_crafting_table"), new BlockItem(DORWINION_CRAFTING_TABLE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.ITEM, new Identifier("lotr", "gondor_crafting_table"), new BlockItem(GONDOR_TABLE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.ITEM, new Identifier("lotr", "mordor_crafting_table"), new BlockItem(MORDOR_TABLE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.ITEM, new Identifier("lotr", "rohan_crafting_table"), new BlockItem(ROHAN_TABLE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
@@ -515,7 +610,7 @@ public class ModBlocks {
         Registry.register(Registry.ITEM, new Identifier("lotr", "dol_amroth_crafting_table"), new BlockItem(DOL_AMROTH_TABLE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.ITEM, new Identifier("lotr", "angmar_crafting_table"), new BlockItem(ANGMAR_TABLE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         /*
-        Door
+        Door - complete
          */
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_door");
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_door");
@@ -535,8 +630,10 @@ public class ModBlocks {
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_door");
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_door");
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_door");
+        BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_door");
+
         /*
-        Trapdoor
+        Trapdoor - complete
          */
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_trapdoor");
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_trapdoor");
@@ -556,8 +653,10 @@ public class ModBlocks {
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_trapdoor");
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_trapdoor");
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_trapdoor");
+        BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_trapdoor");
+
         /*
-        Pressure Plate
+        Pressure Plate - complete
          */
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_pressure_plate");
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_pressure_plate");
@@ -576,8 +675,15 @@ public class ModBlocks {
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_pressure_plate");
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_pressure_plate");
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_rock_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_rock_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_rock_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "rohan_rock_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_pressure_plate");
         /*
-        Button
+        Button - complete
          */
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_button");
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_button");
@@ -596,30 +702,39 @@ public class ModBlocks {
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_button");
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_button");
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_rock_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "rohan_rock_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_rock_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_rock_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_button");
         /*
-        Pillar
+        Pillar - model not correct
          */
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "dwarven_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "stone_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "rohan_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "high_elven_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "galadhrim_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "wood_elven_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "harad_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_harad_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "umbar_brick");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "umbar_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "numenorean_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "uruk_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "brick_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "wattle_and_daub_pillar");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "arnor_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "dwarven_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "stone_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "rohan_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "high_elven_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "galadhrim_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "wood_elven_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "harad_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_harad_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "umbar_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "numenorean_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "uruk_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "brick_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "wattle_and_daub_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "arnor_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_pillar");
+        BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "dorwinion_pillar");
         /*
-        Beam
+        Beam - complete
          */
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_beam");
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_beam");
@@ -644,8 +759,9 @@ public class ModBlocks {
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_beam");
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_beam");
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_beam");
+        BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_beam");
         /*
-        Brick
+        Brick - complete
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_brick");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_brick");
@@ -708,8 +824,21 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_umbar_brick");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_umbar_brick");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "carved_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "carved_angmar_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "umbar_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dorwinion_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dorwinion_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_dorwinion_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_dorwinion_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_red_dorwinion_brick");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_red_dorwinion_brick");
         /*
-        Glass
+        Glass - complete
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "fine_glass");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_fine_glass");
@@ -729,27 +858,27 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_fine_glass");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_fine_glass");
         /*
-        Glass Pane
+        Glass Pane - complete
          */
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "orange_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "magenta_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_blue_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lime_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pink_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gray_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_gray_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cyan_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "brown_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_fine_glass_pane");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "orange_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "magenta_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_blue_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "lime_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "pink_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "gray_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_gray_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "cyan_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "brown_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_fine_glass_pane");
+        BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_fine_glass_pane");
         /*
-        Dripstone
+        Dripstone - need to check Official to see what to do
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dripstone");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_dripstone");
@@ -764,8 +893,10 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "granite_dripstone");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "sandstone_dripstone");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_sandstone_dripstone");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_dripstone");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sandstone_dripstone");
         /*
-        Tiling
+        Tiling - complete
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "clay_tiling");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_clay_tiling");
@@ -785,7 +916,7 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_clay_tiling");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_clay_tiling");
         /*
-        Forges and Ovens
+        Forges and Ovens - need functionality, fix model to be directional
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "alloy_forge");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dwarven_forge");
@@ -793,7 +924,7 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_forge");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "hobbit_oven");
         /*
-        Rock
+        Rock - complete
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_rock");
@@ -805,8 +936,15 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "smooth_mordor_rock");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "smooth_gondor_rock");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "smooth_rohan_rock");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "polished_chalk");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dirty_chalk");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sandstone");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cut_white_sandstone");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "chiseled_white_sandstone");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "smooth_white_sandstone");
         /*
-        Precious Block
+        Precious Block - complete
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "copper_block");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "tin_block");
@@ -816,18 +954,20 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "salt_block");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "sulfur_block");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "niter_block");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_steel_block");
+        Registry.register(Registry.ITEM, new Identifier("lotr", "orc_steel_block"), new BlockItem(ORC_STEEL_BLOCK, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "orc_steel_block"), ORC_STEEL_BLOCK);
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "durnor_block");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dwarven_steel_block");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "elven_steel_block");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "edhelvir_block");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gulduril_block");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "uruk_steel_block");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gold_treasure_pile");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "silver_treasure_pile");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "copper_treasure_pile");
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "uruk_steel_block"), URUK_STEEL_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "uruk_steel_block"), new BlockItem(URUK_STEEL_BLOCK, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        BlockReg.pile(Material.STONE, Lotr.LOTR_BLOCKS, true, "gold_treasure_pile");
+        BlockReg.pile(Material.STONE, Lotr.LOTR_BLOCKS, true, "silver_treasure_pile");
+        BlockReg.pile(Material.STONE, Lotr.LOTR_BLOCKS, true, "copper_treasure_pile");
         /*
-        Wood - Stripped and non-stripped
+        Wood - Stripped and non-stripped - complete
          */
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_wood");
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_pine_wood");
@@ -863,70 +1003,72 @@ public class ModBlocks {
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_holly_wood");
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_wood");
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_green_oak_wood");
+        BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_wood");
+        BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cypress_wood");
+
         /*
-        Log - Stripped and non-stripped
+        Log - Stripped and non-stripped - complete
          */
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_pine_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_mallorn_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_crumble");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_mirk_oak_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "charred_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_charred_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_apple_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_pear_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cherry_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_lebethron_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_beech_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_maple_logs");
-        Registry.register(Registry.BLOCK, new Identifier("lotr", "aspen_logs"), ASPEN_LOG);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "aspen_logs"), new BlockItem(ASPEN_LOG, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_aspen_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_lairelosse_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cedar_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_fir_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_larch_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_holly_logs");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_pine_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_mallorn_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_mirk_oak_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "charred_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_charred_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_apple_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_pear_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cherry_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_lebethron_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_beech_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_maple_log");
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "aspen_log"), ASPEN_LOG);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "aspen_log"), new BlockItem(ASPEN_LOG, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_aspen_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_lairelosse_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cedar_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_fir_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_larch_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_holly_log");
         BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_shroom");
         BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_mirk_shroom");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_logs");
-        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_green_oak_logs");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_green_oak_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cypress_log");
         /*
-        Light Source
+        Light Source - torches can't be placed on wall
         */
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gold_chandelier");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "iron_chandelier");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "bronze_chandelier");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "silver_chandelier");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mithril_chandelier");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "bronze_lantern");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "candle");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_mallorn_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_mallorn_wall_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_mallorn_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_mallorn_wall_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gold_mallorn_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gold_mallorn_wall_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "silver_mallorn_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "silver_mallorn_wall_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "high_elven_torch");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "high_elven_wall_torch");
+        BlockReg.chandelier(Material.STONE, Lotr.LOTR_BLOCKS, true, "gold_chandelier");
+        BlockReg.chandelier(Material.STONE, Lotr.LOTR_BLOCKS, true, "iron_chandelier");
+        BlockReg.chandelier(Material.STONE, Lotr.LOTR_BLOCKS, true, "bronze_chandelier");
+        BlockReg.chandelier(Material.STONE, Lotr.LOTR_BLOCKS, true, "silver_chandelier");
+        BlockReg.chandelier(Material.STONE, Lotr.LOTR_BLOCKS, true, "mithril_chandelier");
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "bronze_lantern"), BRONZE_LANTERN);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "bronze_lantern"), new BlockItem(BRONZE_LANTERN, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "orc_torch"), ORC_TORCH);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "orc_torch"), new BlockItem(ORC_TORCH, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "candle"), CANDLE);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "candle"), new BlockItem(CANDLE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        BlockReg.torch(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_mallorn");
+        BlockReg.torch(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_mallorn");
+        BlockReg.torch(Material.STONE, Lotr.LOTR_BLOCKS, true, "gold_mallorn");
+        BlockReg.torch(Material.STONE, Lotr.LOTR_BLOCKS, true, "silver_mallorn");
+        BlockReg.torch(Material.STONE, Lotr.LOTR_BLOCKS, true, "high_elven");
         /*
-        Fence Gate
+        Fence Gate - complete
          */
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_fence_gate");
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_fence_gate");
@@ -945,8 +1087,9 @@ public class ModBlocks {
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_fence_gate");
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_fence_gate");
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_fence_gate");
+        BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_fence_gate");
         /*
-        Fence
+        Fence - complete
          */
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_fence");
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_fence");
@@ -965,8 +1108,9 @@ public class ModBlocks {
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_fence");
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_fence");
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_fence");
+        BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_fence");
         /*
-        Bars
+        Bars - complete
          */
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_bars");
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "dwarven_bars");
@@ -983,56 +1127,41 @@ public class ModBlocks {
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "uruk_bars");
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_dwarven_bars");
         /*
-        Sapling - not Potted
+        Sapling - Potted / not Potted - sapling fails to grow, refactor for terrain gen
          */
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "mirk_oak_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "pear_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "lebethron_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "beech_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "maple_sapling");
         Registry.register(Registry.BLOCK, new Identifier("lotr", "aspen_sapling"), ASPEN_SAPLING);
         Registry.register(Registry.ITEM, new Identifier("lotr", "aspen_sapling"), new BlockItem(ASPEN_SAPLING, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_oak_sapling");
-        /*
-        Sapling - Potted
-         */
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_pine_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_mallorn_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_mirk_oak_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_apple_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_pear_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_cherry_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_lebethron_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_beech_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_maple_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "lairelosse_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "cedar_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "fir_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "larch_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_oak_sapling");
         Registry.register(Registry.BLOCK, new Identifier("lotr", "potted_aspen_sapling"), POTTED_ASPEN);
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_lairelosse_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_cedar_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_fir_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_larch_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_holly_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_green_oak_sapling");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_red_oak_sapling");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_sapling");
         /*
-        Food
+        Food - needs work - keg needs work, as do plates
          */
         BlockReg.food(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_pie");
+        BlockReg.food(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_crumble");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "fine_plate");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "stoneware_plate");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "wooden_plate");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "keg");
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "keg"), KEG);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "keg"), new BlockItem(KEG, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         /*
-        Plant
+        Plant - refactor for terrain gen, models
          */
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "simbelmyne");
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "shire_heather");
@@ -1085,11 +1214,19 @@ public class ModBlocks {
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "flame_of_harad");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "wild_pipeweed");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "wild_flax");
-
-
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_gravel");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_moor_grass");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_moor_grass");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "tall_wheatgrass");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "tall_arid_grass");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "arid_grass");
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "morgul_shroom");
+        /*
+        hearth model, ladder functionality, moss model, grass model, crystal models, hanging web model/functionality
+         */
+        BlockReg.gravity(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_gravel");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "hearth_block");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_ladder");
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "mallorn_ladder"), MALLORN_LADDER);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "mallorn_ladder"), new BlockItem(MALLORN_LADDER, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_dirt");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_moss");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_grass");
@@ -1099,70 +1236,18 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "thatch");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "drystone");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "wattle_and_daub");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "morgul_shroom");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_morgul_shroom");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "hanging_web");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "arid_grass");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_plating");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rusted_orc_plating");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_plating_slab");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "orc_plating_stairs");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "rusted_orc_plating_slab");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "rusted_orc_plating_stairs");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "orange_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "magenta_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_blue_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "lime_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "pink_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "gray_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_gray_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cyan_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "brown_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_wool_slab");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_wool_slab");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "orange_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "magenta_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_blue_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "lime_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "pink_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "gray_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "light_gray_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cyan_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "brown_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_wool_stairs");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_wool_stairs");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick_slab");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick_stairs");
-        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_brick_wall");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick_slab");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick_stairs");
-        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_angmar_brick_wall");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick_slab");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick_stairs");
-        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_angmar_brick_wall");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "purple_moor_grass");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_moor_grass");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "tall_wheat_grass");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "tall_arid_grass");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "carved_angmar_brick");
-        BlockReg.pillar(Material.STONE, Lotr.LOTR_BLOCKS, true, "angmar_pillar");
-        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick_slab");
-        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick_stairs");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick");
-        BlockReg.wall(Material.STONE, Lotr.LOTR_BLOCKS, true, "snowy_angmar_brick_wall");
+        BlockReg.gravity(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sand");
 
+
+        /*
+        Sign BlockEntityType additions
+         */
+        //SIGN2 = BlockEntityTypeCreateInvoker.invokeCreate("sign2", BlockEntityType.Builder.create(SignBlockEntity::new, ModBlocks.PINE_SIGN, ModBlocks.PINE_WALL_SIGN));
     }
+    /*
+    Testing - Torches, Ladder,
+     */
 }

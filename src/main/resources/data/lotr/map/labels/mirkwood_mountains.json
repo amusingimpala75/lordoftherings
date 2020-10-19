@@ -1,0 +1,13 @@
+{
+  "name": {
+    "type": "text",
+    "text": "maplabel.lotr.mirkwood_mountains",
+    "translate": true
+  },
+  "x": 1410,
+  "z": 675,
+  "scale": 1.0,
+  "angle": -5,
+  "min_zoom": -1.5,
+  "max_zoom": 2.5
+}

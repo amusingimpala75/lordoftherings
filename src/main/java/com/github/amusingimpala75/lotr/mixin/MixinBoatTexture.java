@@ -17,7 +17,10 @@ public class MixinBoatTexture {
 
     @Inject(method = "getTexture", at = @At("HEAD"), cancellable = true)
     private void addLotrBoatTextures(BoatEntity boatEntity, CallbackInfoReturnable<Identifier> info) {
-        Identifier[] TEXTURES = new Identifier[]{new Identifier("textures/entity/boat/oak.png"), new Identifier("textures/entity/boat/spruce.png"), new Identifier("textures/entity/boat/birch.png"), new Identifier("textures/entity/boat/jungle.png"), new Identifier("textures/entity/boat/acacia.png"), new Identifier("textures/entity/boat/dark_oak.png"), lotrId("pine"), lotrId("mallorn"), lotrId("mirk_oak"), lotrId("charred"), lotrId("apple"), lotrId("pear"), lotrId("cherry"), lotrId("lebethron"), lotrId("beech"), lotrId("maple"), lotrId("aspen"), lotrId("lairelosse"), lotrId("cedar"), lotrId("fir"), lotrId("larch"), lotrId("holly"), lotrId("green_oak")};
-        info.setReturnValue(TEXTURES[boatEntity.getBoatType().ordinal()]);
+        if ((boatEntity.getBoatType() != BoatEntity.Type.ACACIA) && (boatEntity.getBoatType() != BoatEntity.Type.BIRCH) && (boatEntity.getBoatType() != BoatEntity.Type.DARK_OAK) && (boatEntity.getBoatType() != BoatEntity.Type.JUNGLE) && (boatEntity.getBoatType() != BoatEntity.Type.OAK) && (boatEntity.getBoatType() != BoatEntity.Type.SPRUCE)) {
+            info.setReturnValue(new Identifier("lotr", "textures/entity/boat/"+boatEntity.getBoatType().getName()+".png"));
+        } else {
+            info.setReturnValue(new Identifier("minecraft", "textures/entity/boat/"+boatEntity.getBoatType().getName()+".png"));
+        }
     }
 }

@@ -1,0 +1,13 @@
+{
+  "name": {
+    "type": "text",
+    "text": "maplabel.lotr.eryn_vorn",
+    "translate": true
+  },
+  "x": 742,
+  "z": 973,
+  "scale": 1.0,
+  "angle": -70,
+  "min_zoom": -1.5,
+  "max_zoom": 2.5
+}
