@@ -1,11 +1,9 @@
 package com.github.amusingimpala75.lotr.earlyrisers;
 
-import com.github.amusingimpala75.lotr.mixin.BlockEntityTypeAccessor;
 import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import com.chocohead.mm.api.ClassTinkerers;
-import net.minecraft.block.entity.BlockEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

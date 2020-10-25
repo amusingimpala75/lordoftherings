@@ -6,8 +6,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class OrcUrukSteelBlock extends CarvedPumpkinBlock {
-    public OrcUrukSteelBlock(Settings settings) {
+public class ModDirectionalBlock extends CarvedPumpkinBlock {
+    public ModDirectionalBlock(Settings settings) {
         super(settings);
     }
 
@@ -20,4 +20,5 @@ public class OrcUrukSteelBlock extends CarvedPumpkinBlock {
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 
     }
+
 }

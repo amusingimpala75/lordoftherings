@@ -1,6 +1,10 @@
 package com.github.amusingimpala75.lotr.registry;
 
+import com.github.amusingimpala75.lotr.entity.PlateBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -31,6 +35,5 @@ public class ModEntities {
 
 
     public static void registerEntities() {
-
     }
 }

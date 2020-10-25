@@ -52,7 +52,6 @@ public class BlockReg {
         Registry.register(Registry.BLOCK, new Identifier("lotr", "potted_"+name), FLOWER_POTTED);
         BlockRenderLayerMap.INSTANCE.putBlock(FLOWER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FLOWER_POTTED, RenderLayer.getCutout());
-
     }
     public static void food(Material material, ItemGroup group, boolean blockItem, String name) {
         final Block FOOD = new ModFoodBlock(FabricBlockSettings.of(material));
@@ -190,7 +189,7 @@ public class BlockReg {
             return 14;
         }).sounds(BlockSoundGroup.WOOD).dropsLike(TORCH), ParticleTypes.FLAME);
         Registry.register(Registry.BLOCK, new Identifier("lotr", name+"_wall_torch"), WALL_TORCH);
-        Registry.register(Registry.ITEM, new Identifier("lotr", name+"torch"), new BlockItem(TORCH, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        Registry.register(Registry.ITEM, new Identifier("lotr", name+"_torch"), new BlockItem(TORCH, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), TORCH, WALL_TORCH);
     }
     public static void pile(Material material, ItemGroup group, boolean blockItem, String name) {
@@ -217,5 +216,67 @@ public class BlockReg {
             Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(PILLAR, new Item.Settings().group(group)));
         }
         Registry.register(Registry.BLOCK, new Identifier("lotr", name), PILLAR);
+    }
+    public static void flowerTall(Material material, ItemGroup group, boolean blockItem, String name) {
+        final Block FLOWER = new TallPlantBlock(FabricBlockSettings.of(material).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
+        if (blockItem) {
+            Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(FLOWER, new Item.Settings().group(group)));
+        }
+        Registry.register(Registry.BLOCK, new Identifier("lotr", name), FLOWER);
+        final Block FLOWER_POTTED = new FlowerPotBlock(FLOWER, FabricBlockSettings.of(material));
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "potted_"+name), FLOWER_POTTED);
+        BlockRenderLayerMap.INSTANCE.putBlock(FLOWER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FLOWER_POTTED, RenderLayer.getCutout());
+    }
+    //public static void crop(Material material, ItemGroup group, boolean blockItem, String name) {
+    //    final Block BLOCK = new ModCropBlock(FabricBlockSettings.of(material));
+    //    if (blockItem){
+    //        Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(BLOCK, new Item.Settings().group(group)));
+    //    }
+    //    Registry.register(Registry.BLOCK, new Identifier("lotr", name), BLOCK);
+    //}
+    public static void directional(Material material, ItemGroup group, boolean blockItem, String name) {
+        final Block BLOCK = new CrystalBlock(FabricBlockSettings.of(material).nonOpaque());
+        if (blockItem){
+            Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(BLOCK, new Item.Settings().group(group)));
+        }
+        Registry.register(Registry.BLOCK, new Identifier("lotr", name), BLOCK);
+    }
+    public static void flowerTall(Material material, ItemGroup group, boolean blockItem, String name, boolean notPotted) {
+        final Block FLOWER = new TallPlantBlock(FabricBlockSettings.of(material).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
+        if (blockItem) {
+            Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(FLOWER, new Item.Settings().group(group)));
+        }
+        Registry.register(Registry.BLOCK, new Identifier("lotr", name), FLOWER);
+        BlockRenderLayerMap.INSTANCE.putBlock(FLOWER, RenderLayer.getCutout());
+    }
+    public static void flower(Material material, ItemGroup group, boolean blockItem, String name, boolean notPotted) {
+        final Block FLOWER = new FlowerBlock(StatusEffects.GLOWING, 1, FabricBlockSettings.of(material).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
+        if (blockItem) {
+            Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(FLOWER, new Item.Settings().group(group)));
+        }
+        Registry.register(Registry.BLOCK, new Identifier("lotr", name), FLOWER);
+        BlockRenderLayerMap.INSTANCE.putBlock(FLOWER, RenderLayer.getCutout());
+    }
+    public static void dripstone(Material material, ItemGroup group, boolean blockItem, String name) {
+        final Block BLOCK = new Dripstone(FabricBlockSettings.of(material).nonOpaque());
+        if (blockItem){
+            Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(BLOCK, new Item.Settings().group(group)));
+        }
+        Registry.register(Registry.BLOCK, new Identifier("lotr", name), BLOCK);
+    }
+    public static void dolAmroth(Material material, ItemGroup group, boolean blockItem, String name) {
+        final Block BLOCK = new DolAmrothBrick(FabricBlockSettings.of(material));
+        if (blockItem){
+            Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(BLOCK, new Item.Settings().group(group)));
+        }
+        Registry.register(Registry.BLOCK, new Identifier("lotr", name), BLOCK);
+    }
+    public static void plate(Material material, ItemGroup group, boolean blockItem, String name) {
+        final Block BLOCK = new Plate(FabricBlockSettings.of(material).nonOpaque());
+        if (blockItem){
+            Registry.register(Registry.ITEM, new Identifier("lotr", name), new BlockItem(BLOCK, new Item.Settings().group(group)));
+        }
+        Registry.register(Registry.BLOCK, new Identifier("lotr", name), BLOCK);
     }
 }

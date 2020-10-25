@@ -5,6 +5,8 @@ import com.github.amusingimpala75.lotr.tools.ModAxe;
 import com.github.amusingimpala75.lotr.tools.ModHoe;
 import com.github.amusingimpala75.lotr.tools.ModPickaxe;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -63,5 +65,19 @@ public class ItemReg {
         pickaxe(type+"_pickaxe", material, -1, pickaxeAS);
         shovel(type+"_shovel", material, -2.0F, shovelAS);
         sword(type+"_"+name, material, 1, swordAS);
+    }
+    public static void food2(String name, int hunger, float satMod, boolean meat, StatusEffectInstance effect) {
+        FoodComponent foodComp;
+        if (meat) {
+            foodComp = (new FoodComponent.Builder()).hunger(hunger).saturationModifier(satMod).meat().build();
+        } else if (effect != null) {
+            foodComp = (new FoodComponent.Builder()).hunger(hunger).saturationModifier(satMod).statusEffect(effect, 0.3F).build();
+        } else {
+            foodComp = (new FoodComponent.Builder()).hunger(hunger).saturationModifier(satMod).build();
+        }
+        Registry.register(Registry.ITEM, new Identifier("lotr", name), new Item(new Item.Settings().group(LOTR_FOOD).food(foodComp)));
+    }
+    public static void seeds(String name, Item item) {
+        Registry.register(Registry.ITEM, new Identifier("lotr", name), item);
     }
 }

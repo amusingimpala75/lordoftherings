@@ -54,26 +54,27 @@ public class ModPillarBlock extends Block {
         } else {
             switch (ctx.getPlayer().getHorizontalFacing()) {
                 case NORTH:
-                    up = pos.north(1);
-                    down = pos.south(1);
-                    break;
-                case SOUTH:
                     up = pos.south(1);
                     down = pos.north(1);
                     break;
-                case EAST:
-                    up = pos.east(1);
-                    down = pos.west(1);
+                case SOUTH:
+                    up = pos.north(1);
+                    down = pos.south(1);
                     break;
-                default:
+                case EAST:
                     up = pos.west(1);
                     down = pos.east(1);
                     break;
+                default:
+                    up = pos.east(1);
+                    down = pos.west(1);
+                    break;
             }
-            if (world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false)) {
+            //If anyone knows a better way, please make a pull request or let me know
+            if (world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, false)) {
                 UP = true;
             }
-            if (world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false)) {
+            if (world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, false)) {
                 DOWN = true;
             }
             return this.getDefaultState().with(ABOVE, UP).with(BELOW, DOWN).with(AXIS, direction);
@@ -86,6 +87,49 @@ public class ModPillarBlock extends Block {
      */
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
+        //boolean UP = false;
+        //boolean DOWN = false;
+        //BlockPos up;
+        //BlockPos down;
+        //if (!player.isSneaking()) {
+        //    down = pos.down(1);
+        //    up = pos.up(1);
+        //    if (world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false)) {
+        //        UP = true;
+        //    }
+        //    if (world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false)) {
+        //        DOWN = true;
+        //   }
+        //    return this.getDefaultState().with(ABOVE, UP).with(BELOW, DOWN).with(AXIS, Direction.Axis.Y);
+        //} else {
+        //    switch (ctx.getPlayer().getHorizontalFacing()) {
+        //        case NORTH:
+        //            up = pos.north(1);
+        //            down = pos.south(1);
+        //            break;
+        //        case SOUTH:
+        //            up = pos.south(1);
+        //            down = pos.north(1);
+        //            break;
+        //        case EAST:
+        //            up = pos.east(1);
+        //            down = pos.west(1);
+        //            break;
+        //        default:
+        //            up = pos.west(1);
+        //            down = pos.east(1);
+        //            break;
+        //    }
+        //    //If anyone knows a better way, please make a pull request or let me know
+        //    if (world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, false) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, true) || world.getBlockState(up) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, false)) {
+        //        UP = true;
+        //    }
+        //    if (world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Y).with(ABOVE, false).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.X).with(ABOVE, false).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, true).with(BELOW, false) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, true) || world.getBlockState(down) == getDefaultState().with(AXIS, Direction.Axis.Z).with(ABOVE, false).with(BELOW, false))) {
+        //        DOWN = true;
+        //    }
+        //    return this.getDefaultState().with(ABOVE, UP).with(BELOW, DOWN).with(AXIS, direction);
+        //}
+        //ItemPlacementContext context = new ItemPlacementContext();
         return super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
     }
 }

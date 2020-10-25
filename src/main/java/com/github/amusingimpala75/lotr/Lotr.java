@@ -1,10 +1,7 @@
 package com.github.amusingimpala75.lotr;
 
-import com.github.amusingimpala75.lotr.registry.ModBiomes;
-import com.github.amusingimpala75.lotr.registry.ModEntities;
-import com.github.amusingimpala75.lotr.registry.ModItems;
+import com.github.amusingimpala75.lotr.registry.*;
 import net.fabricmc.api.ModInitializer;
-import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -42,8 +39,10 @@ public class Lotr implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        //ModBlockAlt.registerBlocksAlt();
         ModBlocks.registerBlocks();
         ModItems.registerItems();
+        ModBlockEntites.registerBlockEntities();
         ModEntities.registerEntities();
         ModBiomes.registerBiomes();
     }

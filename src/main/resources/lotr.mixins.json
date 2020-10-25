@@ -9,6 +9,7 @@
     "MixinAbstractFireBlock",
     "MixinBoatTexture",
     "MixinLivingEntity",
+    "MixinTextFarmland",
     "MixinVerticalSlab",
     "SetBaseBiomesLayerAccessor",
     "SignTypeRegisterInvoker",

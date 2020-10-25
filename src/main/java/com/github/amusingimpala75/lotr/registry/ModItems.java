@@ -2,17 +2,21 @@ package com.github.amusingimpala75.lotr.registry;
 
 import com.chocohead.mm.api.ClassTinkerers;
 import com.github.amusingimpala75.lotr.Lotr;
+import com.github.amusingimpala75.lotr.block.ModCropBlock;
 import com.github.amusingimpala75.lotr.item.GoldRingItem;
 import com.github.amusingimpala75.lotr.item.ModBoatItem;
 import com.github.amusingimpala75.lotr.item.PocketMatchItem;
 import com.github.amusingimpala75.lotr.materials.ModArmorMaterial;
 import com.github.amusingimpala75.lotr.materials.ModToolMaterial;
 import com.github.amusingimpala75.lotr.tools.ModPickaxe;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
+import net.minecraft.block.Material;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.FlintAndSteelItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import com.github.amusingimpala75.lotr.util.ItemReg;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -22,7 +26,7 @@ import static com.github.amusingimpala75.lotr.Lotr.*;
 public class ModItems {
     public static final Item MITHRIL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item GOLD_RING = new GoldRingItem(new Item.Settings().group(LOTR_MISC));
-    public static final Item LEMBAS = new Item(new Item.Settings().group(LOTR_FOOD));
+    public static final Item LEMBAS = new Item(new Item.Settings().group(LOTR_FOOD).food((new FoodComponent.Builder().hunger(10).saturationModifier(1.5F).build())));
     public static final Item BRONZE_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item ORC_STEEL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item DWARVEN_STEEL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
@@ -52,6 +56,12 @@ public class ModItems {
     public static final Item GREEN_OAK_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "GREEN_OAK"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
     public static final Item POCKET_MATCH = new PocketMatchItem(new Item.Settings().group(LOTR_TOOLS).maxCount(64));
     public static final Item CYPRESS_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "CYPRESS"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
+    public static final Block FLAX_CROP = new ModCropBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).nonOpaque().noCollision(), ModItems.FLAX_SEEDS);
+    public static final Block PIPEWEED_CROP = new ModCropBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).nonOpaque().noCollision(), ModItems.PIPEWEED_SEEDS);
+    public static final Block LETTUCE_BLOCK = new ModCropBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).nonOpaque().noCollision(), ModItems.LETTUCE);
+    public static final Item PIPEWEED_SEEDS = new AliasedBlockItem(PIPEWEED_CROP, new Item.Settings().group(LOTR_FOOD));
+    public static final Item FLAX_SEEDS = new AliasedBlockItem(FLAX_CROP, new Item.Settings().group(LOTR_FOOD));
+    public static final Item LETTUCE = new AliasedBlockItem(LETTUCE_BLOCK, new Item.Settings().group(LOTR_FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(0.4F).build()));
 
 
 
@@ -96,18 +106,23 @@ public class ModItems {
         Food Items - drink functionality
          */
         Registry.register(Registry.ITEM, new Identifier("lotr", "lembas"), LEMBAS);
-        ItemReg.food("gammon");
-        ItemReg.food("green_apple");
-        ItemReg.food("suspicious_meat");
-        ItemReg.food("pear");
-        ItemReg.food("cherry");
-        ItemReg.food("maple_syrup");
+        ItemReg.food2("gammon", 8, 0.8F, true, null);
+        ItemReg.food2("green_apple", 4, 0.3F, false, null);
+        ItemReg.food2("suspicious_meat", 7, 0.6F, true, null);
+        ItemReg.food2("pear", 4, 0.3F, false, null);
+        ItemReg.food2("cherry", 2, 0.2F, false, null);
+        ItemReg.food2("maple_syrup", 2, 0.1F, false, null);
         ItemReg.food("clay_plate");
         ItemReg.food("clay_mug");
-        ItemReg.food("mallorn_nut");
-        ItemReg.food("pipeweed_seeds");
-        ItemReg.food("flax_seeds");
-        ItemReg.food("lettuce_item");
+        ItemReg.food2("mallorn_nut", 4, 0.4F, false, null);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "pipeweed_seeds"), PIPEWEED_SEEDS);
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "pipeweed_crop"), PIPEWEED_CROP);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "flax_seeds"), FLAX_SEEDS);
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "flax_crop"), FLAX_CROP);
+        Registry.register(Registry.ITEM, new Identifier("lotr", "lettuce"), ModItems.LETTUCE);
+        Registry.register(Registry.BLOCK, new Identifier("lotr", "lettuce"), LETTUCE_BLOCK);
+        ItemReg.food2("morgul_shroom", 4, 0.4F, false, null);
+        ItemReg.food2("mirk_shroom", 3, 0.3F, false, new StatusEffectInstance(StatusEffects.POISON, 100, 0));
         ItemReg.food("wooden_mug");
         ItemReg.food("ceramic_mug");
         ItemReg.food("ale");
@@ -199,5 +214,13 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier("lotr", "green_oak_boat"), GREEN_OAK_BOAT);
         Registry.register(Registry.ITEM, new Identifier("lotr", "cypress_boat"), CYPRESS_BOAT);
 
+
     }
+    /*
+    TODO:
+        -fix tool/weapon attack speed
+        -fix foods/drinks
+        -fix match placement
+        -add Red Book functionality
+     */
 }
