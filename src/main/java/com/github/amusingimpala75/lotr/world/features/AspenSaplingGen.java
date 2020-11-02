@@ -8,12 +8,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class AspenSaplingGen extends SaplingGenerator {
-    public AspenSaplingGen() {
-    }
-
     @Nullable
-    protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean bl) {
-        System.out.println("Aspen Tree Sapling Generator");
+    public ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean bl) {
         return Features.ASPEN_TREE;
     }
 }

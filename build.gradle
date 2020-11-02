@@ -8,10 +8,10 @@ repositories {
         name = "Jitpack"
         url 'https://jitpack.io/'
     }
-    //maven {
-    //    name = "Bintray"
-    //    url 'https://bintray.com/'
-    //}
+    maven {
+        name = "Ladysnake Libs"
+        url = 'https://dl.bintray.com/ladysnake/libs'
+    }
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -38,6 +38,16 @@ dependencies {
     modImplementation "com.lettuce.fudge:artifice:${project.artifice_version}"
     include "com.lettuce.fudge:artifice:${project.artifice_version}"
 
+    // Replace modImplementation with modApi if you expose components in your own API
+    modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:2.7.2"
+    // Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
+    include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:2.7.2"
+    // Replace modImplementation with modApi if you expose components in your own API
+    modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:2.7.2"
+    // Includes Cardinal Components API as a Jar-in-Jar dependency (optional but recommended)
+    include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:2.7.2"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:5.7.1"
+    modRuntime "me.shedaniel:RoughlyEnoughItems:5.7.1"
 }
 
 processResources {

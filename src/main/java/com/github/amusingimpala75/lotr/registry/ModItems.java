@@ -102,6 +102,7 @@ public class ModItems {
         ItemReg.misc("pipeweed");
         ItemReg.misc("red_book");
         Registry.register(Registry.ITEM, new Identifier("lotr", "pocket_match"), POCKET_MATCH);
+        ItemReg.misc("blackroot_stick");
         /*
         Food Items - drink functionality
          */
@@ -170,6 +171,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier("lotr", "uruk_berserker_helmet"), URUK_BERSERKER_HELMET);
         ItemReg.armourSet("blue_dwarven", ModArmorMaterial.BLUE_DWARVEN);
         ItemReg.armourSet("fur", ModArmorMaterial.FUR);
+        ItemReg.armourSet("rohan", ModArmorMaterial.ROHAN);
         /*
         Tools and Combat - fix attack speed
          */

@@ -6,12 +6,15 @@
   "mixins": [
     "BlockEntityTypeAccessor",
     "BlockEntityTypeCreateInvoker",
+    "getSkyColorInvoker",
     "MixinAbstractFireBlock",
     "MixinBoatTexture",
     "MixinLivingEntity",
     "MixinTextFarmland",
     "MixinVerticalSlab",
     "SetBaseBiomesLayerAccessor",
+    "ShapedRecipeInvokers",
+    "ShapelessRecipeAccessors",
     "SignTypeRegisterInvoker",
     "WallBlockAccessors",
     "WallBlockInvokers"

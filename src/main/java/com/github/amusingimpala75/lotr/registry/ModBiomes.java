@@ -1,5 +1,6 @@
 package com.github.amusingimpala75.lotr.registry;
 
+import com.github.amusingimpala75.lotr.world.biomes.ShireBiome;
 import com.github.amusingimpala75.lotr.world.features.Features;
 import com.github.amusingimpala75.lotr.world.features.ModDefaultBiomeFeatures;
 import net.fabricmc.fabric.mixin.biome.BuiltinBiomesAccessor;
@@ -14,7 +15,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 public class ModBiomes {
-    private static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> SHIRE_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(
+    /*private static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> SHIRE_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(
             Blocks.GRASS_BLOCK.getDefaultState(),
             Blocks.DIRT.getDefaultState(),
             Blocks.SAND.getDefaultState()));
@@ -29,7 +30,7 @@ public class ModBiomes {
         ModDefaultBiomeFeatures.addShireGrass(generationSettings);
         ModDefaultBiomeFeatures.addPlainsFlowers(generationSettings);
         ModDefaultBiomeFeatures.addDoubleFLowers(generationSettings);
-        ModDefaultBiomeFeatures.addTrees(generationSettings, Features.ASPEN_TREE/*Features.OAK_TREE, Features.FANCY_OAK, Features.FANCY_OAK_BEES, Features.OAK_BEES, Features.BIRCH_TREE, Features.FANCY_BIRCH, Features.FANCY_BIRCH_BEES, Features.BIRCH_BEES, */);
+        ModDefaultBiomeFeatures.addTrees(generationSettings, Features.ASPEN_TREE, Features.OAK_TREE, Features.FANCY_OAK, Features.FANCY_OAK_BEES, Features.OAK_BEES, Features.BIRCH_TREE, Features.FANCY_BIRCH, Features.FANCY_BIRCH_BEES, Features.BIRCH_BEES);
 
         return (new Biome.Builder())
                 .precipitation(Biome.Precipitation.RAIN)
@@ -48,13 +49,14 @@ public class ModBiomes {
                 .generationSettings(generationSettings.build())
                 .build();
     }
-    public static final RegistryKey<Biome> SHIRE_KEY = RegistryKey.of(Registry.BIOME_KEY, new Identifier("lotr", "shire"));
+    public static final RegistryKey<Biome> SHIRE_KEY = RegistryKey.of(Registry.BIOME_KEY, new Identifier("lotr", "shire"));*/
 
 
     public static void registerBiomes() {
-        Registry.register(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, new Identifier("lotr", "shire"), SHIRE_SURFACE_BUILDER);
+        (new ShireBiome()).register();
+        /*Registry.register(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, new Identifier("lotr", "shire"), SHIRE_SURFACE_BUILDER);
 
         Registry.register(BuiltinRegistries.BIOME, SHIRE_KEY.getValue(), SHIRE);
-        BuiltinBiomesAccessor.getBY_RAW_ID().put(BuiltinRegistries.BIOME.getRawId(SHIRE), SHIRE_KEY);
+        BuiltinBiomesAccessor.getBY_RAW_ID().put(BuiltinRegistries.BIOME.getRawId(SHIRE), SHIRE_KEY);*/
     }
 }

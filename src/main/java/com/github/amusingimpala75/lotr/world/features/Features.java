@@ -1,6 +1,5 @@
 package com.github.amusingimpala75.lotr.world.features;
 
-import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -22,6 +21,8 @@ import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 import java.util.OptionalInt;
+
+import static com.github.amusingimpala75.lotr.Lotr.*;
 
 @SuppressWarnings("all")
 public class Features {
@@ -100,25 +101,6 @@ public class Features {
     public static final BlockState ASPEN_LOG;
     public static final BlockState ASPEN_LEAVES;
 
-    public static final RandomPatchFeatureConfig CLOVER_CONFIG;
-    public static final RandomPatchFeatureConfig FOUR_CLOVER_CONFIG;
-    public static final RandomPatchFeatureConfig THISTLES_CONFIG;
-    public static final RandomPatchFeatureConfig NETTLES_CONFIG;
-    public static final RandomPatchFeatureConfig POPPY_CONFIG;
-    public static final RandomPatchFeatureConfig DANDELION_CONFIG;
-    public static final RandomPatchFeatureConfig AZURE_BLUET_CONFIG;
-    public static final RandomPatchFeatureConfig OXEYE_DAISY_CONFIG;
-    public static final RandomPatchFeatureConfig CORNFLOWER_CONFIG;
-    public static final RandomPatchFeatureConfig RED_TULIP_CONFIG;
-    public static final RandomPatchFeatureConfig WHITE_TULIP_CONFIG;
-    public static final RandomPatchFeatureConfig ORANGE_TULIP_CONFIG;
-    public static final RandomPatchFeatureConfig PINK_TULIP_CONFIG;
-    public static final RandomPatchFeatureConfig BLUEBELL_CONFIG;
-    public static final RandomPatchFeatureConfig MARIGOLD_CONFIG;
-    public static final RandomPatchFeatureConfig LAVENDER_CONFIG;
-    public static final RandomPatchFeatureConfig PEONY_CONFIG;
-    public static final RandomPatchFeatureConfig ROSE_BUSH_CONFIG;
-    public static final RandomPatchFeatureConfig LILAC_CONFIG;
     public static final TreeFeatureConfig OAK_CONFIG;
     public static final TreeFeatureConfig FANCY_OAK_CONFIG;
     public static final TreeFeatureConfig BIRCH_CONFIG;
@@ -126,23 +108,23 @@ public class Features {
     public static final TreeFeatureConfig ASPEN_CONFIG;
 
     private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String id, ConfiguredFeature<FC, ?> configuredFeature) {
-        return (ConfiguredFeature) Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
+        return (ConfiguredFeature<FC, ?>) Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
     }
 
     static {
-        COPPER_ORE = ModBlocks.COPPER_ORE.getDefaultState();
-        TIN_ORE = ModBlocks.TIN_ORE.getDefaultState();
+        COPPER_ORE = Registry.BLOCK.get(id("copper_ore")).getDefaultState();
+        TIN_ORE = Registry.BLOCK.get(id("tin_ore")).getDefaultState();
         COAL_ORE = Blocks.COAL_ORE.getDefaultState();
         IRON_ORE = Blocks.IRON_ORE.getDefaultState();
         GOLD_ORE = Blocks.GOLD_ORE.getDefaultState();
-        SILVER_ORE = ModBlocks.SILVER_ORE.getDefaultState();
-        SULFUR_ORE = ModBlocks.SULFUR_ORE.getDefaultState();
-        NITER_ORE = ModBlocks.NITER_ORE.getDefaultState();
-        SALT_ORE = ModBlocks.SALT_ORE.getDefaultState();
-        CLOVER_GRASS = ModBlocks.CLOVER.getDefaultState();
-        FOUR_CLOVER = ModBlocks.FOUR_CLOVER.getDefaultState();
-        THISTLES = ModBlocks.THISTLES.getDefaultState();
-        NETTLES = ModBlocks.NETTLES.getDefaultState();
+        SILVER_ORE = Registry.BLOCK.get(id("silver_ore")).getDefaultState();
+        SULFUR_ORE = Registry.BLOCK.get(id("sulfur_ore")).getDefaultState();
+        NITER_ORE = Registry.BLOCK.get(id("niter_ore")).getDefaultState();
+        SALT_ORE = Registry.BLOCK.get(id("salt_ore")).getDefaultState();
+        CLOVER_GRASS = Registry.BLOCK.get(id("clover")).getDefaultState();
+        FOUR_CLOVER = Registry.BLOCK.get(id("four_leaf_clover")).getDefaultState();
+        THISTLES = Registry.BLOCK.get(id("thistle")).getDefaultState();
+        NETTLES = Registry.BLOCK.get(id("nettles")).getDefaultState();
         POPPY = Blocks.POPPY.getDefaultState();
         DANDELION = Blocks.DANDELION.getDefaultState();
         AZURE_BLUET = Blocks.AZURE_BLUET.getDefaultState();
@@ -152,9 +134,9 @@ public class Features {
         WHITE_TULIP = Blocks.WHITE_TULIP.getDefaultState();
         ORANGE_TULIP = Blocks.ORANGE_TULIP.getDefaultState();
         PINK_TULIP = Blocks.PINK_TULIP.getDefaultState();
-        LAVENDER = ModBlocks.LAVENDER.getDefaultState();
-        MARIGOLD = ModBlocks.MARIGOLD.getDefaultState();
-        BLUEBELL = ModBlocks.BLUEBELL.getDefaultState();
+        LAVENDER = Registry.BLOCK.get(id("lavender")).getDefaultState();
+        MARIGOLD = Registry.BLOCK.get(id("marigold")).getDefaultState();
+        BLUEBELL = Registry.BLOCK.get(id("bluebell")).getDefaultState();
         PEONY = Blocks.PEONY.getDefaultState();
         ROSE_BUSH = Blocks.ROSE_BUSH.getDefaultState();
         LILAC = Blocks.LILAC.getDefaultState();
@@ -162,76 +144,202 @@ public class Features {
         OAK_LEAVES = Blocks.OAK_LEAVES.getDefaultState();
         BIRCH_LOG = Blocks.BIRCH_LOG.getDefaultState();
         BIRCH_LEAVES = Blocks.BIRCH_LEAVES.getDefaultState();
-        ASPEN_LOG = ModBlocks.ASPEN_LOG.getDefaultState();
-        ASPEN_LEAVES = ModBlocks.ASPEN_LEAVES.getDefaultState();
+        ASPEN_LOG = Registry.BLOCK.get(id("aspen_log")).getDefaultState();
+        ASPEN_LEAVES = Registry.BLOCK.get(id("aspen_leaves")).getDefaultState();
     }
 
     static {
-        CLOVER_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CLOVER_GRASS), SimpleBlockPlacer.INSTANCE)).tries(6).build();
-        FOUR_CLOVER_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(FOUR_CLOVER), SimpleBlockPlacer.INSTANCE)).tries(1).build();
-        THISTLES_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(THISTLES), SimpleBlockPlacer.INSTANCE)).tries(6).build();
-        NETTLES_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(NETTLES), SimpleBlockPlacer.INSTANCE)).tries(6).build();
-        POPPY_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(POPPY), SimpleBlockPlacer.INSTANCE)).tries(8).build();
-        DANDELION_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(DANDELION), SimpleBlockPlacer.INSTANCE)).tries(12).build();
-        AZURE_BLUET_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(AZURE_BLUET), SimpleBlockPlacer.INSTANCE)).tries(8).build();
-        OXEYE_DAISY_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(OXEYE_DAISY), SimpleBlockPlacer.INSTANCE)).tries(8).build();
-        CORNFLOWER_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CORNFLOWER), SimpleBlockPlacer.INSTANCE)).tries(4).build();
-        RED_TULIP_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(RED_TULIP), SimpleBlockPlacer.INSTANCE)).tries(3).build();
-        WHITE_TULIP_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(WHITE_TULIP), SimpleBlockPlacer.INSTANCE)).tries(3).build();
-        ORANGE_TULIP_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(ORANGE_TULIP), SimpleBlockPlacer.INSTANCE)).tries(3).build();
-        PINK_TULIP_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(PINK_TULIP), SimpleBlockPlacer.INSTANCE)).tries(3).build();
-        BLUEBELL_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(BLUEBELL), SimpleBlockPlacer.INSTANCE)).tries(3).build();
-        MARIGOLD_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(MARIGOLD), SimpleBlockPlacer.INSTANCE)).tries(6).build();
-        LAVENDER_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(LAVENDER), SimpleBlockPlacer.INSTANCE)).tries(3).build();
-        PEONY_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(PEONY), new DoublePlantPlacer())).tries(3).cannotProject().build();
-        ROSE_BUSH_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(ROSE_BUSH), new DoublePlantPlacer())).tries(3).cannotProject().build();
-        LILAC_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(LILAC), new DoublePlantPlacer())).tries(3).cannotProject().build();
         OAK_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build();
         FANCY_OAK_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(OAK_LOG), new SimpleBlockStateProvider(OAK_LEAVES), new LargeOakFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(4), 4), new LargeOakTrunkPlacer(3, 11, 0), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build();
         BIRCH_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(BIRCH_LOG), new SimpleBlockStateProvider(BIRCH_LEAVES), new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3), new StraightTrunkPlacer(5, 2, 0), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build();
         FANCY_BIRCH_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(BIRCH_LOG), new SimpleBlockStateProvider(BIRCH_LEAVES), new LargeOakFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(4), 4), new LargeOakTrunkPlacer(3, 11, 0), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build();
-        ASPEN_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ASPEN_LOG), new SimpleBlockStateProvider(ASPEN_LEAVES), new SpruceFoliagePlacer(UniformIntDistribution.of(3), UniformIntDistribution.of(3), UniformIntDistribution.of(3)), new StraightTrunkPlacer(3, 3, 3), new TwoLayersFeatureSize(2, 8, 2)).ignoreVines().build());
+        ASPEN_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ASPEN_LOG), new SimpleBlockStateProvider(ASPEN_LEAVES), new SpruceFoliagePlacer(UniformIntDistribution.of(2,1), UniformIntDistribution.of(0,2), UniformIntDistribution.of(1,1)), new StraightTrunkPlacer(5, 2, 1), new TwoLayersFeatureSize(2, 0, 2)).ignoreVines().build());
     }
 
     static {
-        ORE_COPPER = register("ore_copper", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, COPPER_ORE, 9)).method_30377(128)).spreadHorizontally()).repeat(16));
-        ORE_TIN = register("ore_tin", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, TIN_ORE, 9)).method_30377(128)).spreadHorizontally()).repeat(16));
-        ORE_COAL = register("ore_coal2", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, COAL_ORE, 17)).method_30377(128)).spreadHorizontally()).repeat(20));
-        ORE_IRON = register("ore_iron2", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, IRON_ORE, 9)).method_30377(64)).spreadHorizontally()).repeat(20));
-        ORE_GOLD = register("ore_gold2", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, GOLD_ORE, 9)).method_30377(32)).spreadHorizontally()).repeat(2));
-        ORE_SILVER = register("ore_silver", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, SILVER_ORE, 9)).method_30377(32)).spreadHorizontally()).repeat(3));
-        ORE_SULFUR = register("ore_sulfur", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, SULFUR_ORE, 9)).method_30377(64)).spreadHorizontally()).repeat(2));
-        ORE_NITER = register("ore_niter", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, NITER_ORE, 9)).method_30377(64)).spreadHorizontally()).repeat(2));
-        ORE_SALT = register("ore_salt", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, SALT_ORE, 13)).method_30377(64)).spreadHorizontally()).repeat(2));
-        GRASS_CLOVER = register("grass_clover", (ConfiguredFeature) ((ConfiguredFeature) ((ConfiguredFeature) Feature.RANDOM_PATCH.configure(CLOVER_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE))));
-        CLOVER_FOUR = register("grass_four_clover",Feature.RANDOM_PATCH.configure(FOUR_CLOVER_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        THISTLES_FEATURE = register("thistles_feature",Feature.RANDOM_PATCH.configure(THISTLES_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        NETTLES_FEATURE = register("nettles_feature",Feature.RANDOM_PATCH.configure(NETTLES_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        POPPY_FEATURE = register("poppy_feature2",Feature.RANDOM_PATCH.configure(POPPY_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        DANDELION_FEATURE = register("dandelion_feature2",Feature.RANDOM_PATCH.configure(DANDELION_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        AZURE_BLUET_FEATURE = register("azure_bluet_feature2",Feature.RANDOM_PATCH.configure(AZURE_BLUET_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        OXEYE_DAISY_FEATURE = register("oxeye_daisy_feature2",Feature.RANDOM_PATCH.configure(OXEYE_DAISY_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        CORNFLOWER_FEATURE = register("cornflower_feature2",Feature.RANDOM_PATCH.configure(CORNFLOWER_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        RED_TULIP_FEATURE = register("red_tulip_feature2",Feature.RANDOM_PATCH.configure(RED_TULIP_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        WHITE_TULIP_FEATURE = register("white_tulip_feature2",Feature.RANDOM_PATCH.configure(WHITE_TULIP_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        ORANGE_TULIP_FEATURE = register("orange_tulip_feature2",Feature.RANDOM_PATCH.configure(ORANGE_TULIP_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        PINK_TULIP_FEATURE = register("pink_tulip_feature2",Feature.RANDOM_PATCH.configure(PINK_TULIP_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        BLUEBELL_FEATURE = register("bluebell_feature",Feature.RANDOM_PATCH.configure(BLUEBELL_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        MARIGOLD_FEATURE = register("marigold_feature",Feature.RANDOM_PATCH.configure(MARIGOLD_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        LAVENDER_FEATURE = register("lavender_feature",Feature.RANDOM_PATCH.configure(LAVENDER_CONFIG).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
-        PEONY_FEATURE = register("peony_feature2", (ConfiguredFeature)Feature.RANDOM_PATCH.configure(PEONY_CONFIG).decorate(ConfiguredFeatures.Decorators.SPREAD_32_ABOVE).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-        ROSE_BUSH_FEATURE = register("rose_feature2", (ConfiguredFeature)Feature.RANDOM_PATCH.configure(ROSE_BUSH_CONFIG).decorate(ConfiguredFeatures.Decorators.SPREAD_32_ABOVE).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-        LILAC_FEATURE = register("lilac_feature2", (ConfiguredFeature)Feature.RANDOM_PATCH.configure(LILAC_CONFIG).decorate(ConfiguredFeatures.Decorators.SPREAD_32_ABOVE).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
+        ORE_COPPER = register("ore_copper", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, COPPER_ORE, 9))
+                .method_30377(128))
+                .spreadHorizontally())
+                .repeat(16));
+        ORE_TIN = register("ore_tin", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, TIN_ORE, 9))
+                .method_30377(128))
+                .spreadHorizontally())
+                .repeat(16));
+        ORE_COAL = register("ore_coal2", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, COAL_ORE, 17))
+                .method_30377(128))
+                .spreadHorizontally())
+                .repeat(20));
+        ORE_IRON = register("ore_iron2", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, IRON_ORE, 9))
+                .method_30377(64))
+                .spreadHorizontally())
+                .repeat(20));
+        ORE_GOLD = register("ore_gold2", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, GOLD_ORE, 9))
+                .method_30377(32))
+                .spreadHorizontally())
+                .repeat(2));
+        ORE_SILVER = register("ore_silver", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, SILVER_ORE, 9))
+                .method_30377(32))
+                .spreadHorizontally())
+                .repeat(3));
+        ORE_SULFUR = register("ore_sulfur", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, SULFUR_ORE, 9))
+                .method_30377(64))
+                .spreadHorizontally())
+                .repeat(2));
+        ORE_NITER = register("ore_niter", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, NITER_ORE, 9))
+                .method_30377(64))
+                .spreadHorizontally())
+                .repeat(2));
+        ORE_SALT = register("ore_salt", (ConfiguredFeature)((ConfiguredFeature)((ConfiguredFeature) Feature.ORE
+                .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, SALT_ORE, 13))
+                .method_30377(64))
+                .spreadHorizontally())
+                .repeat(2));
+        GRASS_CLOVER = register("grass_clover", (ConfiguredFeature) ((ConfiguredFeature) ((ConfiguredFeature) Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CLOVER_GRASS), SimpleBlockPlacer.INSTANCE))
+                        .tries(6)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE))));
+        CLOVER_FOUR = register("grass_four_clover", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(FOUR_CLOVER), SimpleBlockPlacer.INSTANCE))
+                        .tries(1)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        THISTLES_FEATURE = register("thistles_feature", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(THISTLES), SimpleBlockPlacer.INSTANCE))
+                        .tries(6)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        NETTLES_FEATURE = register("nettles_feature", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(NETTLES), SimpleBlockPlacer.INSTANCE))
+                        .tries(6)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        POPPY_FEATURE = register("poppy_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(POPPY), SimpleBlockPlacer.INSTANCE))
+                        .tries(8)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        DANDELION_FEATURE = register("dandelion_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(DANDELION), SimpleBlockPlacer.INSTANCE))
+                        .tries(12)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        AZURE_BLUET_FEATURE = register("azure_bluet_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(AZURE_BLUET), SimpleBlockPlacer.INSTANCE))
+                        .tries(8)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        OXEYE_DAISY_FEATURE = register("oxeye_daisy_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(OXEYE_DAISY), SimpleBlockPlacer.INSTANCE))
+                        .tries(8)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        CORNFLOWER_FEATURE = register("cornflower_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(CORNFLOWER), SimpleBlockPlacer.INSTANCE))
+                        .tries(4)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        RED_TULIP_FEATURE = register("red_tulip_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(RED_TULIP), SimpleBlockPlacer.INSTANCE))
+                        .tries(3)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        WHITE_TULIP_FEATURE = register("white_tulip_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(WHITE_TULIP), SimpleBlockPlacer.INSTANCE))
+                        .tries(3)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        ORANGE_TULIP_FEATURE = register("orange_tulip_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(ORANGE_TULIP), SimpleBlockPlacer.INSTANCE))
+                        .tries(3)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        PINK_TULIP_FEATURE = register("pink_tulip_feature2", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(PINK_TULIP), SimpleBlockPlacer.INSTANCE))
+                        .tries(3)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        BLUEBELL_FEATURE = register("bluebell_feature",Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(BLUEBELL), SimpleBlockPlacer.INSTANCE))
+                        .tries(3)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        MARIGOLD_FEATURE = register("marigold_feature", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(MARIGOLD), SimpleBlockPlacer.INSTANCE))
+                        .tries(6)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        LAVENDER_FEATURE = register("lavender_feature", Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(LAVENDER), SimpleBlockPlacer.INSTANCE))
+                        .tries(3)
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP_SPREAD_DOUBLE));
+        PEONY_FEATURE = register("peony_feature2", (ConfiguredFeature)Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(PEONY), new DoublePlantPlacer()))
+                        .tries(3)
+                        .cannotProject()
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SPREAD_32_ABOVE)
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
+        ROSE_BUSH_FEATURE = register("rose_feature2", (ConfiguredFeature)Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(ROSE_BUSH), new DoublePlantPlacer()))
+                        .tries(3)
+                        .cannotProject()
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SPREAD_32_ABOVE)
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
+        LILAC_FEATURE = register("lilac_feature2", (ConfiguredFeature)Feature.RANDOM_PATCH
+                .configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(LILAC), new DoublePlantPlacer()))
+                        .tries(3)
+                        .cannotProject()
+                        .build())
+                .decorate(ConfiguredFeatures.Decorators.SPREAD_32_ABOVE)
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
         OAK_TREE = register("oak_tree2", (ConfiguredFeature)Feature.TREE.configure(OAK_CONFIG));
         FANCY_OAK = register("fancy_oak2", Feature.TREE.configure(FANCY_OAK_CONFIG));
-        OAK_BEES = register("oak_bees2", Feature.TREE.configure(((TreeFeatureConfig)OAK_TREE.getConfig()).setTreeDecorators(ImmutableList.of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))));
-        FANCY_OAK_BEES = register("fancy_oak_bees2", Feature.TREE.configure(((TreeFeatureConfig)FANCY_OAK.getConfig()).setTreeDecorators(ImmutableList.of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))));
+        OAK_BEES = register("oak_bees2", Feature.TREE
+                .configure(((TreeFeatureConfig)OAK_TREE.getConfig())
+                        .setTreeDecorators(ImmutableList
+                                .of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES)
+                        )
+                ));
+        FANCY_OAK_BEES = register("fancy_oak_bees2", Feature.TREE
+                .configure(((TreeFeatureConfig)FANCY_OAK.getConfig())
+                        .setTreeDecorators(ImmutableList
+                                .of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))
+                ));
         BIRCH_TREE = register("birch_tree2", Feature.TREE.configure(BIRCH_CONFIG));
-        BIRCH_BEES = register("birch_bees2", Feature.TREE.configure(((TreeFeatureConfig)BIRCH_TREE.getConfig()).setTreeDecorators(ImmutableList.of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))));
+        BIRCH_BEES = register("birch_bees2", Feature.TREE
+                .configure(((TreeFeatureConfig)BIRCH_TREE.getConfig())
+                        .setTreeDecorators(ImmutableList
+                                .of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))
+                ));
         FANCY_BIRCH = register("fancy_birch2", Feature.TREE.configure(FANCY_BIRCH_CONFIG));
-        FANCY_BIRCH_BEES = register("fancy_birch_bees2", Feature.TREE.configure(((TreeFeatureConfig)FANCY_BIRCH.getConfig()).setTreeDecorators(ImmutableList.of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))));
+        FANCY_BIRCH_BEES = register("fancy_birch_bees2", Feature.TREE
+                .configure(((TreeFeatureConfig)FANCY_BIRCH.getConfig())
+                        .setTreeDecorators(ImmutableList
+                                .of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))
+                ));
         ASPEN_TREE = register("aspen_tree", Feature.TREE.configure(ASPEN_CONFIG));;
-        SHIRE_GRASS = register("shire_grass", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(ImmutableList.of(GRASS_CLOVER.withChance((float)249/430), CLOVER_FOUR.withChance((float)10/430), NETTLES_FEATURE.withChance((float)10/430), THISTLES_FEATURE.withChance((float)5/430)), GRASS_CLOVER)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP).decorate(Decorator.COUNT_EXTRA.configure(new CountExtraDecoratorConfig(6, 0.1F, 1))));
+        SHIRE_GRASS = register("shire_grass", Feature.RANDOM_SELECTOR
+                .configure(new RandomFeatureConfig(
+                                ImmutableList.of(
+                                        GRASS_CLOVER.withChance((float)249/430),
+                                        CLOVER_FOUR.withChance((float)10/430),
+                                        NETTLES_FEATURE.withChance((float)10/430),
+                                        THISTLES_FEATURE.withChance((float)5/430)),
+                                GRASS_CLOVER))
+                .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP)
+                .decorate(Decorator.COUNT_EXTRA.configure(new CountExtraDecoratorConfig(6, 0.1F, 1))
+                ));
 
     }
 }

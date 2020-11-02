@@ -3,7 +3,6 @@ package com.github.amusingimpala75.lotr.client;
 import com.github.amusingimpala75.lotr.client.renderer.ModBoatRenderer;
 import com.github.amusingimpala75.lotr.client.renderer.PlateBlockEntityRenderer;
 import com.github.amusingimpala75.lotr.registry.ModBlockEntites;
-import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import com.github.amusingimpala75.lotr.registry.ModEntities;
 import com.github.amusingimpala75.lotr.registry.ModItems;
 import com.swordglowsblue.artifice.api.Artifice;
@@ -15,18 +14,20 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.Block;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
-import net.minecraft.entity.EntityType;
 import net.minecraft.util.Identifier;
 
 import static com.github.amusingimpala75.lotr.registry.ModBlocks.*;
 
 @Environment(EnvType.CLIENT)
 public class LotrClient implements ClientModInitializer {
+
+    public static Block[] blocksForCutout = new Block[] {};
+
     public static final String[][] slabStuff = {
             {"minecraft", "oak_slab", "oak_planks"},
             {"minecraft", "spruce_slab", "spruce_planks"},
@@ -40,7 +41,7 @@ public class LotrClient implements ClientModInitializer {
             {"minecraft", "smooth_stone_slab", "smooth_stone"},
             {"minecraft", "granite_slab", "granite"},
             {"minecraft", "polished_granite_slab", "polished_granite"},
-            {"minecraft", "diorite_slab", "doirite"},
+            {"minecraft", "diorite_slab", "diorite"},
             {"minecraft", "polished_diorite_slab", "polished_diorite"},
             {"minecraft", "andesite_slab", "andesite"},
             {"minecraft", "polished_andesite_slab", "polished_andesite"},
@@ -64,7 +65,7 @@ public class LotrClient implements ClientModInitializer {
             {"minecraft", "prismarine_slab", "prismarine"},
             {"minecraft", "prismarine_brick_slab", "prismarine_bricks"},
             {"minecraft", "dark_prismarine_slab", "dark_prismarine"},
-            {"minecraft", "pertrified_oak_slab", "oak_planks"},
+            {"minecraft", "petrified_oak_slab", "oak_planks"},
             {"minecraft", "blackstone_slab", "blackstone"},
             {"minecraft", "polished_blackstone_slab", "polished_blackstone"},
             {"minecraft", "polished_blackstone_brick_slab", "polished_blackstone_bricks"},
@@ -74,65 +75,79 @@ public class LotrClient implements ClientModInitializer {
             {"lotr", "gondor_brick_slab", "gondor_bricks"},
             {"lotr", "mordor_rock_slab", "mordor_rock"},
             {"lotr", "mordor_brick_slab", "mordor_bricks"},
-            {"lotr", ""}};
+            {"lotr", "rohan_rock_slab", "rohan_rock"}};
+
+    public static void addBlocksToRenderLayer(Block blockToAdd) {
+        Block[] nextArray = new Block[blocksForCutout.length+1];
+        System.arraycopy(blocksForCutout, 0, nextArray, 0, blocksForCutout.length);
+        nextArray[blocksForCutout.length] = blockToAdd;
+        blocksForCutout = nextArray;
+    }
+
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.PINE_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "pine");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.MALLORN_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "mallorn");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.MIRK_OAK_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "mirk_oak");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.CHARRED_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "charred");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.APPLE_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "apple");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.PEAR_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "pear");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.CHERRY_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "cherry");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.LEBETHRON_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "lebethron");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.BEECH_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "beech");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.MAPLE_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "maple");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.ASPEN_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "aspen");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.LAIRELOSSE_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "laireloss");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.CEDAR_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "cedar");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.FIR_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "fir");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.LARCH_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "larch");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.HOLLY_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "holly");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.GREEN_OAK_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "green_oak");
-        });
-        EntityRendererRegistry.INSTANCE.register((EntityType<?>) ModEntities.CYPRESS_BOAT, (dispatcher, context) -> {
-            return new ModBoatRenderer(dispatcher, "cypress");
-        });
+        EntityRendererRegistry.INSTANCE.register(ModEntities.PINE_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "pine")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.MALLORN_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "mallorn")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.MIRK_OAK_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "mirk_oak")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.CHARRED_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "charred")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.APPLE_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "apple")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.PEAR_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "pear")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.CHERRY_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "cherry")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.LEBETHRON_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "lebethron")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.BEECH_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "beech")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.MAPLE_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "maple")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.ASPEN_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "aspen")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.LAIRELOSSE_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "lairelosse")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.CEDAR_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "cedar")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.FIR_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "fir")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.LARCH_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "larch")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.HOLLY_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "holly")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.GREEN_OAK_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "green_oak")
+        );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.CYPRESS_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "cypress")
+        );
 
         BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntites.PINE_SIGN, SignBlockEntityRenderer::new);
+
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> view != null && pos != null ? BiomeColors.getGrassColor(view, pos) : GrassColors.getColor(0.5D, 1.0D),
+                CLOVER,
+                FOUR_CLOVER,
+                NETTLES,
+                THISTLES);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 MALLORN_LADDER,
@@ -152,14 +167,6 @@ public class LotrClient implements ClientModInitializer {
                 ModItems.PIPEWEED_CROP,
                 ModItems.LETTUCE_BLOCK);
 
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> {
-                    return view != null && pos != null ? BiomeColors.getGrassColor(view, pos) : GrassColors.getColor(0.5D, 1.0D);
-        },
-                CLOVER,
-                FOUR_CLOVER,
-                NETTLES,
-                THISTLES);
-
         ArtificeResourcePack resourcePack = Artifice.registerAssets("lotr:slab_assets", pack -> {
             for (int i = 0; i < slabStuff.length; i++) {
                 int finalI = i;
@@ -176,6 +183,14 @@ public class LotrClient implements ClientModInitializer {
             pack.setDisplayName("Lord of the Rings Slab Assets");
             pack.setDescription("because we are lazy and this is easier");
         });
+        resourcePack.isVisible(); //Just to get IDE to not complain
         BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntites.PLATE_ENTITY, PlateBlockEntityRenderer::new);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void registerCutouts() {
+        for (Block block : blocksForCutout) {
+            BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutoutMipped());
+        }
     }
 }

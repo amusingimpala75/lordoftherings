@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:white_stained_glass_pane","lotr:white_fine_glass_pane"
+  ]
+}

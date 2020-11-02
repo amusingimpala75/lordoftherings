@@ -49,5 +49,9 @@ public class LotrEarlyRisers implements Runnable{
         String wallShape = remapper.mapClassName("intermediary", "net.minecraft.class_4778");
 
         ClassTinkerers.enumBuilder(wallShape, "Ljava/lang/String;").addEnum("TRUE", () -> new Object[] {"true"}).build();
+
+        //String recipeCategory = remapper.mapClassName("intermediary", "net.minecraft.class_5421");
+        //
+        //ClassTinkerers.enumBuilder(recipeCategory, "").addEnum("FACTION", () -> new Object[] {"faction"}).build();
     }
 }
