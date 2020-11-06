@@ -1,14 +1,12 @@
 package com.github.amusingimpala75.lotr.registry;
 
 import com.chocohead.mm.api.ClassTinkerers;
-import com.github.amusingimpala75.lotr.Lotr;
 import com.github.amusingimpala75.lotr.block.ModCropBlock;
-import com.github.amusingimpala75.lotr.item.GoldRingItem;
-import com.github.amusingimpala75.lotr.item.ModBoatItem;
-import com.github.amusingimpala75.lotr.item.PocketMatchItem;
+import com.github.amusingimpala75.lotr.item.*;
 import com.github.amusingimpala75.lotr.materials.ModArmorMaterial;
 import com.github.amusingimpala75.lotr.materials.ModToolMaterial;
 import com.github.amusingimpala75.lotr.tools.ModPickaxe;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -18,7 +16,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.*;
 import com.github.amusingimpala75.lotr.util.ItemReg;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
@@ -62,6 +59,12 @@ public class ModItems {
     public static final Item PIPEWEED_SEEDS = new AliasedBlockItem(PIPEWEED_CROP, new Item.Settings().group(LOTR_FOOD));
     public static final Item FLAX_SEEDS = new AliasedBlockItem(FLAX_CROP, new Item.Settings().group(LOTR_FOOD));
     public static final Item LETTUCE = new AliasedBlockItem(LETTUCE_BLOCK, new Item.Settings().group(LOTR_FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(0.4F).build()));
+    public static final Item CERMAIC_MUG = new DrinkVesselItem(new FabricItemSettings().group(LOTR_FOOD));
+    public static final Item WOODEN_MUG = new DrinkVesselItem(new FabricItemSettings().group(LOTR_FOOD));
+    public static final Item GOLDEN_GOBLET = new DrinkVesselItem(new FabricItemSettings().group(LOTR_FOOD));
+    public static final StatusEffectInstance[] DWARVEN_TONIC_EFFECTS = {new StatusEffectInstance(StatusEffects.NIGHT_VISION, 4800)};
+    public static final StatusEffectInstance[] ORC_DRAUGHT_EFFECTS = {new StatusEffectInstance(StatusEffects.SPEED, 1200), new StatusEffectInstance(StatusEffects.STRENGTH, 1200)};
+    public static final StatusEffectInstance[] MIRUVOR_EFFECTS = {new StatusEffectInstance(StatusEffects.SPEED, 800), new StatusEffectInstance(StatusEffects.STRENGTH, 800)};
 
 
 
@@ -69,13 +72,13 @@ public class ModItems {
         /*
         Material Items - complete
         */
-        Registry.register(Registry.ITEM, new Identifier("lotr", "bronze_ingot"), BRONZE_INGOT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "mithril_ingot"), MITHRIL_INGOT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "orc_steel_ingot"), ORC_STEEL_INGOT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "dwarven_steel_ingot"), DWARVEN_STEEL_INGOT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "elven_steel_ingot"), ELVEN_STEEL_INGOT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "uruk_steel_ingot"), URUK_STEEL_INGOT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "fur"), FUR);
+        Registry.register(Registry.ITEM, id("bronze_ingot"), BRONZE_INGOT);
+        Registry.register(Registry.ITEM, id("mithril_ingot"), MITHRIL_INGOT);
+        Registry.register(Registry.ITEM, id("orc_steel_ingot"), ORC_STEEL_INGOT);
+        Registry.register(Registry.ITEM, id("dwarven_steel_ingot"), DWARVEN_STEEL_INGOT);
+        Registry.register(Registry.ITEM, id("elven_steel_ingot"), ELVEN_STEEL_INGOT);
+        Registry.register(Registry.ITEM, id("uruk_steel_ingot"), URUK_STEEL_INGOT);
+        Registry.register(Registry.ITEM, id("fur"), FUR);
         ItemReg.material("mithril_nugget");
         ItemReg.material("copper_ingot");
         ItemReg.material("tin_ingot");
@@ -98,15 +101,15 @@ public class ModItems {
         /*
         Misc Items - Red Book functionality, match ony lighting opposite side of block
          */
-        Registry.register(Registry.ITEM, new Identifier("lotr", "gold_ring"), GOLD_RING);
+        Registry.register(Registry.ITEM, id("gold_ring"), GOLD_RING);
         ItemReg.misc("pipeweed");
         ItemReg.misc("red_book");
-        Registry.register(Registry.ITEM, new Identifier("lotr", "pocket_match"), POCKET_MATCH);
+        Registry.register(Registry.ITEM, id("pocket_match"), POCKET_MATCH);
         ItemReg.misc("blackroot_stick");
         /*
         Food Items - drink functionality
          */
-        Registry.register(Registry.ITEM, new Identifier("lotr", "lembas"), LEMBAS);
+        Registry.register(Registry.ITEM, id("lembas"), LEMBAS);
         ItemReg.food2("gammon", 8, 0.8F, true, null);
         ItemReg.food2("green_apple", 4, 0.3F, false, null);
         ItemReg.food2("suspicious_meat", 7, 0.6F, true, null);
@@ -116,43 +119,43 @@ public class ModItems {
         ItemReg.food("clay_plate");
         ItemReg.food("clay_mug");
         ItemReg.food2("mallorn_nut", 4, 0.4F, false, null);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "pipeweed_seeds"), PIPEWEED_SEEDS);
-        Registry.register(Registry.BLOCK, new Identifier("lotr", "pipeweed_crop"), PIPEWEED_CROP);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "flax_seeds"), FLAX_SEEDS);
-        Registry.register(Registry.BLOCK, new Identifier("lotr", "flax_crop"), FLAX_CROP);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "lettuce"), ModItems.LETTUCE);
-        Registry.register(Registry.BLOCK, new Identifier("lotr", "lettuce"), LETTUCE_BLOCK);
+        Registry.register(Registry.ITEM, id("pipeweed_seeds"), PIPEWEED_SEEDS);
+        Registry.register(Registry.BLOCK, id("pipeweed_crop"), PIPEWEED_CROP);
+        Registry.register(Registry.ITEM, id("flax_seeds"), FLAX_SEEDS);
+        Registry.register(Registry.BLOCK, id("flax_crop"), FLAX_CROP);
+        Registry.register(Registry.ITEM, id("lettuce"), ModItems.LETTUCE);
+        Registry.register(Registry.BLOCK, id("lettuce"), LETTUCE_BLOCK);
         ItemReg.food2("morgul_shroom", 4, 0.4F, false, null);
         ItemReg.food2("mirk_shroom", 3, 0.3F, false, new StatusEffectInstance(StatusEffects.POISON, 100, 0));
-        ItemReg.food("wooden_mug");
-        ItemReg.food("ceramic_mug");
-        ItemReg.food("ale");
-        ItemReg.food("cider");
-        ItemReg.food("perry");
-        ItemReg.food("cherry_liqueur");
-        ItemReg.food("mead");
-        ItemReg.food("golden_goblet");
+        Registry.register(Registry.ITEM, id("wooden_mug"), WOODEN_MUG);
+        Registry.register(Registry.ITEM, id("ceramic_mug"), CERMAIC_MUG);
+        Registry.register(Registry.ITEM, id("ale"), VesselLiquidItem.newAlcohol(0.3F, 3, 0.3F));
+        Registry.register(Registry.ITEM, id("cider"), VesselLiquidItem.newAlcohol(0.3F, 4, 0.4F));
+        Registry.register(Registry.ITEM, id("perry"), VesselLiquidItem.newAlcohol(0.3F, 4, 0.4F));
+        Registry.register(Registry.ITEM, id("cherry_liqueur"), VesselLiquidItem.newAlcohol(1.0F, 3, 0.3F));
+        Registry.register(Registry.ITEM, id("mead"), VesselLiquidItem.newAlcohol(0.6F, 4, 0.4F));
+        Registry.register(Registry.ITEM, id("golden_goblet"), GOLDEN_GOBLET);
         ItemReg.food("water_drink");
         ItemReg.food("milk_drink");
-        ItemReg.food("chocolate_drink");
-        ItemReg.food("miruvor");
-        ItemReg.food("orc_draught");
-        ItemReg.food("dwarven_ale");
-        ItemReg.food("dwarven_tonic");
+        Registry.register(Registry.ITEM, id("chocolate_drink"), VesselLiquidItem.newBasic(6, 0.6F));
+        Registry.register(Registry.ITEM, id("miruvor"), VesselLiquidItem.newEffects(8, 0.8F, MIRUVOR_EFFECTS));
+        Registry.register(Registry.ITEM, id("orc_draught"), VesselLiquidItem.newEffDmg(6, 0.6F, 2.0F, ORC_DRAUGHT_EFFECTS));
+        Registry.register(Registry.ITEM, id("dwarven_ale"), VesselLiquidItem.newAlcohol(0.4F, 3, 0.3F));
+        Registry.register(Registry.ITEM, id("dwarven_tonic"), VesselLiquidItem.newEffAlc(0.2F, 4, 0.4F, DWARVEN_TONIC_EFFECTS));
         ItemReg.food("athelas_brew");
-        ItemReg.food("rum");
-        ItemReg.food("vodka");
-        ItemReg.food("maple_beer");
-        ItemReg.food("apple_juice");
-        ItemReg.food("carrot_wine");
-        ItemReg.food("cactus_liqueur");
-        ItemReg.food("melon_liqueur");
-        ItemReg.food("soured_milk");
-        ItemReg.food("sweet_berry_juice");
+        Registry.register(Registry.ITEM, id("rum"), VesselLiquidItem.newAlcohol(1.5F, 3, 0.3F));
+        Registry.register(Registry.ITEM, id("vodka"), VesselLiquidItem.newAlcohol(1.75F, 3, 0.3F));
+        Registry.register(Registry.ITEM, id("maple_beer"), VesselLiquidItem.newAlcohol(0.4F, 4, 0.6F));
+        Registry.register(Registry.ITEM, id("apple_juice"), VesselLiquidItem.newBasic(6,0.6F));
+        Registry.register(Registry.ITEM, id("carrot_wine"), VesselLiquidItem.newAlcohol(0.8F, 3, 0.4F));
+        Registry.register(Registry.ITEM, id("cactus_liqueur"), VesselLiquidItem.newAlcohol(0.8F, 2, 0.3F));
+        Registry.register(Registry.ITEM, id("melon_liqueur"), VesselLiquidItem.newAlcohol(1.0F, 3, 0.3F));
+        Registry.register(Registry.ITEM, id("soured_milk"), VesselLiquidItem.newAlcohol(0.2F, 5, 0.5F));
+        Registry.register(Registry.ITEM, id("sweet_berry_juice"), VesselLiquidItem.newBasic(5, 0.5F));
         /*
         Armour Items - complete
          */
-        Registry.register(Registry.ITEM, new Identifier("lotr", "mithril_helmet"), MITHRIL_HELMET);
+        Registry.register(Registry.ITEM, id("mithril_helmet"), MITHRIL_HELMET);
         ItemReg.chestplate("mithril_chestplate", ModArmorMaterial.MITHRIL);
         ItemReg.leggings("mithril_leggings", ModArmorMaterial.MITHRIL);
         ItemReg.boots("mithril_boots", ModArmorMaterial.MITHRIL);
@@ -165,17 +168,17 @@ public class ModItems {
         ItemReg.armourSet("galadhrim", ModArmorMaterial.GALADHRIM);
         ItemReg.armourSet("wood_elven", ModArmorMaterial.WOOD_ELVEN);
         ItemReg.armourSet("harad", ModArmorMaterial.HARAD);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "harad_warlord_helmet"), HARAD_WARLORD_HELMET);
+        Registry.register(Registry.ITEM, id("harad_warlord_helmet"), HARAD_WARLORD_HELMET);
         ItemReg.armourSet("umbar", ModArmorMaterial.UMBAR);
         ItemReg.armourSet("uruk", ModArmorMaterial.URUK);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "uruk_berserker_helmet"), URUK_BERSERKER_HELMET);
+        Registry.register(Registry.ITEM, id("uruk_berserker_helmet"), URUK_BERSERKER_HELMET);
         ItemReg.armourSet("blue_dwarven", ModArmorMaterial.BLUE_DWARVEN);
         ItemReg.armourSet("fur", ModArmorMaterial.FUR);
         ItemReg.armourSet("rohan", ModArmorMaterial.ROHAN);
         /*
         Tools and Combat - fix attack speed
          */
-        Registry.register(Registry.ITEM, new Identifier("lotr", "mithril_pickaxe"), MITHRIL_PICKAXE);
+        Registry.register(Registry.ITEM, id("mithril_pickaxe"), MITHRIL_PICKAXE);
         ItemReg.axe("mithril_axe", ModToolMaterial.MITHRIL, 0, 9.0F);
         ItemReg.shovel("mithril_shovel", ModToolMaterial.MITHRIL, -2, 9.0F);
         ItemReg.sword("mithril_sword", ModToolMaterial.MITHRIL, 1, 9.0F);
@@ -197,24 +200,24 @@ public class ModItems {
         /*
         Boats - complete :)
          */
-        Registry.register(Registry.ITEM, new Identifier("lotr", "pine_boat"), PINE_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "mallorn_boat"), MALLORN_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "mirk_oak_boat"), MIRK_OAK_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "charred_boat"), CHARRED_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "apple_boat"), APPLE_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "pear_boat"), PEAR_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "cherry_boat"), CHERRY_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "lebethron_boat"), LEBETHRON_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "beech_boat"), BEECH_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "maple_boat"), MAPLE_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "aspen_boat"), ASPEN_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "lairelosse_boat"), LAIRELOSSE_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "cedar_boat"), CEDAR_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "fir_boat"), FIR_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "larch_boat"), LARCH_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "holly_boat"), HOLLY_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "green_oak_boat"), GREEN_OAK_BOAT);
-        Registry.register(Registry.ITEM, new Identifier("lotr", "cypress_boat"), CYPRESS_BOAT);
+        Registry.register(Registry.ITEM, id("pine_boat"), PINE_BOAT);
+        Registry.register(Registry.ITEM, id("mallorn_boat"), MALLORN_BOAT);
+        Registry.register(Registry.ITEM, id("mirk_oak_boat"), MIRK_OAK_BOAT);
+        Registry.register(Registry.ITEM, id("charred_boat"), CHARRED_BOAT);
+        Registry.register(Registry.ITEM, id("apple_boat"), APPLE_BOAT);
+        Registry.register(Registry.ITEM, id("pear_boat"), PEAR_BOAT);
+        Registry.register(Registry.ITEM, id("cherry_boat"), CHERRY_BOAT);
+        Registry.register(Registry.ITEM, id("lebethron_boat"), LEBETHRON_BOAT);
+        Registry.register(Registry.ITEM, id("beech_boat"), BEECH_BOAT);
+        Registry.register(Registry.ITEM, id("maple_boat"), MAPLE_BOAT);
+        Registry.register(Registry.ITEM, id("aspen_boat"), ASPEN_BOAT);
+        Registry.register(Registry.ITEM, id("lairelosse_boat"), LAIRELOSSE_BOAT);
+        Registry.register(Registry.ITEM, id("cedar_boat"), CEDAR_BOAT);
+        Registry.register(Registry.ITEM, id("fir_boat"), FIR_BOAT);
+        Registry.register(Registry.ITEM, id("larch_boat"), LARCH_BOAT);
+        Registry.register(Registry.ITEM, id("holly_boat"), HOLLY_BOAT);
+        Registry.register(Registry.ITEM, id("green_oak_boat"), GREEN_OAK_BOAT);
+        Registry.register(Registry.ITEM, id("cypress_boat"), CYPRESS_BOAT);
 
 
     }
@@ -223,6 +226,6 @@ public class ModItems {
         -fix tool/weapon attack speed
         -fix foods/drinks
         -fix match placement
-        -add Red Book functionality
+        -add Red Book functionality ?
      */
 }

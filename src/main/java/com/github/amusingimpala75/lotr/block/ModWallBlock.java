@@ -127,29 +127,4 @@ public class ModWallBlock extends Block implements Waterloggable {
             return WallShape.NONE;
         }
     }
-
-
-    //@Override
-    //public BlockState getPlacementState(ItemPlacementContext ctx) {
-    //        WorldView worldView = ctx.getWorld();
-    //        BlockPos blockPos = ctx.getBlockPos();
-    //        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-    //        BlockPos blockPos2 = blockPos.north();
-    //        BlockPos blockPos3 = blockPos.east();
-    //        BlockPos blockPos4 = blockPos.south();
-    //        BlockPos blockPos5 = blockPos.west();
-    //        BlockPos blockPos6 = blockPos.up();
-    //        BlockState blockState = worldView.getBlockState(blockPos2);
-    //        BlockState blockState2 = worldView.getBlockState(blockPos3);
-    //        BlockState blockState3 = worldView.getBlockState(blockPos4);
-    //        BlockState blockState4 = worldView.getBlockState(blockPos5);
-    //        BlockState blockState5 = worldView.getBlockState(blockPos6);
-    //        boolean bl = WallBlockAccessors.invokeShouldConnectTo(blockState, blockState.isSideSolidFullSquare(worldView, blockPos2, Direction.SOUTH), Direction.SOUTH);
-    //        boolean bl2 = WallBlockAccessors.invokeShouldConnectTo(blockState2, blockState2.isSideSolidFullSquare(worldView, blockPos3, Direction.WEST), Direction.WEST);
-    //        boolean bl3 = WallBlockinvokeShouldConnectTo(blockState3, blockState3.isSideSolidFullSquare(worldView, blockPos4, Direction.NORTH), Direction.NORTH);
-    //        boolean bl4 = invokeShouldConnectTo(blockState4, blockState4.isSideSolidFullSquare(worldView, blockPos5, Direction.EAST), Direction.EAST);
-    //        BlockState blockState6 = (BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-    //        return invokeMethod_24422(worldView, blockState6, blockPos6, blockState5, bl, bl2, bl3, bl4);
-    //}
-
 }

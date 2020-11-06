@@ -4,7 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.state.StateManager;
-
+/*
+Wrapper class for Doors
+ */
 public class ModDoorBlock extends DoorBlock {
     public ModDoorBlock(Settings settings) {
         super(settings);

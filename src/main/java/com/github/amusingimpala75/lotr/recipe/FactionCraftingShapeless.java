@@ -1,4 +1,4 @@
-package com.github.amusingimpala75.lotr.block.crafting;
+package com.github.amusingimpala75.lotr.recipe;
 
 import com.github.amusingimpala75.lotr.ducks.DuckForShaplessRecipe;
 import com.google.gson.JsonArray;
@@ -22,7 +22,7 @@ public class FactionCraftingShapeless extends ShapelessRecipe implements Faction
 
     @Override
     public RecipeType<?> getType() {
-        return LotrCrafting.FACTION_SHAPELESS;
+        return LotrCrafting.FACTION;
     }
 
     public String getFaction() {

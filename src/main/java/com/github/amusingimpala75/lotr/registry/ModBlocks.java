@@ -6,6 +6,7 @@ import com.github.amusingimpala75.lotr.block.crafting.FactionCraftingTable;
 import com.github.amusingimpala75.lotr.faction.Faction;
 import com.github.amusingimpala75.lotr.util.BlockReg;
 import com.github.amusingimpala75.lotr.world.features.AspenSaplingGen;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.StatusEffects;
@@ -20,22 +21,22 @@ import static com.github.amusingimpala75.lotr.Lotr.*;
 public class ModBlocks {
 
     public static final Block GONDOR_ROCK = new Block(FabricBlockSettings.of(Material.STONE));
-    public static final Block GONDOR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.GONDOR, "container.lotr.gondor_crafting");
-    public static final Block MORDOR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.MORDOR, "container.lotr.mordor_crafting");
-    public static final Block DWARVEN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.DURINS_FOLK, "container.lotr.dwarven_crafting");
-    public static final Block LINDON_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.HIGH_ELF, "container.lotr.lindon_crafting");
-    public static final Block RIVENDELL_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.HIGH_ELF, "container.lotr.rivendell_crafting");
-    public static final Block GALADHRIM_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.LOTHLORIEN, "container.lotr.galadhrim_crafting");
-    public static final Block WOOD_ELVEN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.WOOD_ELF, "container.lotr.wood_elven_crafting");
-    public static final Block HARAD_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.NEAR_HARAD, "container.lotr.harad_crafting");
-    public static final Block UMBAR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.NEAR_HARAD, "container.lotr.umbar_crafting");
-    public static final Block URUK_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.ISENGARD, "container.lotr.uruk_crafting");
-    public static final Block HOBBIT_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.HOBBIT, "container.lotr.hobbit_crafting");
-    public static final Block BLUE_MOUNTIAN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.BLUE_MOUNTAINS, "container.lotr.blue_mountains_crafting");
-    public static final Block ROHAN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.ROHAN, "container.lotr.rohan_crafting");
-    public static final Block RANGER_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.RANGER_NORTH, "container.lotr.ranger_crafting");
-    public static final Block DOL_AMROTH_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.GONDOR, "container.lotr.dol_amroth_crafting");
-    public static final Block ANGMAR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.ANGMAR, "container.lotr.angmar_crafting");
+    public static final Block GONDOR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.GONDOR, "container.lotr.gondor_crafting", "gondor");
+    public static final Block MORDOR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.MORDOR, "container.lotr.mordor_crafting", "mordor");
+    public static final Block DWARVEN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.DURINS_FOLK, "container.lotr.dwarven_crafting", "dwarven");
+    public static final Block LINDON_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.HIGH_ELF, "container.lotr.lindon_crafting", "lindon");
+    public static final Block RIVENDELL_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.HIGH_ELF, "container.lotr.rivendell_crafting", "rivendell");
+    public static final Block GALADHRIM_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.LOTHLORIEN, "container.lotr.galadhrim_crafting", "galadhrim");
+    public static final Block WOOD_ELVEN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.WOOD_ELF, "container.lotr.wood_elven_crafting", "wood_elf");
+    public static final Block HARAD_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.NEAR_HARAD, "container.lotr.harad_crafting", "harad");
+    public static final Block UMBAR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.NEAR_HARAD, "container.lotr.umbar_crafting", "umbar");
+    public static final Block URUK_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.ISENGARD, "container.lotr.uruk_crafting", "uruk");
+    public static final Block HOBBIT_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.HOBBIT, "container.lotr.hobbit_crafting", "hobbit");
+    public static final Block BLUE_MOUNTIAN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.BLUE_MOUNTAINS, "container.lotr.blue_mountains_crafting", "blue_mountains");
+    public static final Block ROHAN_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.ROHAN, "container.lotr.rohan_crafting", "rohan");
+    public static final Block RANGER_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.RANGER_NORTH, "container.lotr.ranger_crafting", "ranger");
+    public static final Block DOL_AMROTH_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.GONDOR, "container.lotr.dol_amroth_crafting", "dol_amroth");
+    public static final Block ANGMAR_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.ANGMAR, "container.lotr.angmar_crafting", "angmar");
     public static final Block COPPER_ORE = new Block(FabricBlockSettings.of(Material.STONE));
     public static final Block TIN_ORE = new Block(FabricBlockSettings.of(Material.STONE));
     public static final Block SILVER_ORE = new Block(FabricBlockSettings.of(Material.STONE));
@@ -89,7 +90,7 @@ public class ModBlocks {
             SeaPickleBlock.isDry(state) ? 3 + 3 * (Integer)state.get(SeaPickleBlock.PICKLES) : 0)
             .sounds(BlockSoundGroup.SLIME).nonOpaque());
     public static final Block ORC_TORCH = new ModOrcTorch(AbstractBlock.Settings.of(Material.WOOD).nonOpaque().luminance((state) -> 15).noCollision());
-    public static final Block DORWINION_CRAFTING_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.WOOD), Faction.DORWINION, "container.lotr.dorwinion_crafting");
+    public static final Block DORWINION_CRAFTING_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.WOOD), Faction.DORWINION, "container.lotr.dorwinion_crafting", "dorwinion");
     public static final Block CYPRESS_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD));
     public static final Block KEG = new Keg(FabricBlockSettings.of(Material.WOOD).nonOpaque());
     //Alloy, Dwarven, Elven, Orc, Hobbit
@@ -103,10 +104,8 @@ public class ModBlocks {
     public static final Block MORDOR_ROCK = new MordorRock(FabricBlockSettings.of(Material.STONE).ticksRandomly());
     public static final Block DIRTY_CHALK = new DirtyChalk(FabricBlockSettings.of(Material.STONE));
     public static final Block MIRK_OAK_LEAVES = new MirkOakLeaves(FabricBlockSettings.of(Material.LEAVES).nonOpaque());
-    public static final Block DALE_CRAFTING_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.DALE, "container.lotr.dale_crafting");
-
-    //public static BlockEntityType<?> SIGN2;
-
+    public static final Block DALE_CRAFTING_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.DALE, "container.lotr.dale_crafting", "dale");
+    public static final Block CARVED_DALE_BRICK = new ModDirectionalBlock(FabricBlockSettings.of(Material.STONE));
 
     public static void registerBlocks() {
         /*
@@ -133,7 +132,7 @@ public class ModBlocks {
         BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak", ModSignType.GREEN_OAK);
         BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress", ModSignType.CYPRESS);
         /*
-        Slab - still need to fix models, perhaps add on-the-fly resource generation
+        Slab - still need to fix models
          */
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock_slab");
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_slab");
@@ -597,7 +596,7 @@ public class ModBlocks {
         BlockReg.leaves(Material.LEAVES, Lotr.LOTR_BLOCKS, true, "red_oak_leaves");
         BlockReg.leaves(Material.LEAVES, Lotr.LOTR_BLOCKS, true, "cypress_leaves");
         /*
-        Crafting Table - individual recipes need to be fixed
+        Crafting Table - fix vanilla compat option
          */
         Registry.register(Registry.BLOCK, id("gondor_crafting_table"), GONDOR_TABLE);
         Registry.register(Registry.BLOCK, id("mordor_crafting_table"), MORDOR_TABLE);
@@ -734,7 +733,7 @@ public class ModBlocks {
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_button");
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_button");
         /*
-        Pillar - doesn't update on neighborUpdate
+        Pillar - fix horizontal updating
          */
         BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "dwarven_pillar");
         BlockReg.pillar2(Material.STONE, Lotr.LOTR_BLOCKS, true, "stone_pillar");
@@ -865,7 +864,8 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dale_brick");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dale_brick");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_dale_brick");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "carved_dale_brick");
+        Registry.register(Registry.BLOCK, id("carved_dale_brick"), CARVED_DALE_BRICK);
+        Registry.register(Registry.ITEM, id("carved_dale_brick"), new BlockItem(CARVED_DALE_BRICK, new FabricItemSettings().group(LOTR_BLOCKS)));
         /*
         Glass - complete
          */
@@ -907,7 +907,7 @@ public class ModBlocks {
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_fine_glass_pane");
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_fine_glass_pane");
         /*
-        Dripstone - fix placement, collisions boxes (get from official)
+        Dripstone - fix placement, collisions boxes (get from official) (ie almost everything)
          */
         BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "dripstone");
         BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_dripstone");
@@ -1041,7 +1041,6 @@ public class ModBlocks {
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_green_oak_wood");
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_wood");
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cypress_wood");
-
         /*
         Log - Stripped and non-stripped - complete
          */
@@ -1161,7 +1160,7 @@ public class ModBlocks {
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "uruk_bars");
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_dwarven_bars");
         /*
-        Sapling - Potted / not Potted - saplings fail to grow
+        Sapling - Potted / not Potted
          */
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "pine_sapling");
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallorn_sapling");
@@ -1184,7 +1183,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, id("potted_aspen_sapling"), POTTED_ASPEN);
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_sapling");
         /*
-        Food - keg needs work to hold alcohol/mugs, as do plates to hold food
+        Food - keg needs work to hold alcohol/mugs, plate functionality and rendering debug
          */
         BlockReg.food(Material.STONE, Lotr.LOTR_BLOCKS, true, "cherry_pie");
         BlockReg.food(Material.STONE, Lotr.LOTR_BLOCKS, true, "apple_crumble");
@@ -1285,9 +1284,7 @@ public class ModBlocks {
         -add functionality to forges/ovens
         -fix Dripstone
         -bugfix pillar updating for sideways
-        -bugfix crafting table taking multiple factions
-        -add vanilla switch functionality
-        -bugfix item duping in crafting table
+        -add vanilla switch functionality to crafting tables
         -fix wall models
         -fix slab vertical models
         -fix signs

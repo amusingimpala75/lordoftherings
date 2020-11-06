@@ -5,7 +5,9 @@ import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-
+/*
+Class for blocks that can be placed North/South/East/West, based on CarvedPumpkin
+ */
 public class ModDirectionalBlock extends CarvedPumpkinBlock {
     public ModDirectionalBlock(Settings settings) {
         super(settings);

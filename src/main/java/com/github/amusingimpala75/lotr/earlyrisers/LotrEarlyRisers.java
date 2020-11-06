@@ -4,6 +4,7 @@ import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import com.chocohead.mm.api.ClassTinkerers;
+import net.minecraft.client.MinecraftClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,8 +13,6 @@ public class LotrEarlyRisers implements Runnable{
 
     @Override
     public void run() {
-        LOGGER.info("Lord of the Fabric Early Risers activated");
-
         MappingResolver remapper = FabricLoader.getInstance().getMappingResolver();
 
         String boat = remapper.mapClassName("intermediary", "net.minecraft.class_1690$class_1692");
@@ -45,13 +44,11 @@ public class LotrEarlyRisers implements Runnable{
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("SOUTH", () -> new Object[] {"south"}).build();
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("EAST", () -> new Object[] {"east"}).build();
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("WEST", () -> new Object[] {"west"}).build();
+        ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("XDOUBLE", () -> new Object[] {"xdouble"}).build();
+        ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("ZDOUBLE", () -> new Object[] {"zdouble"}).build();
 
         String wallShape = remapper.mapClassName("intermediary", "net.minecraft.class_4778");
 
         ClassTinkerers.enumBuilder(wallShape, "Ljava/lang/String;").addEnum("TRUE", () -> new Object[] {"true"}).build();
-
-        //String recipeCategory = remapper.mapClassName("intermediary", "net.minecraft.class_5421");
-        //
-        //ClassTinkerers.enumBuilder(recipeCategory, "").addEnum("FACTION", () -> new Object[] {"faction"}).build();
     }
 }

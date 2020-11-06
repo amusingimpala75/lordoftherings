@@ -1,4 +1,4 @@
-package com.github.amusingimpala75.lotr.block.crafting;
+package com.github.amusingimpala75.lotr.recipe;
 
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.CraftingInventory;
@@ -100,11 +100,4 @@ public class BrewingRecipe implements Recipe<CraftingInventory> {
             buf.writeInt(recipe.brewTime);
         }
     }
-    public static class Type implements RecipeType<BrewingRecipe> {
-        private Type() {}
-        public static final BrewingRecipe.Type INSTANCE = new BrewingRecipe.Type();
-
-        public static final String ID = "brewing";
-    }
-
 }

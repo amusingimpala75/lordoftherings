@@ -7,7 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
-
+/*
+Custom Crop Block
+ */
 public class ModCropBlock extends CropBlock {
     public Item seeds;
     public ModCropBlock(Settings settings, Item seeds) {

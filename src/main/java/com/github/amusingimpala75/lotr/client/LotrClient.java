@@ -14,14 +14,18 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.LogManager;
 
 import static com.github.amusingimpala75.lotr.registry.ModBlocks.*;
+import static com.github.amusingimpala75.lotr.Lotr.*;
 
 @Environment(EnvType.CLIENT)
 public class LotrClient implements ClientModInitializer {
@@ -59,7 +63,7 @@ public class LotrClient implements ClientModInitializer {
             {"minecraft", "red_sandstone_slab", "red_sandstone"},
             {"minecraft", "cut_red_sandstone_slab", "cut_red_sandstone"},
             {"minecraft", "smooth_red_sandstone_slab", "smooth_red_sandstone"},
-            {"minecraft", "quartz_slab", "quartz"},
+            {"minecraft", "quartz_slab", "quartz_block"},
             {"minecraft", "smooth_quartz_slab", "smooth_quartz"},
             {"minecraft", "purpur_slab", "purpur_block"},
             {"minecraft", "prismarine_slab", "prismarine"},
@@ -72,10 +76,11 @@ public class LotrClient implements ClientModInitializer {
             {"lotr", "gondor_rock_slab", "gondor_rock"},
             {"lotr", "pine_slab", "pine_planks"},
             {"lotr", "mallorn_slab", "mallorn_planks"},
-            {"lotr", "gondor_brick_slab", "gondor_bricks"},
+            {"lotr", "gondor_brick_slab", "gondor_brick"},
             {"lotr", "mordor_rock_slab", "mordor_rock"},
-            {"lotr", "mordor_brick_slab", "mordor_bricks"},
-            {"lotr", "rohan_rock_slab", "rohan_rock"}};
+            {"lotr", "mordor_brick_slab", "mordor_brick"},
+            {"lotr", "rohan_rock_slab", "rohan_rock"},
+            {"lotr","rohan_brick_slab","rohan_brick"}};
 
     public static void addBlocksToRenderLayer(Block blockToAdd) {
         Block[] nextArray = new Block[blocksForCutout.length+1];
@@ -86,6 +91,7 @@ public class LotrClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ScreenRegistry.register(FACTION_SCREEN, FactionScreen::new);
         EntityRendererRegistry.INSTANCE.register(ModEntities.PINE_BOAT, (dispatcher, context) ->
                 new ModBoatRenderer(dispatcher, "pine")
         );
@@ -176,8 +182,10 @@ public class LotrClient implements ClientModInitializer {
                         .variant("type=double", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][2])))
                         .variant("type=north", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][1])).rotationX(270).uvlock(true))
                         .variant("type=south", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][1]+"_top")).rotationX(270).uvlock(true))
+                        .variant("type=zdouble", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][2])).rotationX(270).uvlock(true))
                         .variant("type=east", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][1])).rotationX(90).rotationY(90).uvlock(true))
-                        .variant("type=west", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][1]+"_top")).rotationX(90).rotationY(90).uvlock(true)));
+                        .variant("type=west", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][1]+"_top")).rotationX(90).rotationY(90).uvlock(true))
+                        .variant("type=xdouble", variant -> variant.model(new Identifier(slabStuff[finalI][0], "block/"+slabStuff[finalI][2])).rotationX(90).rotationY(90).uvlock(true)));
             }
             pack.shouldOverwrite();
             pack.setDisplayName("Lord of the Rings Slab Assets");
@@ -185,6 +193,12 @@ public class LotrClient implements ClientModInitializer {
         });
         resourcePack.isVisible(); //Just to get IDE to not complain
         BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntites.PLATE_ENTITY, PlateBlockEntityRenderer::new);
+        String name = MinecraftClient.getInstance().getSession().getUsername();
+        String[] quotes = {"The world is indeed full of peril and in it there are many dark places.", "It's a dangerous business, "+name+", going out your door. You step onto the road, and if you don't keep your feet, there's no knowing where you might be swept off to.", "Ash nazg durbatulûk, ash nazg gimbatul,\n" +
+                "ash nazg thrakatulûk agh burzum-ishi krimpatul."};
+        int randomQuote = (int)((Math.random() * quotes.length) - 1);
+        LogManager.getLogger().info(quotes[randomQuote]);
+
     }
 
     @Environment(EnvType.CLIENT)

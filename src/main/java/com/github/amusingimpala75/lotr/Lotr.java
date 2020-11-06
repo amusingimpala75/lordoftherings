@@ -1,24 +1,30 @@
 package com.github.amusingimpala75.lotr;
 
-import com.github.amusingimpala75.lotr.block.crafting.LotrCrafting;
-import com.github.amusingimpala75.lotr.ducks.DuckFactionMixin;
+import com.github.amusingimpala75.lotr.block.crafting.FactionCraftingScreenHandler;
+import com.github.amusingimpala75.lotr.recipe.LotrCrafting;
 import com.github.amusingimpala75.lotr.client.LotrClient;
-import com.github.amusingimpala75.lotr.faction.Faction;
 import com.github.amusingimpala75.lotr.registry.*;
-import com.mojang.brigadier.arguments.ArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class Lotr implements ModInitializer {
     public static final String MOD_ID = "lotr";
+    public static final ScreenHandlerType<FactionCraftingScreenHandler> FACTION_SCREEN;
+    static {
+        FACTION_SCREEN = ScreenHandlerRegistry.registerSimple(id("faction_crafting"), FactionCraftingScreenHandler::new);
+    }
     /*
     Item Groups
      */
@@ -47,29 +53,24 @@ public class Lotr implements ModInitializer {
             () -> new ItemStack(Items.ITEM_FRAME)
     );
 
-    private ArgumentType<Faction> faction;
-    private ArgumentType<String> integer;
-
     @Override
     public void onInitialize() {
+        ModSounds.registerSounds();
         ModBlocks.registerBlocks();
         ModItems.registerItems();
         ModBlockEntites.registerBlockEntities();
         CommandRegistrationCallback.EVENT.register((commandDispatcher, isDedicated) ->
-                CommandManager.literal("faction")
+                commandDispatcher.register(CommandManager.literal("faction")
                 .then(
                         CommandManager.literal("set")
                                 .then(
-                                        CommandManager.argument("type", faction)
+                                        CommandManager.argument("type", StringArgumentType.string())
                                                 .then(
-                                                        CommandManager.argument("amount", integer)
+                                                        CommandManager.argument("amount", IntegerArgumentType.integer())
                                                                                 .executes(context -> {
-                                                                                    String factionToBeSet = context.getArgument("type", String.class);
-                                                                                    Integer factionAmount = context.getArgument("amount", Integer.class);
+                                                                                    String factionToBeSet = StringArgumentType.getString(context, "type");
+                                                                                    Integer factionAmount = IntegerArgumentType.getInteger(context, "amount");
                                                                                     PlayerEntity player = context.getSource().getPlayer();
-                                                                                    if (player != null) {
-                                                                                        ((DuckFactionMixin)player).setFactionAmount(factionAmount, factionToBeSet);
-                                                                                    }
                                                                                     System.out.println("Setting faction "+factionToBeSet+" to "+factionAmount);
                                                                                     return 1;
                                                                                 })
@@ -87,7 +88,7 @@ public class Lotr implements ModInitializer {
                 .executes(context -> {
                     System.out.println("Missing what to do to player faction amount!");
                     return 1;
-                }));
+                })));
         ModEntities.registerEntities();
         LotrCrafting.registerCrafting();
         ModBiomes.registerBiomes();     //Gonna have to wait for artifice to support MultiNoise, as it requires unreachable keys for weirdness, alt, temp, humid
@@ -135,6 +136,7 @@ public class Lotr implements ModInitializer {
         });
         lotrDataPack.isVisible();*/
         LotrClient.registerCutouts();
+
     }
 
     public static Identifier id(String name) {

@@ -1,5 +1,8 @@
 package com.github.amusingimpala75.lotr.block.crafting;
 
+import com.github.amusingimpala75.lotr.Lotr;
+import com.github.amusingimpala75.lotr.recipe.FactionCrafting;
+import com.github.amusingimpala75.lotr.recipe.LotrCrafting;
 import com.github.amusingimpala75.lotr.registry.ModBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,32 +16,34 @@ import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeFinder;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Optional;
 
-public class FactionCraftingScreenHandler extends AbstractRecipeScreenHandler<FactionCraftingInventory> {
-    private final FactionCraftingInventory input;
-    private final FactionCraftingResultInventory result;
+public class FactionCraftingScreenHandler extends AbstractRecipeScreenHandler<CraftingInventory> {
+    private final CraftingInventory input;
+    private final CraftingResultInventory result;
     private final ScreenHandlerContext context;
     private final PlayerEntity player;
     private final FactionCraftingTable table;
+    public boolean craftingMode = false;
 
     public FactionCraftingScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY, (FactionCraftingTable) ModBlocks.DWARVEN_TABLE);
     }
 
     public FactionCraftingScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, FactionCraftingTable table) {
-        super(ScreenHandlerType.CRAFTING, syncId);
-        this.input = new FactionCraftingInventory(this, 3, 3);
-        this.result = new FactionCraftingResultInventory();
+        super(Lotr.FACTION_SCREEN, syncId);
+        this.input = new CraftingInventory(this, 3, 3);
+        this.result = new CraftingResultInventory();
         this.context = context;
         this.player = playerInventory.player;
         this.addSlot(new CraftingResultSlot(playerInventory.player, this.input, this.result, 0, 124, 35));
@@ -66,7 +71,7 @@ public class FactionCraftingScreenHandler extends AbstractRecipeScreenHandler<Fa
     public FactionCraftingTable getTable() {
         return new FactionCraftingTable(table);
     }
-    public /*static*/ boolean isFactionSame(String faction) {
+    public boolean isFactionSame(String faction) {
         switch (faction) {
             case "lindon":
             case "rivendell":
@@ -90,27 +95,39 @@ public class FactionCraftingScreenHandler extends AbstractRecipeScreenHandler<Fa
         }
         return faction.equals((this.table).getFaction().name);
     }
+    public boolean isFactionStringSame(String faction) {
+        return faction.equals(this.table.getFactionString());
+    }
 
-    protected /*static*/ void updateResult(int syncId, World world, PlayerEntity player, CraftingInventory craftingInventory, CraftingResultInventory resultInventory) {
+    public boolean swapCraftingMode() {
+        craftingMode = !craftingMode;
+        return craftingMode;
+    }
+
+    protected void updateResult(int syncId, World world, PlayerEntity player, CraftingInventory craftingInventory, CraftingResultInventory resultInventory) {
         if (!world.isClient) {
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
             ItemStack itemStack = ItemStack.EMPTY;
-            //Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(LotrCrafting.FACTION_SHAPED, craftingInventory, world);
-            //if (!optional.isPresent()) {
-            //    optional = world.getServer().getRecipeManager().getFirstMatch(LotrCrafting.FACTION_SHAPELESS, craftingInventory, world);
-            //}
-            List<CraftingRecipe> optional = world.getServer().getRecipeManager().getAllMatches(LotrCrafting.FACTION_SHAPED, craftingInventory, world);
-            if (optional.isEmpty()) {
-                optional = world.getServer().getRecipeManager().getAllMatches(LotrCrafting.FACTION_SHAPELESS, craftingInventory, world);
-            }
-            for (int i = 0; i < optional.size(); i++) {
-                if (!optional.isEmpty()) {
-                    if (isFactionSame(((FactionCrafting)optional.get(i)).getFaction())) {
-                        CraftingRecipe craftingRecipe = (CraftingRecipe)optional.get(i);
-                        if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
-                            itemStack = craftingRecipe.craft(craftingInventory);
-                        }
+            Optional<CraftingRecipe> optional = Optional.empty();
+
+            if (this.craftingMode) {
+                optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
+                System.out.println("Assigning Vanilla Recipes");
+            } else {
+                List<CraftingRecipe> list = world.getServer().getRecipeManager().getAllMatches(LotrCrafting.FACTION, craftingInventory, world);
+                for (int i = 0; i < list.size(); i++) {
+                    if (isFactionStringSame(((FactionCrafting)(list.get(i))).getFaction())) {
+                        optional = Optional.of(list.get(i));
+                        i = (list.size()+1);
                     }
+                }
+                System.out.println("Assigning Faction Recipes");
+            }
+
+            if (optional.isPresent()) {
+                CraftingRecipe craftingRecipe = optional.get();
+                if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
+                    itemStack = craftingRecipe.craft(craftingInventory);
                 }
             }
             resultInventory.setStack(0, itemStack);
@@ -133,7 +150,7 @@ public class FactionCraftingScreenHandler extends AbstractRecipeScreenHandler<Fa
         this.result.clear();
     }
 
-    public boolean matches(Recipe<? super FactionCraftingInventory> recipe) {
+    public boolean matches(Recipe<? super CraftingInventory> recipe) {
         return recipe.matches(this.input, this.player.world);
     }
 

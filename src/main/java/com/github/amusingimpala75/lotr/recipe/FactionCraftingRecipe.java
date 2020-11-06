@@ -1,4 +1,4 @@
-package com.github.amusingimpala75.lotr.block.crafting;
+package com.github.amusingimpala75.lotr.recipe;
 
 import com.github.amusingimpala75.lotr.mixin.ShapedRecipeInvokers;
 import com.google.gson.JsonObject;
@@ -23,7 +23,7 @@ public class FactionCraftingRecipe extends ShapedRecipe implements FactionCrafti
 
     @Override
     public RecipeType<?> getType() {
-        return LotrCrafting.FACTION_SHAPED;
+        return LotrCrafting.FACTION;
     }
 
     @Override
@@ -58,11 +58,5 @@ public class FactionCraftingRecipe extends ShapedRecipe implements FactionCrafti
             ShapedRecipe recipe = super.read(identifier, buf);
             return new FactionCraftingRecipe(recipe.getId(), recipe.getGroup(), recipe.getWidth(), recipe.getHeight(), recipe.getPreviewInputs(), recipe.getOutput(), buf.readString());
         }
-    }
-    public static class Type implements RecipeType<FactionCraftingRecipe> {
-        private Type() {}
-        public static final Type INSTANCE = new Type();
-
-        public static final String ID = "faction_shaped";
     }
 }
