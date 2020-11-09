@@ -7,7 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;
 
 import java.util.Map;
-
+/*
+Wrapper for HoeItem
+ */
 public class ModHoe extends HoeItem {
     public final Map<Block, BlockState> TILLED_BLOCKS = HoeItem.TILLED_BLOCKS;
     public ModHoe(ToolMaterial material, int attackDamage, float attackSpeed, Item.Settings settings) {

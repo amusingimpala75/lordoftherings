@@ -11,7 +11,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
+/*
+Recipe for alloying in alloy forge
+ */
 public class AlloyForge implements Recipe<Inventory> {
 
     private final ItemStack output;

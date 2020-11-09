@@ -13,7 +13,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.id;
-
+/*
+For cooking in orc forge
+ */
 public class OrcForgeRecipe extends AbstractCookingRecipe {
     public OrcForgeRecipe(Identifier id, String group, Ingredient input, ItemStack output, float experience, int cookTime) {
         super(LotrCrafting.ORC_FORGE, id, group, input, output, experience, cookTime);

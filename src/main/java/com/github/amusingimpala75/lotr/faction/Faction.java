@@ -1,5 +1,7 @@
 package com.github.amusingimpala75.lotr.faction;
-
+/*
+General Collection of factions
+ */
 public enum Faction {
     HOBBIT("hobbit"),
     BREE("bree"),

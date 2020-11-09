@@ -5,7 +5,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.state.StateManager;
-
+/*
+Wrapper Class for saplings
+ */
 public class ModSaplingBlock extends SaplingBlock {
     public ModSaplingBlock(SaplingGenerator generator, Settings settings) {
         super(generator, settings);

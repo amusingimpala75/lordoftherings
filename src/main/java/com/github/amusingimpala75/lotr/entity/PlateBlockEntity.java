@@ -11,7 +11,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
+/*
+Block entity for PlateBlock
+ */
 public class PlateBlockEntity extends BlockEntity {
 
     private ItemStack food = ItemStack.EMPTY;
@@ -20,6 +22,7 @@ public class PlateBlockEntity extends BlockEntity {
         super(ModBlockEntites.PLATE_ENTITY);
     }
 
+    //Save data
     @Override
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
@@ -27,12 +30,14 @@ public class PlateBlockEntity extends BlockEntity {
         return tag;
     }
 
+    //Read data
     @Override
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
         food = ItemStack.fromTag((CompoundTag) tag.get("food"));
     }
 
+    //Called from block entity to change amount of food that is in the plate
     public void onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult result) {
         if (player.getMainHandStack().isFood()) {
             boolean success = tryAddFood(player.getMainHandStack(), player);
@@ -44,6 +49,7 @@ public class PlateBlockEntity extends BlockEntity {
         }
     }
 
+    //Attempts to add food if none, or if is of the same food as in plate
     public boolean tryAddFood(ItemStack stack, PlayerEntity player) {
         System.out.println("Attempting to add food");
         if (this.food.isEmpty()) {
@@ -65,10 +71,12 @@ public class PlateBlockEntity extends BlockEntity {
         }
     }
 
+    //Getter for food
     public ItemStack getFood() {
         return food;
     }
 
+    //Attempts to remove food if more than three in BlockEntity currently
     public void tryRemoveFood(World world, BlockPos pos) {
         if (this.food.getCount() > 0 && !this.food.isEmpty()) {
             food.decrement(1);

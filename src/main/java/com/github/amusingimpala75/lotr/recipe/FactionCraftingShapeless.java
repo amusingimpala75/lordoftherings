@@ -12,8 +12,10 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Iterator;
-
-public class FactionCraftingShapeless extends ShapelessRecipe implements FactionCrafting{
+/*
+FactionCrafting for shapeless
+ */
+public class FactionCraftingShapeless extends ShapelessRecipe implements FactionCrafting {
     private final String faction;
     public FactionCraftingShapeless(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input, String faction) {
         super(id, group, output, input);

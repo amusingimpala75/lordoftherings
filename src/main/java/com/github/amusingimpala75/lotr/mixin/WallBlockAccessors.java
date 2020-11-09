@@ -4,7 +4,9 @@ import net.minecraft.block.WallBlock;
 import net.minecraft.util.shape.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
-
+/*
+TODO: Check necessity
+ */
 @Mixin(WallBlock.class)
 public interface WallBlockAccessors {
     @Accessor

@@ -6,7 +6,9 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
-
+/*
+Sapling->Tree generator for Aspen
+ */
 public class AspenSaplingGen extends SaplingGenerator {
     @Nullable
     public ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean bl) {

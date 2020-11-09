@@ -14,7 +14,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
+/*
+For "alloying" in hobbit oven
+ */
 public class HobbitOven implements Recipe<Inventory> {
 
     private final ItemStack output;

@@ -15,7 +15,8 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements ArmorMaterial {
     /*
-    Armour Types
+    ME Armour Types
+    TODO: remove BLUER_DWARVEN
      */
     MITHRIL("mithril", Math.round(2400*0.06F), new int[] {3,8,6,3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.MITHRIL_INGOT);

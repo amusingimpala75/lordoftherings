@@ -10,7 +10,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
+/*
+Recipe for brewing
+ */
 public class BrewingRecipe implements Recipe<CraftingInventory> {
     public final Identifier id;
     private final DefaultedList<Ingredient> inputs;

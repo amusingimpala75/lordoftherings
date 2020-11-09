@@ -4,7 +4,9 @@ import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.util.Identifier;
-
+/*
+Renderer for boats
+ */
 public class ModBoatRenderer extends EntityRenderer<BoatEntity> {
 
     public final String type;

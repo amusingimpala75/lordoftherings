@@ -13,7 +13,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
-
+/*
+Recipe for cooking, NOT alloying in Dwarven forge
+ */
 public class DwarvenForgeRecipe extends AbstractCookingRecipe {
 
     public DwarvenForgeRecipe(Identifier id, String group, Ingredient input, ItemStack output, float experience, int cookTime) {

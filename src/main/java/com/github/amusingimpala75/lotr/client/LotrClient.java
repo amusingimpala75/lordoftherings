@@ -6,11 +6,12 @@ import com.github.amusingimpala75.lotr.registry.ModBlockEntites;
 import com.github.amusingimpala75.lotr.registry.ModEntities;
 import com.github.amusingimpala75.lotr.registry.ModItems;
 import com.swordglowsblue.artifice.api.Artifice;
-import com.swordglowsblue.artifice.api.ArtificeResourcePack;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -19,10 +20,14 @@ import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
+import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
+import org.lwjgl.glfw.GLFW;
 
 import static com.github.amusingimpala75.lotr.registry.ModBlocks.*;
 import static com.github.amusingimpala75.lotr.Lotr.*;
@@ -31,7 +36,7 @@ import static com.github.amusingimpala75.lotr.Lotr.*;
 public class LotrClient implements ClientModInitializer {
 
     public static Block[] blocksForCutout = new Block[] {};
-
+    //list of all slabs
     public static final String[][] slabStuff = {
             {"minecraft", "oak_slab", "oak_planks"},
             {"minecraft", "spruce_slab", "spruce_planks"},
@@ -92,6 +97,7 @@ public class LotrClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ScreenRegistry.register(FACTION_SCREEN, FactionScreen::new);
+        ScreenRegistry.register(FORGE_SCREEN_HANDLER, ForgeScreen::new);
         EntityRendererRegistry.INSTANCE.register(ModEntities.PINE_BOAT, (dispatcher, context) ->
                 new ModBoatRenderer(dispatcher, "pine")
         );
@@ -146,6 +152,9 @@ public class LotrClient implements ClientModInitializer {
         EntityRendererRegistry.INSTANCE.register(ModEntities.CYPRESS_BOAT, (dispatcher, context) ->
                 new ModBoatRenderer(dispatcher, "cypress")
         );
+        EntityRendererRegistry.INSTANCE.register(ModEntities.ROTTEN_BOAT, (dispatcher, context) ->
+                new ModBoatRenderer(dispatcher, "rotten")
+        );
 
         BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntites.PINE_SIGN, SignBlockEntityRenderer::new);
 
@@ -173,7 +182,7 @@ public class LotrClient implements ClientModInitializer {
                 ModItems.PIPEWEED_CROP,
                 ModItems.LETTUCE_BLOCK);
 
-        ArtificeResourcePack resourcePack = Artifice.registerAssets("lotr:slab_assets", pack -> {
+        Artifice.registerAssetPack("lotr:slab_assets", pack -> {
             for (int i = 0; i < slabStuff.length; i++) {
                 int finalI = i;
                 pack.addBlockState(new Identifier(slabStuff[finalI][0], slabStuff[finalI][1]), state -> state
@@ -191,14 +200,24 @@ public class LotrClient implements ClientModInitializer {
             pack.setDisplayName("Lord of the Rings Slab Assets");
             pack.setDescription("because we are lazy and this is easier");
         });
-        resourcePack.isVisible(); //Just to get IDE to not complain
         BlockEntityRendererRegistry.INSTANCE.register(ModBlockEntites.PLATE_ENTITY, PlateBlockEntityRenderer::new);
         String name = MinecraftClient.getInstance().getSession().getUsername();
         String[] quotes = {"The world is indeed full of peril and in it there are many dark places.", "It's a dangerous business, "+name+", going out your door. You step onto the road, and if you don't keep your feet, there's no knowing where you might be swept off to.", "Ash nazg durbatulûk, ash nazg gimbatul,\n" +
                 "ash nazg thrakatulûk agh burzum-ishi krimpatul."};
         int randomQuote = (int)((Math.random() * quotes.length) - 1);
         LogManager.getLogger().info(quotes[randomQuote]);
-
+        KeyBinding map = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.lotr.map",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_M,
+                "category.lotr.things"
+        ));
+        ClientTickEvents.END_CLIENT_TICK.register(minecraftClient -> {
+            if (map.isPressed()) {
+                //open map
+                new MapScreen(minecraftClient.player);
+            }
+        });
     }
 
     @Environment(EnvType.CLIENT)

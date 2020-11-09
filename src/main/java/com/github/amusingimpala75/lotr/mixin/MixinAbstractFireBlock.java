@@ -12,7 +12,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
+/*
+Add functionality to create explosion/portal when destroying GoldRing
+TODO: add portal creation
+ */
 @Mixin(AbstractFireBlock.class)
 public class MixinAbstractFireBlock {
 

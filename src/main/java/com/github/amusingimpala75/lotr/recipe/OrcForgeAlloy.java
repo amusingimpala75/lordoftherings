@@ -14,7 +14,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
+/*
+For alloying in orc forge
+ */
 public class OrcForgeAlloy implements Recipe<Inventory> {
 
     private final ItemStack output;

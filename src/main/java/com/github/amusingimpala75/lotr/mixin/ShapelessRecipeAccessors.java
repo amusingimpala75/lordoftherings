@@ -7,7 +7,9 @@ import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.util.collection.DefaultedList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
-
+/*
+Accessors to get parts of Shapeless recipes
+ */
 @Mixin(ShapelessRecipe.class)
 public interface ShapelessRecipeAccessors extends DuckForShaplessRecipe {
     @Accessor

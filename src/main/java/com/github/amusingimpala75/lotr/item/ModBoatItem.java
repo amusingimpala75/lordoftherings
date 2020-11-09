@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.BoatEntity.Type;
+import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
@@ -19,8 +20,11 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.RaycastContext.FluidHandling;
-
-public class ModBoatItem extends Item {
+/*
+Wrapper class for boat
+TODO: remove old code
+ */
+/*public class ModBoatItem extends Item {
     private static final Predicate<Entity> RIDERS;
     private final Type type;
 
@@ -76,5 +80,12 @@ public class ModBoatItem extends Item {
 
     static {
         RIDERS = EntityPredicates.EXCEPT_SPECTATOR.and(Entity::collides);
+    }
+}
+*/
+public class ModBoatItem extends BoatItem {
+
+    public ModBoatItem(Type type, Settings settings) {
+        super(type, settings);
     }
 }

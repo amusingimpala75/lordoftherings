@@ -19,7 +19,9 @@ import com.github.amusingimpala75.lotr.util.ItemReg;
 import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
-
+/*
+Regsitry for Items
+ */
 public class ModItems {
     public static final Item MITHRIL_INGOT = new Item(new Item.Settings().group(LOTR_MATERIALS));
     public static final Item GOLD_RING = new GoldRingItem(new Item.Settings().group(LOTR_MISC));
@@ -65,6 +67,7 @@ public class ModItems {
     public static final StatusEffectInstance[] DWARVEN_TONIC_EFFECTS = {new StatusEffectInstance(StatusEffects.NIGHT_VISION, 4800)};
     public static final StatusEffectInstance[] ORC_DRAUGHT_EFFECTS = {new StatusEffectInstance(StatusEffects.SPEED, 1200), new StatusEffectInstance(StatusEffects.STRENGTH, 1200)};
     public static final StatusEffectInstance[] MIRUVOR_EFFECTS = {new StatusEffectInstance(StatusEffects.SPEED, 800), new StatusEffectInstance(StatusEffects.STRENGTH, 800)};
+    public static final Item ROTTEN_BOAT = (new ModBoatItem(ClassTinkerers.getEnum(BoatEntity.Type.class, "ROTTEN"), (new Item.Settings()).maxCount(1).group(LOTR_MISC)));
 
 
 
@@ -218,6 +221,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, id("holly_boat"), HOLLY_BOAT);
         Registry.register(Registry.ITEM, id("green_oak_boat"), GREEN_OAK_BOAT);
         Registry.register(Registry.ITEM, id("cypress_boat"), CYPRESS_BOAT);
+        Registry.register(Registry.ITEM, id("rotten_boat"), ROTTEN_BOAT);
 
 
     }

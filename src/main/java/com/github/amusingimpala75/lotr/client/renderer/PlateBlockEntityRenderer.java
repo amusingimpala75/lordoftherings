@@ -9,13 +9,17 @@ import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.item.ItemStack;
-
+/*
+Renderer for plates
+ */
 public class PlateBlockEntityRenderer extends BlockEntityRenderer<PlateBlockEntity> {
 
     public PlateBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
     }
-
+    /*
+    show items on plate, with each successive item being rotated counterclockwise and shifted up slightly
+     */
     @Override
     public void render(PlateBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         ItemStack items = entity.getFood();

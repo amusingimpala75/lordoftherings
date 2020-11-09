@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CraftingTableBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
@@ -51,6 +52,11 @@ public class FactionCraftingTable extends CraftingTableBlock {
                 player.incrementStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
                 return ActionResult.CONSUME;
             }
+        } else {
+            int d = pos.getX();
+            int e = pos.getY() + 1;
+            int f = pos.getZ();
+            world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
         }
         return ActionResult.FAIL;
     }

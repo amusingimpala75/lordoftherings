@@ -5,6 +5,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public abstract class LotrCrafting {
+    //Recipe Serializers
     public static RecipeSerializer<ShapedRecipe> SHAPED = RecipeSerializer.register("lotr:faction_shaped", new FactionCraftingRecipe.Serializer());
     public static RecipeSerializer<ShapelessRecipe> SHAPELESS = RecipeSerializer.register("lotr:faction_shapeless", new FactionCraftingShapeless.Serializer());
     public static RecipeSerializer<BrewingRecipe> BREWING_SERIALIZER = RecipeSerializer.register("lotr:brewing", new BrewingRecipe.Serializer());
@@ -17,6 +18,7 @@ public abstract class LotrCrafting {
     public static RecipeSerializer<VesselShapeless> VESSEL_SHAPELESS = RecipeSerializer.register("lotr:vessel_drink_shapeless", new VesselShapeless.Serializer());
     public static RecipeSerializer<HobbitOven> HOBBIT_OVEN = RecipeSerializer.register("lotr:hobbit_oven_alloy", new HobbitOven.Serializer());
 
+    //Recipe Types
     public static RecipeType<BrewingRecipe> BREWING_TYPE = register("brewing");
     public static RecipeType<CraftingRecipe> FACTION = register("faction");
     public static RecipeType<DwarvenForgeRecipe> DWARVEN_FORGE = register("dwarven_forge");

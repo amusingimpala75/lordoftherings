@@ -18,7 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Random;
 
 import static net.minecraft.block.FarmlandBlock.setToDirt;
-
+/*
+Add ability for custom crops to be placed on farmland
+TODO: check to see if can be achieved without softOverwrite
+ */
 @Mixin(FarmlandBlock.class)
 public abstract class MixinTextFarmland extends Block {
     @Shadow @Final public static IntProperty MOISTURE;
@@ -28,6 +31,7 @@ public abstract class MixinTextFarmland extends Block {
         System.out.println("This will never be printed (hopefully)");
     }
 
+    //TODO: remove possibly?
     @Inject(at=@At("RETURN"), method = "getStateForNeighborUpdate", cancellable = true)
     public void getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom, CallbackInfoReturnable<BlockState> info) {
         if (world.getBlockState(posFrom).getBlock() instanceof ModCropBlock) {

@@ -1,0 +1,12 @@
+{
+  "type": "lotr:middle_earth_classic",
+  "generator": {
+    "biome_source": {
+      "seed": 0,
+      "type": "lotr:middle_earth"
+    },
+    "seed": 0,
+    "settings": "minecraft:overworld",
+    "type": "minecraft:noise"
+  }
+}

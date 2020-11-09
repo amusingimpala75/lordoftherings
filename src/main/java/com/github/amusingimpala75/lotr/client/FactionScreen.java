@@ -15,7 +15,10 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
+/*
+Essentially duplicate fo CraftingScreen, but inheritance was a problem
+TODO: Unvanilla-copify, fix vanilla-faction swapping
+ */
 @Environment(EnvType.CLIENT)
 public class FactionScreen extends HandledScreen<FactionCraftingScreenHandler> implements RecipeBookProvider {
     private static final Identifier TEXTURE = new Identifier("textures/gui/container/crafting_table.png");
@@ -34,16 +37,17 @@ public class FactionScreen extends HandledScreen<FactionCraftingScreenHandler> i
         this.x = this.recipeBook.findLeftEdge(this.narrow, this.width, this.backgroundWidth);
         this.children.add(this.recipeBook);
         this.setInitialFocus(this.recipeBook);
-        this.addButton(new TexturedButtonWidget(this.x + 5, this.height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (buttonWidget) -> {
-            this.recipeBook.reset(this.narrow);
-            this.recipeBook.toggleOpen();
-            this.x = this.recipeBook.findLeftEdge(this.narrow, this.width, this.backgroundWidth);
-            ((TexturedButtonWidget)buttonWidget).setPos(this.x + 5, this.height / 2 - 49);
-        }));
+        //this.addButton(new TexturedButtonWidget(this.x + 5, this.height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (buttonWidget) -> {
+        //    this.recipeBook.reset(this.narrow);
+        //    this.recipeBook.toggleOpen();
+        //    this.x = this.recipeBook.findLeftEdge(this.narrow, this.width, this.backgroundWidth);
+        //    ((TexturedButtonWidget)buttonWidget).setPos(this.x + 5, this.height / 2 - 49);
+        //}));
         this.titleX = 29;
         this.addButton(new TexturedButtonWidget(this.x + 5, (this.height / 2 - 49)-25, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (buttonWidget) -> {
             this.handler.craftingMode = !this.handler.craftingMode;
             System.out.println("FactionScreen");
+            ((TexturedButtonWidget)buttonWidget).setPos(this.x + 5, this.height / 2 - 49);
         }));
     }
 

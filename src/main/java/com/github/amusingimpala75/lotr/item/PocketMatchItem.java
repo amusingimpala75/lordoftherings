@@ -6,7 +6,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.World;
-
+/*
+MatchItem that acts like flint and steel, but stacks instead of taking damage
+ */
 public class PocketMatchItem extends Item {
     public PocketMatchItem(Settings settings) {
         super(settings);
@@ -16,7 +18,7 @@ public class PocketMatchItem extends Item {
             World world = context.getWorld();
             ItemStack itemstack = context.getStack();
 
-            ItemStack proxyItem = new ItemStack((ItemConvertible) Items.FLINT_AND_STEEL);
+            ItemStack proxyItem = new ItemStack(Items.FLINT_AND_STEEL);
 
             ItemUsageContext proxyContext = new ProxyItemUse(world, context.getPlayer(), context.getHand(), proxyItem, new BlockHitResult(context.getHitPos(), context.getPlayerFacing(), context.getBlockPos(), context.hitsInsideBlock()));
             if (proxyItem.useOnBlock(proxyContext) == ActionResult.SUCCESS) {

@@ -10,7 +10,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
-
+/*
+FactionCrafting for shaped
+ */
 public class FactionCraftingRecipe extends ShapedRecipe implements FactionCrafting {
     private final String faction;
     public FactionCraftingRecipe(Identifier id, String group, int width, int height, DefaultedList<Ingredient> ingredients, ItemStack output, String faction) {

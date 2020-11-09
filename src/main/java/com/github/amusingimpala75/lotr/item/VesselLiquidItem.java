@@ -7,7 +7,10 @@ import net.minecraft.item.Item;
 
 import java.util.Arrays;
 import java.util.List;
-
+/*
+Drink types of ME
+TODO: add ability to be put in vessels
+ */
 public class VesselLiquidItem extends Item {
     private final float alcoholicity;
     private final int foodRestorePoints;

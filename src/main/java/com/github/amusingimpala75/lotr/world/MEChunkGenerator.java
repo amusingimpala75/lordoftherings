@@ -3,39 +3,77 @@ package com.github.amusingimpala75.lotr.world;
 import java.util.List;
 import java.util.Random;
 //import lotr.common.init.LOTRBiomes;
-//import lotr.common.world.biome.LOTRBiomeBase;
+import com.github.amusingimpala75.lotr.world.biomes.LotrBaseBiome;
+import com.mojang.serialization.Codec;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.server.world.ServerWorld;
-/**///import net.minecraft.util.SharedSeedRandom;
+import net.minecraft.world.*;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 import net.minecraft.util.math.noise.OctavePerlinNoiseSampler;
-import net.minecraft.world.ChunkRegion;
 import net.minecraft.server.world.ServerWorld;
-/**///import net.minecraft.world.spawner.WorldEntitySpawner;
+import net.minecraft.world.gen.chunk.StructuresConfig;
 
 
+/*
+TODO: get general idea, rewrite, set for ME
+ */
+public class MEChunkGenerator extends ChunkGenerator {
+    public MEChunkGenerator(BiomeSource biomeSource, BiomeSource biomeSource2, StructuresConfig structuresConfig, long worldSeed) {
+        super(biomeSource, biomeSource2, structuresConfig, worldSeed);
+    }
 
-public class MEChunkGenerator/* extends NoiseChunkGenerator<MiddleEarthGenSettings>*/ {
+    @Override
+    protected Codec<? extends ChunkGenerator> getCodec() {
+        return null;
+    }
+
+    @Override
+    public ChunkGenerator withSeed(long seed) {
+        return null;
+    }
+
+    @Override
+    public void buildSurface(ChunkRegion region, Chunk chunk) {
+
+    }
+
+    @Override
+    public void populateNoise(WorldAccess world, StructureAccessor accessor, Chunk chunk) {
+
+    }
+
+    @Override
+    public int getHeight(int x, int z, Heightmap.Type heightmapType) {
+        return 0;
+    }
+
+    @Override
+    public BlockView getColumnSample(int x, int z) {
+        return null;
+    }
       /*private final OctavePerlinNoiseSampler depthNoise;
       private final boolean isAmplified;
       private final int noiseSizeX;
       private final int noiseSizeY;
       private final int noiseSizeZ;
     
-      public MiddleEarthChunkGenerator(WorldAccess worldIn, BiomeSource provider, MiddleEarthGenSettings settings) {
+      public MEChunkGenerator(WorldAccess worldIn, BiomeSource provider, MiddleEarthGenSettings settings) {
              this(worldIn, provider, 4, 8, 256, settings);
       }
       private final int biomeSampleRadius; private final int biomeSampleWidth; private final float[] biomeHeightNoise; private final int riverSampleRadius;
       private final float[] riverSampleIndicator;
     
-      private MiddleEarthChunkGenerator(WorldAccess worldIn, BiomeSource provider, int hNoiseGran, int vNoiseGran, int height, MiddleEarthGenSettings settings) {
+      private MEChunkGenerator(WorldAccess worldIn, BiomeSource provider, int hNoiseGran, int vNoiseGran, int height, MiddleEarthGenSettings settings) {
              super(worldIn, provider, hNoiseGran, vNoiseGran, height, settings, true);
              this.field_222558_e.func_202423_a(2620);
              this.depthNoise = new OctavePerlinNoiseSampler(this.field_222558_e, 15, 0);
@@ -216,11 +254,41 @@ public class MEChunkGenerator/* extends NoiseChunkGenerator<MiddleEarthGenSettin
 
       public void func_203222_a(ServerWorld world, boolean spawnHostileMobs, boolean spawnPeacefulMobs) {}
 
-      public int func_205470_d() {
-          return this.field_222540_a.func_181545_F() + 1;
+      public int getSeaLevel() {
+          return this.world.func_181545_F() + 1;
       }
 
       public int func_222530_f() {
           return 63;
-      }*/
+      }
+
+    @Override
+    protected Codec<? extends ChunkGenerator> getCodec() {
+        return null;
+    }
+
+    @Override
+    public ChunkGenerator withSeed(long seed) {
+        return null;
+    }
+
+    @Override
+    public void buildSurface(ChunkRegion region, Chunk chunk) {
+
+    }
+
+    @Override
+    public void populateNoise(WorldAccess world, StructureAccessor accessor, Chunk chunk) {
+
+    }
+
+    @Override
+    public int getHeight(int x, int z, Heightmap.Type heightmapType) {
+        return 0;
+    }
+
+    @Override
+    public BlockView getColumnSample(int x, int z) {
+        return null;
+    }*/
 }

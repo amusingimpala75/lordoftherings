@@ -24,7 +24,11 @@ import java.util.OptionalInt;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
 
-@SuppressWarnings("all")
+@SuppressWarnings("all")    //To remove all those unchecked assingment warnings for
+                            //ConfiguredFeatures->ConfiguresFeatures<?,?>
+/*
+All features add by LotR
+ */
 public class Features {
     public static final ConfiguredFeature<?, ?> ORE_COPPER;
     public static final ConfiguredFeature<?, ?> ORE_TIN;

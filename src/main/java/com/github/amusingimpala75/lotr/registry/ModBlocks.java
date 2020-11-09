@@ -17,7 +17,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
-
+/*
+Registry for blocks
+ */
 public class ModBlocks {
 
     public static final Block GONDOR_ROCK = new Block(FabricBlockSettings.of(Material.STONE));
@@ -93,12 +95,6 @@ public class ModBlocks {
     public static final Block DORWINION_CRAFTING_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.WOOD), Faction.DORWINION, "container.lotr.dorwinion_crafting", "dorwinion");
     public static final Block CYPRESS_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD));
     public static final Block KEG = new Keg(FabricBlockSettings.of(Material.WOOD).nonOpaque());
-    //Alloy, Dwarven, Elven, Orc, Hobbit
-    public static final Block ALLOY_FORGE = new ForgeBlock(FabricBlockSettings.of(Material.STONE));
-    public static final Block DWARVEN_FORGE = new ForgeBlock(FabricBlockSettings.of(Material.STONE));
-    public static final Block ELVEN_FORGE = new ForgeBlock(FabricBlockSettings.of(Material.STONE));
-    public static final Block ORC_FORGE = new ForgeBlock(FabricBlockSettings.of(Material.STONE));
-    public static final Block HOBBIT_OVEN = new OvenBlock(FabricBlockSettings.of(Material.STONE));
     public static final Block HEARTH = new HearthBlock(FabricBlockSettings.of(Material.STONE));
     public static final Block HANGING_WEB = new HangingWeb(FabricBlockSettings.of(Material.COBWEB).nonOpaque().noCollision());
     public static final Block MORDOR_ROCK = new MordorRock(FabricBlockSettings.of(Material.STONE).ticksRandomly());
@@ -106,6 +102,7 @@ public class ModBlocks {
     public static final Block MIRK_OAK_LEAVES = new MirkOakLeaves(FabricBlockSettings.of(Material.LEAVES).nonOpaque());
     public static final Block DALE_CRAFTING_TABLE = new FactionCraftingTable(FabricBlockSettings.of(Material.STONE), Faction.DALE, "container.lotr.dale_crafting", "dale");
     public static final Block CARVED_DALE_BRICK = new ModDirectionalBlock(FabricBlockSettings.of(Material.STONE));
+    public static final Block ROTTEN_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD));
 
     public static void registerBlocks() {
         /*
@@ -945,19 +942,6 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_clay_tiling");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_clay_tiling");
         /*
-        Forges and Ovens - need functionality
-         */
-        Registry.register(Registry.BLOCK, id("alloy_forge"), ALLOY_FORGE);
-        Registry.register(Registry.ITEM, id("alloy_forge"), new BlockItem(ALLOY_FORGE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        Registry.register(Registry.BLOCK, id("dwarven_forge"), DWARVEN_FORGE);
-        Registry.register(Registry.ITEM, id("dwarven_forge"), new BlockItem(DWARVEN_FORGE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        Registry.register(Registry.BLOCK, id("elven_forge"), ELVEN_FORGE);
-        Registry.register(Registry.ITEM, id("elven_forge"), new BlockItem(ELVEN_FORGE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        Registry.register(Registry.BLOCK, id("orc_forge"), ORC_FORGE);
-        Registry.register(Registry.ITEM, id("orc_forge"), new BlockItem(ORC_FORGE, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        Registry.register(Registry.BLOCK, id("hobbit_oven"), HOBBIT_OVEN);
-        Registry.register(Registry.ITEM, id("hobbit_oven"), new BlockItem(HOBBIT_OVEN, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
-        /*
         Rock - complete
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_rock");
@@ -1270,6 +1254,27 @@ public class ModBlocks {
         BlockReg.gravity(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sand");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dale_paving");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dale_paving");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_iris");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "quagmire");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallos");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_mallos");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_log");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_wood");
+        Registry.register(Registry.BLOCK, id("rotten_planks"), ROTTEN_PLANKS);
+        Registry.register(Registry.ITEM, id("rotten_planks"), new BlockItem(ROTTEN_PLANKS, new FabricItemSettings().group(LOTR_BLOCKS)));
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_slab");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_stairs");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_fence");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_fence_gate");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_door");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_trapdoor");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_pressure_plate");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_button");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_rotten_log");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "striped_rotten_wood");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_beam");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_sign");
+        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_wall_sign");
     }
     /*
     TODO:

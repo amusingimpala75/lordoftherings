@@ -1,62 +1,150 @@
 package com.github.amusingimpala75.lotr.registry;
 
-import com.github.amusingimpala75.lotr.world.biomes.ShireBiome;
-import com.github.amusingimpala75.lotr.world.features.Features;
-import com.github.amusingimpala75.lotr.world.features.ModDefaultBiomeFeatures;
-import net.fabricmc.fabric.mixin.biome.BuiltinBiomesAccessor;
-import net.minecraft.block.Blocks;
+import com.github.amusingimpala75.lotr.world.MiddleEarthBiomeSource;
+import com.github.amusingimpala75.lotr.world.biomes.*;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.github.amusingimpala75.lotr.Lotr.*;
+
+/*
+Registry for biomes
+TODO: finish adding biomes, add features/mobs, fix MEWorldConfig and ChunkGenerator
+ */
 public class ModBiomes {
-    /*private static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> SHIRE_SURFACE_BUILDER = SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(
-            Blocks.GRASS_BLOCK.getDefaultState(),
-            Blocks.DIRT.getDefaultState(),
-            Blocks.SAND.getDefaultState()));
-    private static final Biome SHIRE = createShire();
-    private static Biome createShire() {
-        SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
-        ModDefaultBiomeFeatures.addAnimals(spawnSettings);
+    public static BufferedImage mapImage;
+    public static File mapImageFile = new File("data/lotr/map/middle_earth.png");
+    static Map<Integer, Identifier> mapColors = new HashMap<>();
 
-        GenerationSettings.Builder generationSettings = new GenerationSettings.Builder();
-        generationSettings.surfaceBuilder(SHIRE_SURFACE_BUILDER);
-        ModDefaultBiomeFeatures.addDefaultOres(generationSettings);
-        ModDefaultBiomeFeatures.addShireGrass(generationSettings);
-        ModDefaultBiomeFeatures.addPlainsFlowers(generationSettings);
-        ModDefaultBiomeFeatures.addDoubleFLowers(generationSettings);
-        ModDefaultBiomeFeatures.addTrees(generationSettings, Features.ASPEN_TREE, Features.OAK_TREE, Features.FANCY_OAK, Features.FANCY_OAK_BEES, Features.OAK_BEES, Features.BIRCH_TREE, Features.FANCY_BIRCH, Features.FANCY_BIRCH_BEES, Features.BIRCH_BEES);
-
-        return (new Biome.Builder())
-                .precipitation(Biome.Precipitation.RAIN)
-                .category(Biome.Category.PLAINS)
-                .depth(0.15F)
-                .scale(0.3F)
-                .temperature(0.8F)
-                .downfall(0.7F)
-                .effects((new BiomeEffects.Builder())
-                        .waterColor(0x3f76e4)
-                        .waterFogColor(0x329011)
-                        .skyColor(0x888888)
-                        .fogColor(12638463)
-                        .build())
-                .spawnSettings(spawnSettings.build())
-                .generationSettings(generationSettings.build())
-                .build();
+    public static void addMapColor(Identifier biome, int color) {
+        mapColors.put(color, biome);
+        Color color1 = new Color(color, true);
+        System.out.println(color1.getRGB()+": "+biome.getNamespace()+":"+biome.getPath());
     }
-    public static final RegistryKey<Biome> SHIRE_KEY = RegistryKey.of(Registry.BIOME_KEY, new Identifier("lotr", "shire"));*/
-
 
     public static void registerBiomes() {
         (new ShireBiome()).register();
-        /*Registry.register(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, new Identifier("lotr", "shire"), SHIRE_SURFACE_BUILDER);
-
-        Registry.register(BuiltinRegistries.BIOME, SHIRE_KEY.getValue(), SHIRE);
-        BuiltinBiomesAccessor.getBY_RAW_ID().put(BuiltinRegistries.BIOME.getRawId(SHIRE), SHIRE_KEY);*/
+        (new MordorBiome()).register();
+        (new RohanBiome()).register();
+        (new MistyMountainsBiome()).register();
+        (new MistyMountainsBiome.FootHills()).register();
+        (new ShireWoodlandsBiome()).register();
+        (new RiverBiome()).register();
+        (new TrollshawsBiome()).register();
+        (new BlueMountainsBiome()).register();
+        (new BlueMountainsBiome.Foothills()).register();
+        (new EriadorBiome()).register();
+        (new LoneLandsBiome()).register();
+        (new IthilienBiome()).register();
+        (new BrownLandsBiome()).register();
+        (new LothlorienBiome()).register();
+        (new IronHillsBiome()).register();
+        (new DunlandBiome()).register();
+        (new EmynMuilBiome()).register();
+        (new LindonBiome()).register();
+        /*
+        lindon
+        sounthron coasts
+        nan curunir
+        forodwaith
+        eregion
+        mirkwood
+        grey mountains
+        white mountains
+        fangorn
+        woodland realm
+        dale
+        angmar
+        harandor
+        enedwaith
+        vales of anduin
+        anduin hills
+        wilderland
+        old forest
+        bree land
+        chetwood
+        grey foothills
+        white foothills
+        mordor mnt
+        forodwatih mnt
+        angmar mnt
+        nurn
+        umbar
+        harad desert
+        lindon woodlands
+        eriador downs
+        lone lands hills
+        north lands
+        northlands forest
+        sea
+        island
+        beach
+        tolfalas
+        lake
+        nurnen
+        dol en ernil
+        emyn en ernil
+        western isles
+        coldfells
+        ettenmoors
+        harnennor
+        dagorland
+        white beach
+        dorwinion
+        emyn winion
+        wold
+        minhiriath
+        wryn vorn
+        druwiath iaur
+        andrast
+        lossarnach
+        lebennin
+        pelagir
+        lamedon
+        lamedon hills
+        blackroot vales
+        pinnath gelin
+        anfalas
+        northern wilderland
+        northern dale
+        rivendell
+        rivendell hills
+        western gondor
+        shire moors
+        white downs
+        midgewater
+        swanfleet
+        gladden fields
+        long marshes
+        nindalf
+        dead marshes
+        mouths of entwash
+        ethir anduin
+        shire marshes
+        nurn marshes
+        Anorien
+        */
+        String basePath = (new File(".")).getAbsolutePath();
+        basePath = basePath.substring(0, basePath.length()-1);
+        InputStream mapStream = ModBiomes.class.getResourceAsStream("/data/lotr/map/middle_earth.png");
+        try {
+            mapImage = ImageIO.read(mapStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Registry.register(Registry.BIOME_SOURCE, id("middle_earth"), MiddleEarthBiomeSource.CODEC);
+    }
+    public static Identifier fromMapColor(int color) {
+        Identifier id = mapColors.getOrDefault(color, id("river"));
+        return id;
     }
 }

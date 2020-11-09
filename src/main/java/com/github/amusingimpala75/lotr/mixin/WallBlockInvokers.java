@@ -11,7 +11,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.util.Map;
-
+/*
+Invokers to reduce the amount of vanilla copying
+ */
 @Mixin(WallBlock.class)
 public interface WallBlockInvokers {
     @Invoker

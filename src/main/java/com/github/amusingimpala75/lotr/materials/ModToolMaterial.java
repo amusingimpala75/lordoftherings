@@ -9,7 +9,9 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
 
 import java.util.function.Supplier;
-
+/*
+ME tool types
+ */
 public enum ModToolMaterial implements ToolMaterial {
     MITHRIL("mithril", 2400, 9.0F, 8.0F, 4, 10, () -> {
         return Ingredient.ofItems(ModItems.MITHRIL_INGOT);

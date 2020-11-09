@@ -4,7 +4,9 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
-
+/*
+Registry for sounds
+ */
 public class ModSounds {
     public static SoundEvent CERAMIC_BREAK = new SoundEvent(id("block.ceramic.break"));
     public static SoundEvent GATE_OPEN = new SoundEvent(id("block.gate.open"));

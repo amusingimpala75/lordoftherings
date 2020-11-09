@@ -10,7 +10,9 @@ import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
-
+/*
+Registry helper for Items
+ */
 public class ItemReg {
     public static <T extends Item> T register(String name, T item) {
         return Registry.register(Registry.ITEM, id(name), item);

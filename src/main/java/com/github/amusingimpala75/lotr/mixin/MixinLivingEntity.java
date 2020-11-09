@@ -18,7 +18,10 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
+/*
+Attempts to add ability to climb ladder
+TODO: actually make it work
+ */
 @Mixin(LivingEntity.class)
 public abstract class MixinLivingEntity extends Entity {
 

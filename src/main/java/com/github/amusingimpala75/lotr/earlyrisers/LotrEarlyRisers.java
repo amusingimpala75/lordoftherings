@@ -15,9 +15,9 @@ public class LotrEarlyRisers implements Runnable{
     public void run() {
         MappingResolver remapper = FabricLoader.getInstance().getMappingResolver();
 
+        //For adding to boat enum
         String boat = remapper.mapClassName("intermediary", "net.minecraft.class_1690$class_1692");
         String block = 'L' + remapper.mapClassName("intermediary", "net.minecraft.class_2248") + ';';
-
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("PINE", () -> new Object[] {ModBlocks.PINE_PLANKS, "pine"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("MALLORN", () -> new Object[] {ModBlocks.MALLORN_PLANKS, "mallorn"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("MIRK_OAK", () -> new Object[] {ModBlocks.MIRK_OAK_PLANKS, "mirk"}).build();
@@ -36,10 +36,10 @@ public class LotrEarlyRisers implements Runnable{
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("HOLLY", () -> new Object[] {ModBlocks.HOLLY_PLANKS, "holly"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("GREEN_OAK", () -> new Object[] {ModBlocks.GREEN_OAK_PLANKS, "green_oak"}).build();
         ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("CYPRESS", () -> new Object[] {ModBlocks.CYPRESS_PLANKS, "cypress"}).build();
+        ClassTinkerers.enumBuilder(boat, block, "Ljava/lang/String;").addEnum("ROTTEN", () -> new Object[] {ModBlocks.ROTTEN_PLANKS, "rotten"}).build();
 
-
+        //For adding to slab type enum
         String slabType = remapper.mapClassName("intermediary", "net.minecraft.class_2771");
-
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("NORTH", () -> new Object[] {"north"}).build();
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("SOUTH", () -> new Object[] {"south"}).build();
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("EAST", () -> new Object[] {"east"}).build();
@@ -47,8 +47,8 @@ public class LotrEarlyRisers implements Runnable{
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("XDOUBLE", () -> new Object[] {"xdouble"}).build();
         ClassTinkerers.enumBuilder(slabType, "Ljava/lang/String;").addEnum("ZDOUBLE", () -> new Object[] {"zdouble"}).build();
 
+        //For adding to wall shape enum to help with 1.15/16 wall differences
         String wallShape = remapper.mapClassName("intermediary", "net.minecraft.class_4778");
-
         ClassTinkerers.enumBuilder(wallShape, "Ljava/lang/String;").addEnum("TRUE", () -> new Object[] {"true"}).build();
     }
 }

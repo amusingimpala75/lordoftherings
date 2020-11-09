@@ -17,7 +17,9 @@ import net.minecraft.util.registry.Registry;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
 import static com.github.amusingimpala75.lotr.client.LotrClient.*;
-
+/*
+Registry helper for blocks
+ */
 public class BlockReg {
     public static void block(Material material, ItemGroup group, boolean blockItem, String name) {
         final Block BLOCK = new Block(FabricBlockSettings.of(material));
@@ -133,6 +135,7 @@ public class BlockReg {
         }
         Registry.register(Registry.BLOCK, id(name), BUTTON);
     }
+    //Not to be confused with pillar2
     public static void pillar(Material material, ItemGroup group, boolean blockItem, String name) {
         final Block PILLAR = new PillarBlock(FabricBlockSettings.of(Material.WOOD, (blockState) ->
                 blockState.get(PillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.BROWN : MaterialColor.BROWN).strength(2.0F).sounds(BlockSoundGroup.WOOD));
@@ -198,6 +201,7 @@ public class BlockReg {
         Registry.register(Registry.BLOCK, id(name), CHANDELIER);
         addBlocksToRenderLayer(CHANDELIER);
     }
+    //Not to be confused with pillar
     public static void pillar2(Material material, ItemGroup group, boolean blockItem, String name) {
         final Block PILLAR = new ModPillarBlock(FabricBlockSettings.of(material));
         if (blockItem){

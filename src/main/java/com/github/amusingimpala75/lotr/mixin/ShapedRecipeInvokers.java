@@ -9,7 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.util.Map;
-
+/*
+Invokers to help with "copying" vanilla Shaped Recipes without actually copying it
+ */
 @Mixin(ShapedRecipe.class)
 public interface ShapedRecipeInvokers {
     @Invoker

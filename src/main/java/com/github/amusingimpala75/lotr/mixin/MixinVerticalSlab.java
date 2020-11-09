@@ -21,7 +21,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
+/*
+Add placing functionality for verticality of slabs
+ */
 @Mixin(SlabBlock.class)
 public abstract class MixinVerticalSlab extends Block implements Waterloggable {
     @Shadow
@@ -53,11 +55,11 @@ public abstract class MixinVerticalSlab extends Block implements Waterloggable {
         super(settings);
     }
 
-
+    //Determine whether shape is N/S/E/W/D
     @Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
     public void getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> info) {
         SlabType type = (SlabType) state.get(TYPE);
-        if (type == SlabType.DOUBLE) {
+        if (type == SlabType.DOUBLE || type == ClassTinkerers.getEnum(SlabType.class, "XDOUBLE") || type == ClassTinkerers.getEnum(SlabType.class, "ZDOUBLE")) {
             info.setReturnValue(VoxelShapes.fullCube());
         } else if (type == SlabType.TOP) {
             info.setReturnValue(TOP_SHAPE);
@@ -74,6 +76,8 @@ public abstract class MixinVerticalSlab extends Block implements Waterloggable {
         }
     }
 
+    //Placement with verticality added
+    //TODO: Add double sideways slabs
     @Inject(method = "getPlacementState", at = @At("HEAD"), cancellable = true)
     public void getPlacementState(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> info) {
         BlockPos blockPos = ctx.getBlockPos();
