@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "": [
-            { "model": "lotr:block/maple_leaves_1" },
-            { "model": "lotr:block/maple_leaves_2" },
-            { "model": "lotr:block/maple_leaves_3" }
-        ]
-    }
-}

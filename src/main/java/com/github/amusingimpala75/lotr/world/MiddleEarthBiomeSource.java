@@ -48,18 +48,17 @@ public class MiddleEarthBiomeSource extends BiomeSource {
 
     @Override
     public Biome getBiomeForNoiseGen(int biomeX, int biomeY, int biomeZ) {
-        biomeX = biomeX/128;
-        biomeZ = biomeZ/128;
-        if ((0 <= biomeX + xOffset) && ( biomeX + xOffset < (ModBiomes.mapImage.getWidth()))) {
-            if ((0 <= biomeZ + (zOffset)) && (biomeZ + (zOffset) < (ModBiomes.mapImage.getHeight()))) {
-                Color biomeColor = new Color(ModBiomes.mapImage.getRGB(biomeX + xOffset, biomeZ + zOffset), true);
+        int biomeX2 = new Integer(biomeX);
+        int biomeZ2 =  new Integer(biomeZ);
+        biomeX2 = biomeX2/8;
+        biomeZ2 = biomeZ2/8;
+        if ((0 <= biomeX2 + xOffset) && ( biomeX2 + xOffset < (ModBiomes.mapImage.getWidth()))) {
+            if ((0 <= biomeZ2 + (zOffset)) && (biomeZ2 + (zOffset) < (ModBiomes.mapImage.getHeight()))) {
+                Color biomeColor = new Color(ModBiomes.mapImage.getRGB(biomeX2 + xOffset, biomeZ2 + zOffset), true);
                 int color = biomeColor.getRGB() & 16777215;
-                System.out.println(color);
-                Biome biome = biomeRegistry.get(ModBiomes.fromMapColor(color));
-                return biome;
+                return biomeRegistry.get(ModBiomes.fromMapColor(color));
             }
         }
-        Biome biome = biomeRegistry.get(id("river"));
-        return biome;
+        return biomeRegistry.get(id("river"));
     }
 }

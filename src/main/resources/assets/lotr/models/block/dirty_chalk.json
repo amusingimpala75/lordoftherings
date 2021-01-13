@@ -1,9 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "particle": "#side",
-        "side": "lotr:block/dirty_chalk_side",
-        "up": "lotr:block/dirty_chalk_top",
-        "down": "lotr:block/chalk"
-    }
-}

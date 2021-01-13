@@ -1,8 +1,0 @@
-{
-  "parent": "lotr:block/template_lamp_hanging",
-  "textures": {
-    "lamp": "lotr:block/bronze_lantern",
-    "fire": "lotr:block/bronze_lantern_fire",
-    "chain": "lotr:block/bronze_lantern_chain"
-  }
-}

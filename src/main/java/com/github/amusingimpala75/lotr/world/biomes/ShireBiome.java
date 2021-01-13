@@ -1,6 +1,10 @@
 package com.github.amusingimpala75.lotr.world.biomes;
 
+import com.github.amusingimpala75.lotr.world.features.ModDefaultBiomeFeatures;
+import com.github.amusingimpala75.lotr.world.features.TreeCluster;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
@@ -45,5 +49,26 @@ public class ShireBiome extends LotrBaseBiome {
     @Override
     protected void addMobs(SpawnSettings.Builder builder) {
         super.addMobs(builder);
+        builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.FOX, 5, 2, 4));
+    }
+    protected void addStoneVariants(GenerationSettings.Builder builder) {
+        ModDefaultBiomeFeatures.addCommonGranite(builder);
+    }
+
+    protected final Object[] shireTrees() {
+        return new Object[]{ModDefaultBiomeFeatures.oak(), 10000, ModDefaultBiomeFeatures.oakFancy(), 4000, ModDefaultBiomeFeatures.oakBees(), 100, ModDefaultBiomeFeatures.oakFancyBees(), 40, ModDefaultBiomeFeatures.birch(), 250, ModDefaultBiomeFeatures.birchFancy(), 100, ModDefaultBiomeFeatures.birchBees(), 2, ModDefaultBiomeFeatures.birchFancyBees(), 1, ModDefaultBiomeFeatures.aspen(), 500, ModDefaultBiomeFeatures.aspenLarge(), 100, ModDefaultBiomeFeatures.apple(), 50, ModDefaultBiomeFeatures.appleBees(), 1, ModDefaultBiomeFeatures.pear(), 50, ModDefaultBiomeFeatures.pearBees(), 1, ModDefaultBiomeFeatures.cherry(), 20, ModDefaultBiomeFeatures.cherryBees(), 1};
+    }
+
+    protected void addVegetation(GenerationSettings.Builder builder) {
+        ModDefaultBiomeFeatures.addTreesWithClusters(builder, 0, 0.2F, TreeCluster.of(10, 6), this,  this.shireTrees());
+        ModDefaultBiomeFeatures.addShireGrass(builder, this,  8);
+        ModDefaultBiomeFeatures.addPlainsFlowers(builder, this, 3, new Object[0]);
+        ModDefaultBiomeFeatures.addDefaultDoubleFlowers(builder, this, 1, new Object[0]);
+        ModDefaultBiomeFeatures.addSunflowers(builder, this, 6);
+        ModDefaultBiomeFeatures.addWildPipeweedChance(builder, 6);
+    }
+
+    protected void addLiquidSprings(GenerationSettings.Builder builder) {
+        ModDefaultBiomeFeatures.addWaterSprings(builder);
     }
 }

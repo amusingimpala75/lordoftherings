@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "hanging=true": { "model": "lotr:block/bronze_lantern_hanging"},
-        "hanging=false": { "model": "lotr:block/bronze_lantern"}
-  }
-}

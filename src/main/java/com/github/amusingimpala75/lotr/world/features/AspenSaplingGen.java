@@ -12,6 +12,6 @@ Sapling->Tree generator for Aspen
 public class AspenSaplingGen extends SaplingGenerator {
     @Nullable
     public ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean bl) {
-        return Features.ASPEN_TREE;
+        return ModDefaultBiomeFeatures.aspen();
     }
 }

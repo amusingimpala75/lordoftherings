@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "lotr:block/wattle_and_daub"
-    },
-    "loader": "lotr:connected_textures"
-}

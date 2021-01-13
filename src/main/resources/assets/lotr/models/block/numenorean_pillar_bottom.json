@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "lotr:block/numenorean_pillar_face",
-        "side": "lotr:block/numenorean_pillar_bottom"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "lotr:block/mossy_wood_elven_brick",
-        "top": "lotr:block/mossy_wood_elven_brick",
-        "side": "lotr:block/mossy_wood_elven_brick"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "lotr:block/cracked_red_dorwinion_brick",
-        "top": "lotr:block/cracked_red_dorwinion_brick",
-        "side": "lotr:block/cracked_red_dorwinion_brick"
-    }
-}

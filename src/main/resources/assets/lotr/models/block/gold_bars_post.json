@@ -1,8 +1,0 @@
-{
-	"parent": "block/iron_bars_post",
-    "textures": {
-        "particle": "lotr:block/gold_bars",
-        "bars": "lotr:block/gold_bars_center",
-        "edge": "lotr:block/gold_bars"
-    }
-}

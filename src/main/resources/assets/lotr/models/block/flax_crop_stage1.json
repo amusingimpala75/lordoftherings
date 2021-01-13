@@ -1,6 +1,0 @@
-{
-    "parent": "block/crop",
-    "textures": {
-        "crop": "lotr:block/flax_crop_stage1"
-    }
-}

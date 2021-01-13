@@ -9,6 +9,7 @@
   "license": "MIT",
   "icon": "assets/lotr/textures/item/gold_ring.png",
   "environment": "*",
+  "accessWidener": "lotr.accesswidener",
   "entrypoints": {
     "client": [
       "com.github.amusingimpala75.lotr.client.LotrClient"

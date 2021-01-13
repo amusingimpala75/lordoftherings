@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "lotr:block/mordor_rock",
-        "top": "lotr:block/mordor_rock",
-        "side": "lotr:block/mordor_rock_side"
-    }
-}

@@ -1,7 +1,0 @@
-{
-    "parent": "item/generated",
-        "textures": {
-        "layer0": "lotr:block/thistle",
-        "layer1": "lotr:block/thistle_overlay"
-    }
-}

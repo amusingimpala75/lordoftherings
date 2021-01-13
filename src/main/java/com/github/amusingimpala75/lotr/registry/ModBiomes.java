@@ -3,32 +3,72 @@ package com.github.amusingimpala75.lotr.registry;
 import com.github.amusingimpala75.lotr.world.MiddleEarthBiomeSource;
 import com.github.amusingimpala75.lotr.world.biomes.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.github.amusingimpala75.lotr.Lotr.*;
 
 /*
 Registry for biomes
-TODO: finish adding biomes, add features/mobs, fix MEWorldConfig and ChunkGenerator
+TODO: finish adding biomes, add features/mobs, fix MEWorldConfig/surfaces and ChunkGenerator
  */
 public class ModBiomes {
     public static BufferedImage mapImage;
-    public static File mapImageFile = new File("data/lotr/map/middle_earth.png");
     static Map<Integer, Identifier> mapColors = new HashMap<>();
+    public static List<LotrBaseBiome> biomes = new ArrayList<>();
 
     public static void addMapColor(Identifier biome, int color) {
         mapColors.put(color, biome);
-        Color color1 = new Color(color, true);
-        System.out.println(color1.getRGB()+": "+biome.getNamespace()+":"+biome.getPath());
+    }
+
+    public static void addBiome(LotrBaseBiome biome) {
+        biomes.add(biome);
+    }
+
+    //TODO: Why null?
+    public static boolean isLotrBiome(Biome biome) {
+        Set<Map.Entry<RegistryKey<Biome>, Biome>> biomeReg = BuiltinRegistries.BIOME.getEntries();
+        Iterator<Map.Entry<RegistryKey<Biome>, Biome>> biomeReg2 = biomeReg.iterator();
+        for (int i = 0; i < biomeReg.size(); i++) {
+            Map.Entry<RegistryKey<Biome>, Biome> biomeReg3 = biomeReg2.next();
+            if (biomeReg3.getValue().equals(biome)) {
+                if (biomeReg3.getKey().getValue().getNamespace().equals("lotr")) {
+                    return true;
+                }
+            }
+        }
+        //if (id.isPresent()) {
+        //    for (LotrBaseBiome lotrBaseBiome : biomes) {
+        //        if (id.get().getValue().getNamespace().equals(lotrBaseBiome.getName())) {
+        //           return true;
+        //        }
+        //    }
+        //}
+        return false;
+    }
+
+    public static LotrBaseBiome asLotrBiome(Biome biome) {
+        Set<Map.Entry<RegistryKey<Biome>, Biome>> biomeReg = BuiltinRegistries.BIOME.getEntries();
+        Iterator<Map.Entry<RegistryKey<Biome>, Biome>> biomeReg2 = biomeReg.iterator();
+        for (int i = 0; i < biomeReg.size(); i++) {
+            Map.Entry<RegistryKey<Biome>, Biome> biomeReg3 = biomeReg2.next();
+            if (biomeReg3.getValue().equals(biome)) {
+                for (LotrBaseBiome biome2 : biomes) {
+                    if (biomeReg3.getKey().getValue().getPath().equals(biome2.getName())) {
+                        return biome2;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public static void registerBiomes() {
@@ -51,17 +91,17 @@ public class ModBiomes {
         (new DunlandBiome()).register();
         (new EmynMuilBiome()).register();
         (new LindonBiome()).register();
+        (new SouthronCoastsBiome()).register();
+        (new NanCurunirBiome()).register();
+        (new ForodwaithBiome()).register();
+        (new EregionBiome()).register();
+        (new MirkwoodBiome()).register();
+        (new GreyMountainsBiome()).register();
         /*
-        lindon
-        sounthron coasts
-        nan curunir
-        forodwaith
-        eregion
-        mirkwood
-        grey mountains
         white mountains
         fangorn
         woodland realm
+
         dale
         angmar
         harandor
@@ -133,8 +173,6 @@ public class ModBiomes {
         nurn marshes
         Anorien
         */
-        String basePath = (new File(".")).getAbsolutePath();
-        basePath = basePath.substring(0, basePath.length()-1);
         InputStream mapStream = ModBiomes.class.getResourceAsStream("/data/lotr/map/middle_earth.png");
         try {
             mapImage = ImageIO.read(mapStream);
@@ -144,7 +182,6 @@ public class ModBiomes {
         Registry.register(Registry.BIOME_SOURCE, id("middle_earth"), MiddleEarthBiomeSource.CODEC);
     }
     public static Identifier fromMapColor(int color) {
-        Identifier id = mapColors.getOrDefault(color, id("river"));
-        return id;
+        return mapColors.getOrDefault(color, new Identifier("minecraft", "warped_forest"));
     }
 }

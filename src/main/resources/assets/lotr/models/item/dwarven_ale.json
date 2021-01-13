@@ -1,7 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "liquid": "lotr:item/dwarven_ale_liquid"
-    },
-    "loader": "lotr:vessel_drink"
-}

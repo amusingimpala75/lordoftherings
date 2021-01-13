@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "lotr:block/thatch",
-        "top": "lotr:block/thatch",
-        "side": "lotr:block/thatch"
-    }
-}

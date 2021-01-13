@@ -23,6 +23,8 @@ public class ModSignType extends SignType{
     public static final SignType HOLLY = invokeRegister(new ModSignType("holly"));
     public static final SignType GREEN_OAK = invokeRegister(new ModSignType("green_oak"));
     public static final SignType CYPRESS = invokeRegister(new ModSignType("cypress"));
+    public static final SignType ROTTEN = invokeRegister(new ModSignType("rotten"));
+
 
 
     protected ModSignType(String name) {

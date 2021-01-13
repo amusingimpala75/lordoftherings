@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-        "textures": {
-        "layer0": "lotr:block/flame_of_harad_top"
-    }
-}

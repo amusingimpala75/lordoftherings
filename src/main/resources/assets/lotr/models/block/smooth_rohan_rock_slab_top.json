@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "lotr:block/smooth_rohan_rock",
-        "top": "lotr:block/smooth_rohan_rock",
-        "side": "lotr:block/smooth_rohan_rock_slab_side"
-    }
-}

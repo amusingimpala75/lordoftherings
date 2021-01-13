@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "lotr:block/mordor_brick",
-        "top": "lotr:block/mordor_brick",
-        "side": "lotr:block/mordor_brick"
-    }
-}

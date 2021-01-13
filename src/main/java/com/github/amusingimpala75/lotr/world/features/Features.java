@@ -30,7 +30,7 @@ import static com.github.amusingimpala75.lotr.Lotr.*;
 All features add by LotR
  */
 public class Features {
-    public static final ConfiguredFeature<?, ?> ORE_COPPER;
+    /*public static final ConfiguredFeature<?, ?> ORE_COPPER;
     public static final ConfiguredFeature<?, ?> ORE_TIN;
     public static final ConfiguredFeature<?, ?> ORE_COAL;
     public static final ConfiguredFeature<?, ?> ORE_IRON;
@@ -110,11 +110,11 @@ public class Features {
     public static final TreeFeatureConfig BIRCH_CONFIG;
     public static final TreeFeatureConfig FANCY_BIRCH_CONFIG;
     public static final TreeFeatureConfig ASPEN_CONFIG;
-
-    private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String id, ConfiguredFeature<FC, ?> configuredFeature) {
+*/
+    public static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String id, ConfiguredFeature<FC, ?> configuredFeature) {
         return (ConfiguredFeature<FC, ?>) Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
     }
-
+/*
     static {
         COPPER_ORE = Registry.BLOCK.get(id("copper_ore")).getDefaultState();
         TIN_ORE = Registry.BLOCK.get(id("tin_ore")).getDefaultState();
@@ -345,5 +345,5 @@ public class Features {
                 .decorate(Decorator.COUNT_EXTRA.configure(new CountExtraDecoratorConfig(6, 0.1F, 1))
                 ));
 
-    }
+    }*/
 }

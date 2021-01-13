@@ -243,8 +243,8 @@ public class BlockReg {
         Registry.register(Registry.BLOCK, id(name), FLOWER);
         addBlocksToRenderLayer(FLOWER);
     }
-    public static void dripstone(Material material, ItemGroup group, boolean blockItem, String name) {
-        final Block BLOCK = new Dripstone(FabricBlockSettings.of(material).nonOpaque());
+    public static void dripstone(Material material, ItemGroup group, boolean blockItem, String name, Block block) {
+        final Block BLOCK = new Dripstone(FabricBlockSettings.of(material).nonOpaque(), block);
         if (blockItem){
             Registry.register(Registry.ITEM, id(name), new BlockItem(BLOCK, new Item.Settings().group(group)));
         }

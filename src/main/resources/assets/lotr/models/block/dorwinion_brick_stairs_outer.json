@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "lotr:block/dorwinion_brick",
-        "top": "lotr:block/dorwinion_brick",
-        "side": "lotr:block/dorwinion_brick"
-    }
-}

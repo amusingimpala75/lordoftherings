@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lotr:block/polished_chalk",
-        "top": "lotr:block/polished_chalk",
-        "side": "lotr:block/polished_chalk"
-    }
-}

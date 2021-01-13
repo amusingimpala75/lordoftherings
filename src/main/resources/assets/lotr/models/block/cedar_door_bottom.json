@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_bottom",
-    "textures": {
-        "bottom": "lotr:block/cedar_door_bottom",
-        "top": "lotr:block/cedar_door_top"
-    }
-}

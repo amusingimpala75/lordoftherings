@@ -1,7 +1,0 @@
-{
-    "parent": "lotr:block/flower_pot_herb",
-    "textures": {
-        "plant": "lotr:block/wild_pipeweed",
-        "leaf" : "lotr:block/pipeweed_crop_stage1"
-    }
-}

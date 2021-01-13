@@ -1,9 +1,0 @@
-{
-    "parent": "lotr:block/stairs_fringes_west",
-    "textures": {
-        "bottom": "lotr:block/thatch",
-        "top": "lotr:block/thatch",
-        "side": "lotr:block/thatch",
-        "fringes":"lotr:block/thatch_fringes"
-    }
-}

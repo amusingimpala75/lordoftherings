@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "lotr:block/smooth_blue_rock",
-        "side": "lotr:block/smooth_blue_rock_slab_side"
-    }
-}

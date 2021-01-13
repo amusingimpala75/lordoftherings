@@ -1,6 +1,0 @@
-{
-    "parent": "lotr:item/plate_food/template_pie",
-	"textures": {
-		"all": "lotr:item/pumpkin_pie_plate"
-	}
-}

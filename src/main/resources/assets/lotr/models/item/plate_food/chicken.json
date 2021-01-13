@@ -1,6 +1,0 @@
-{
-    "parent": "lotr:item/plate_food/template_chicken",
-	"textures": {
-		"all": "lotr:item/chicken_plate"
-	}
-}

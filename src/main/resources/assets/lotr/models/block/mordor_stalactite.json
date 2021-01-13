@@ -1,8 +1,0 @@
-{
-    "parent": "lotr:block/stalactite_template",
-    "textures": {
-        "top": "lotr:block/mordor_rock",
-        "bottom": "lotr:block/mordor_rock",
-        "side": "lotr:block/mordor_rock_side"
-    }
-}

@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "": [
-            { "model": "lotr:block/dale_paving_1" },
-            { "model": "lotr:block/dale_paving_2" },
-            { "model": "lotr:block/dale_paving_3" }
-        ]
-    }
-}

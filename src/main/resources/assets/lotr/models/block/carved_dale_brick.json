@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "lotr:block/carved_dale_brick",
-        "front": "lotr:block/carved_dale_brick_side",
-        "side": "lotr:block/carved_dale_brick"
-    }
-}

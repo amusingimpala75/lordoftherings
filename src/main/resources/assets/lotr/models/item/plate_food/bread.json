@@ -1,6 +1,0 @@
-{
-    "parent": "lotr:item/plate_food/template_bread",
-	"textures": {
-		"all": "lotr:item/bread_plate"
-	}
-}

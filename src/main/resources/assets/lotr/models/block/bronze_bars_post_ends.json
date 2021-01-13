@@ -1,8 +1,0 @@
-{
-	"parent": "block/iron_bars_post_ends",
-    "textures": {
-        "particle": "lotr:block/bronze_bars",
-        "bars": "lotr:block/bronze_bars",
-        "edge": "lotr:block/bronze_bars"
-    }
-}

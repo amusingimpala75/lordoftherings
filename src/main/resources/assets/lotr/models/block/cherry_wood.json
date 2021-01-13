@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "lotr:block/cherry_log",
-        "side": "lotr:block/cherry_log"
-    }
-}

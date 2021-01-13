@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "lotr:block/wood_elven_pillar_face",
-        "top": "lotr:block/wood_elven_pillar_face",
-        "side": "lotr:block/wood_elven_pillar"
-    }
-}

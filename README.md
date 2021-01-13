@@ -23,11 +23,9 @@ If anyone knows how to add to enums without Fabric-ASM enumBuilder(), feel free 
     - add functionality to forges/ovens
     - fix Dripstone
     - bugfix pillar updating for sideways
-    - bugfix crafting table taking multiple factions
     - add vanilla switch functionality
-    - bugfix item duping in crafting table
     - fix wall models
     - fix slab vertical models
     - fix signs
 - Dimension and Biomes
-    - almost everything missing
+    - most biomes missing, all features missing from those that do exist

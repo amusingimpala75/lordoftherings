@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_bottom_rh",
-    "textures": {
-        "bottom": "lotr:block/lairelosse_door_bottom",
-        "top": "lotr:block/lairelosse_door_top"
-    }
-}

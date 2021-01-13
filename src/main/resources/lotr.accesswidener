@@ -1,0 +1,6 @@
+accessWidener   v1  named
+
+extendable  class   net/minecraft/world/gen/chunk/ChunkGeneratorSettings
+extendable  class   net/minecraft/world/gen/chunk/NoiseChunkGenerator
+extendable  method  net/minecraft/world/gen/chunk/ChunkGeneratorSettings    <init>  (Lnet/minecraft/world/gen/chunk/StructuresConfig;Lnet/minecraft/world/gen/chunk/GenerationShapeConfig;Lnet/minecraft/block/BlockState;Lnet/minecraft/block/BlockState;IIIZ)V
+accessible  method  net/minecraft/world/gen/chunk/NoiseChunk/Generator  sampleNoiseColumn   ([DII)V

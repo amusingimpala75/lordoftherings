@@ -1,6 +1,0 @@
-{
-    "parent": "block/button",
-    "textures": {
-        "texture": "lotr:block/cedar_planks"
-    }
-}

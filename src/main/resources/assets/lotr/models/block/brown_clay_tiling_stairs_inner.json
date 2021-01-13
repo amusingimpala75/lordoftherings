@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lotr:block/brown_clay_tiling",
-        "top": "lotr:block/brown_clay_tiling",
-        "side": "lotr:block/brown_clay_tiling"
-    }
-}

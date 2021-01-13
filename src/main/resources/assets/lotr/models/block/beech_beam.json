@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "lotr:block/beech_beam_top",
-        "side": "lotr:block/beech_beam"
-    }
-}

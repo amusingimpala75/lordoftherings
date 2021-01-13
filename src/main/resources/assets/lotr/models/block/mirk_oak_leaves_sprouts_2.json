@@ -1,7 +1,0 @@
-{
-    "parent": "lotr:block/template_leaves_sprouts",
-    "textures": {
-        "all": "lotr:block/mirk_oak_leaves",
-        "sprouts": "lotr:block/mirk_oak_sprouts_2"
-    }
-}

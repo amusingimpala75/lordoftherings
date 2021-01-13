@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "lotr:block/tall_arid_grass_top"
-    }
-}

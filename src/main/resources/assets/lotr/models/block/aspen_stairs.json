@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "lotr:block/aspen_planks",
-        "top": "lotr:block/aspen_planks",
-        "side": "lotr:block/aspen_planks"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lotr:block/rohan_rock",
-        "top": "lotr:block/rohan_rock",
-        "side": "lotr:block/rohan_rock"
-    }
-}

@@ -128,6 +128,7 @@ public class ModBlocks {
         BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly", ModSignType.HOLLY);
         BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak", ModSignType.GREEN_OAK);
         BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress", ModSignType.CYPRESS);
+        BlockReg.sign(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_sign", ModSignType.ROTTEN);
         /*
         Slab - still need to fix models
          */
@@ -284,6 +285,7 @@ public class ModBlocks {
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "dale_pillar_slab");
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "dale_paving_slab");
         BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dale_paving_slab");
+        BlockReg.slab(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_slab");
         /*
         Ore - complete
          */
@@ -436,6 +438,7 @@ public class ModBlocks {
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "cracked_dale_brick_stairs");
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "dale_paving_stairs");
         BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dale_paving_stairs");
+        BlockReg.stair(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_stairs");
         /*
         Wall - don't connect visibly (but actually do)
          */
@@ -565,6 +568,8 @@ public class ModBlocks {
         Registry.register(Registry.ITEM, id("green_oak_planks"), new BlockItem(GREEN_OAK_PLANKS, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
         Registry.register(Registry.BLOCK, id("cypress_planks"), CYPRESS_PLANKS);
         Registry.register(Registry.ITEM, id("cypress_planks"), new BlockItem(CYPRESS_PLANKS, new Item.Settings().group(Lotr.LOTR_BLOCKS)));
+        Registry.register(Registry.BLOCK, id("rotten_planks"), ROTTEN_PLANKS);
+        Registry.register(Registry.ITEM, id("rotten_planks"), new BlockItem(ROTTEN_PLANKS, new FabricItemSettings().group(LOTR_BLOCKS)));
         /*
         Leaves - complete
          */
@@ -653,6 +658,7 @@ public class ModBlocks {
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_door");
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_door");
         BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_door");
+        BlockReg.door(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_door");
         /*
         Trapdoor - complete
          */
@@ -675,6 +681,7 @@ public class ModBlocks {
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_trapdoor");
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_trapdoor");
         BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_trapdoor");
+        BlockReg.trapdoor(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_trapdoor");
         /*
         Pressure Plate - complete
          */
@@ -702,6 +709,7 @@ public class ModBlocks {
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "rohan_rock_pressure_plate");
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_pressure_plate");
         BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_pressure_plate");
+        BlockReg.pressurePlate(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_pressure_plate");
         /*
         Button - complete
          */
@@ -729,6 +737,7 @@ public class ModBlocks {
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_rock_button");
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_button");
         BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_button");
+        BlockReg.button(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_button");
         /*
         Pillar - fix horizontal updating
          */
@@ -781,6 +790,7 @@ public class ModBlocks {
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_beam");
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_beam");
         BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_beam");
+        BlockReg.beam(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_beam");
         /*
         Brick - complete
          */
@@ -904,24 +914,6 @@ public class ModBlocks {
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_fine_glass_pane");
         BlockReg.bars(Material.STONE, Lotr.LOTR_BLOCKS, true, "black_fine_glass_pane");
         /*
-        Dripstone - fix placement, collisions boxes (get from official) (ie almost everything)
-         */
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "obsidian_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "ice_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "rohan_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "andesite_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "diorite_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "granite_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "sandstone_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_sandstone_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_dripstone");
-        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sandstone_dripstone");
-        /*
         Tiling - complete
          */
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "clay_tiling");
@@ -963,6 +955,24 @@ public class ModBlocks {
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "cut_white_sandstone");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "chiseled_white_sandstone");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "smooth_white_sandstone");
+        /*
+        Dripstone - fix placement, collisions boxes (get from official) (ie almost everything)
+         */
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "dripstone", Blocks.STONE);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "mordor_dripstone", getBlock("mordor_rock"));
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "obsidian_dripstone", Blocks.OBSIDIAN);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "ice_dripstone", Blocks.ICE);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "gondor_dripstone", getBlock("gondor_rock"));
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "rohan_dripstone", getBlock("rohan_rock"));
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "blue_dripstone", getBlock("blue_rock"));
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_dripstone", getBlock("red_rock"));
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "andesite_dripstone", Blocks.ANDESITE);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "diorite_dripstone", Blocks.DIORITE);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "granite_dripstone", Blocks.GRANITE);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "sandstone_dripstone", Blocks.SANDSTONE);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "red_sandstone_dripstone", Blocks.RED_SANDSTONE);
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "chalk_dripstone", getBlock("chalk"));
+        BlockReg.dripstone(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sandstone_dripstone", getBlock("white_sandstone"));
         /*
         Precious Block - complete
          */
@@ -1025,6 +1035,8 @@ public class ModBlocks {
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_green_oak_wood");
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_wood");
         BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cypress_wood");
+        BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_wood");
+        BlockReg.wood(Material.STONE, Lotr.LOTR_BLOCKS, true, "striped_rotten_wood");
         /*
         Log - Stripped and non-stripped - complete
          */
@@ -1065,6 +1077,8 @@ public class ModBlocks {
         BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_green_oak_log");
         BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_log");
         BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_cypress_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_log");
+        BlockReg.log(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_rotten_log");
         /*
         Light Source - torches can't be placed on wall
         */
@@ -1105,6 +1119,7 @@ public class ModBlocks {
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_fence_gate");
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_fence_gate");
         BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_fence_gate");
+        BlockReg.fenceGate(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_fence_gate");
         /*
         Fence - complete
          */
@@ -1126,6 +1141,7 @@ public class ModBlocks {
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "holly_fence");
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "green_oak_fence");
         BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "cypress_fence");
+        BlockReg.fence(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_fence");
         /*
         Bars - complete
          */
@@ -1230,6 +1246,8 @@ public class ModBlocks {
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, false, "morgul_shroom");
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, false, "mirk_shroom");
         BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "blackroot");
+        BlockReg.flowerTall(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_iris", true);
+        BlockReg.flower(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallos");
         /*
         hearth functionality(not light ground in front on fire), ladder functionality, moss model, grass model, hanging web placement/updating functionality
          */
@@ -1254,27 +1272,7 @@ public class ModBlocks {
         BlockReg.gravity(Material.STONE, Lotr.LOTR_BLOCKS, true, "white_sand");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "dale_paving");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mossy_dale_paving");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "yellow_iris");
         BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "quagmire");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "mallos");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "potted_mallos");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_log");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_wood");
-        Registry.register(Registry.BLOCK, id("rotten_planks"), ROTTEN_PLANKS);
-        Registry.register(Registry.ITEM, id("rotten_planks"), new BlockItem(ROTTEN_PLANKS, new FabricItemSettings().group(LOTR_BLOCKS)));
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_slab");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_stairs");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_fence");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_fence_gate");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_door");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_trapdoor");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_pressure_plate");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_button");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "stripped_rotten_log");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "striped_rotten_wood");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_beam");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_sign");
-        BlockReg.block(Material.STONE, Lotr.LOTR_BLOCKS, true, "rotten_wall_sign");
     }
     /*
     TODO:
@@ -1294,4 +1292,7 @@ public class ModBlocks {
         -fix slab vertical models
         -fix signs
      */
+    public static Block getBlock(String id) {
+        return Registry.BLOCK.get(id(id));
+    }
 }

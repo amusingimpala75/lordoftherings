@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "lotr:block/orc_steel_block",
-        "front": "lotr:block/orc_steel_block_side",
-        "side": "lotr:block/orc_steel_block"
-    }
-}

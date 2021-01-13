@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=lower": { "model": "lotr:block/hibiscus_bottom" },
-        "half=upper":    { "model": "lotr:block/hibiscus_top" }
-    }
-}

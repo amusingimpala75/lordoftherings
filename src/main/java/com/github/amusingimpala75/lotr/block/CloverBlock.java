@@ -9,11 +9,11 @@ import net.minecraft.state.property.IntProperty;
 import org.jetbrains.annotations.Nullable;
 
 public class CloverBlock extends PlantBlock {
+    public static final IntProperty CLOVERS = IntProperty.of("clovers", 1, 4);
     public CloverBlock(Settings settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(CLOVERS, 2));
+        setDefaultState(getStateManager().getDefaultState().with(CLOVERS, 1));
     }
-    public static final IntProperty CLOVERS = IntProperty.of("clovers", 1, 4);
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
@@ -22,6 +22,6 @@ public class CloverBlock extends PlantBlock {
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(CLOVERS, 2);
+        return this.getDefaultState().with(CLOVERS, 1);
     }
 }

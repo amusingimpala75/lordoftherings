@@ -5,40 +5,29 @@ import com.github.amusingimpala75.lotr.block.crafting.FactionCraftingScreenHandl
 import com.github.amusingimpala75.lotr.recipe.LotrCrafting;
 import com.github.amusingimpala75.lotr.client.LotrClient;
 import com.github.amusingimpala75.lotr.registry.*;
+import com.github.amusingimpala75.lotr.world.ModCarvers;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import com.swordglowsblue.artifice.api.Artifice;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
-import net.minecraft.client.options.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.resource.ResourcePack;
-import net.minecraft.resource.ResourceType;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.LogManager;
-import org.lwjgl.glfw.GLFW;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.NoSuchElementException;
-import java.util.Random;
 
 /*
 Main Class for LotRMod Fabric
  */
 public class Lotr implements ModInitializer {
     public static final String MOD_ID = "lotr";
+    public static final String OFFIC_VER = "2.5";
     public static final ScreenHandlerType<FactionCraftingScreenHandler> FACTION_SCREEN;
     public static final ScreenHandlerType<ForgeScreenHandler> FORGE_SCREEN_HANDLER;
     static {
@@ -89,8 +78,9 @@ public class Lotr implements ModInitializer {
                                                         CommandManager.argument("amount", IntegerArgumentType.integer())
                                                                                 .executes(context -> {
                                                                                     String factionToBeSet = StringArgumentType.getString(context, "type");
-                                                                                    Integer factionAmount = IntegerArgumentType.getInteger(context, "amount");
+                                                                                    int factionAmount = IntegerArgumentType.getInteger(context, "amount");
                                                                                     PlayerEntity player = context.getSource().getPlayer();
+                                                                                    player.isSneaking();
                                                                                     System.out.println("Setting faction "+factionToBeSet+" to "+factionAmount);
                                                                                     return 1;
                                                                                 })
@@ -109,8 +99,18 @@ public class Lotr implements ModInitializer {
                     System.out.println("Missing what to do to player faction amount!");
                     return 1;
                 })));
+        CommandRegistrationCallback.EVENT.register(((commandDispatcher, b) ->
+                commandDispatcher.register(
+                        CommandManager.literal("toMiddleEarth").executes(context -> {
+                            /*PlayerEntity player = context.getSource().getPlayer();
+                            ServerWorld world = (ServerWorld) player.getEntityWorld();
+                            ServerWorld target = player.getServer().getWorld(ModDimensions.MIDDLE_EARTH);
+                            player.moveToWorld(target);*/
+                            return 1;
+                        }))));
         ModEntities.registerEntities();
         LotrCrafting.registerCrafting();
+        ModCarvers.registerCarvers();
         ModBiomes.registerBiomes();
         ModDimensions.registerDimensions();
         LotrClient.registerCutouts();

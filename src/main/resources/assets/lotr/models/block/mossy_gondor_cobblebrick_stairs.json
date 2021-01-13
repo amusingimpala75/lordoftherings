@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "lotr:block/mossy_gondor_cobblebrick",
-        "top": "lotr:block/mossy_gondor_cobblebrick",
-        "side": "lotr:block/mossy_gondor_cobblebrick"
-    }
-}

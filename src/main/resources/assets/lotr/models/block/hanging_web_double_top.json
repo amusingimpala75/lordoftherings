@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "lotr:block/hanging_web_double_top"
-    }
-}

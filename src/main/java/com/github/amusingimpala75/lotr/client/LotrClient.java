@@ -2,9 +2,12 @@ package com.github.amusingimpala75.lotr.client;
 
 import com.github.amusingimpala75.lotr.client.renderer.ModBoatRenderer;
 import com.github.amusingimpala75.lotr.client.renderer.PlateBlockEntityRenderer;
+import com.github.amusingimpala75.lotr.earlyrisers.LotrEarlyRisers;
 import com.github.amusingimpala75.lotr.registry.ModBlockEntites;
 import com.github.amusingimpala75.lotr.registry.ModEntities;
 import com.github.amusingimpala75.lotr.registry.ModItems;
+import com.github.amusingimpala75.lotr.resources.LotrThrowawayResource;
+import com.github.amusingimpala75.lotr.resources.MetadataWrapper;
 import com.swordglowsblue.artifice.api.Artifice;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -16,6 +19,12 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegi
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
+import net.fabricmc.loader.ModContainer;
+import net.fabricmc.loader.api.metadata.ModEnvironment;
+import net.fabricmc.loader.api.metadata.ModMetadata;
+import net.fabricmc.loader.metadata.BuiltinModMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.world.BiomeColors;
@@ -25,16 +34,22 @@ import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.resource.DirectoryResourcePack;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.lwjgl.glfw.GLFW;
+
+import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static com.github.amusingimpala75.lotr.registry.ModBlocks.*;
 import static com.github.amusingimpala75.lotr.Lotr.*;
 
 @Environment(EnvType.CLIENT)
 public class LotrClient implements ClientModInitializer {
-
     public static Block[] blocksForCutout = new Block[] {};
     //list of all slabs
     public static final String[][] slabStuff = {
@@ -209,15 +224,44 @@ public class LotrClient implements ClientModInitializer {
         KeyBinding map = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.lotr.map",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_M,
+                GLFW.GLFW_KEY_L,
                 "category.lotr.things"
         ));
         ClientTickEvents.END_CLIENT_TICK.register(minecraftClient -> {
             if (map.isPressed()) {
                 //open map
-                new MapScreen(minecraftClient.player);
+                MinecraftClient.getInstance().openScreen(new MapScreen(minecraftClient.player));
+                //new MapScreen(minecraftClient.player);
             }
         });
+        System.out.println("Registering Assets");
+        if (LotrThrowawayResource.RESOURCE_FILE == null) {
+            try {
+                throw new FileNotFoundException("LotR-Resources not loaded yet. Delete the version dir under .lotrResources/<version> and try again");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                throw new NullPointerException();
+            }
+        }
+        DirectoryResourcePack pack = new DirectoryResourcePack(LotrThrowawayResource.RESOURCE_FILE);
+        ModMetadata metadata = new BuiltinModMetadata.Builder("lotr_resources", "1.0").setName("LotR-Resources").setEnvironment(ModEnvironment.UNIVERSAL).setDescription("Resources added by LotR extracted by throwaway loader").build();
+        URL url;
+        try {
+            url = LotrThrowawayResource.RESOURCE_FILE.toURI().toURL();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            throw new NullPointerException();
+        }
+        ModContainer container = new ModContainer(new MetadataWrapper(metadata), url);
+        try {
+            Class klass = ModContainer.class;
+            Method method = klass.getDeclaredMethod("setupRootPath");
+            method.setAccessible(true);
+            method.invoke(container);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        ResourceManagerHelper.registerBuiltinResourcePack(id("resources"), "", container, true);
     }
 
     @Environment(EnvType.CLIENT)

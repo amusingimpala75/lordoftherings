@@ -1,7 +1,0 @@
-{
-    "parent": "item/generated",
-        "textures": {
-        "layer0": "lotr:block/wheatgrass",
-        "layer1": "lotr:block/wheatgrass_overlay"
-    }
-}

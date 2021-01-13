@@ -1,8 +1,0 @@
-{
-    "parent": "lotr:block/stalagmite_double_point_template",
-    "textures": {
-        "top": "lotr:block/white_sandstone_top",
-		"bottom": "lotr:block/white_sandstone_bottom",
-        "side": "lotr:block/white_sandstone"
-    }
-}

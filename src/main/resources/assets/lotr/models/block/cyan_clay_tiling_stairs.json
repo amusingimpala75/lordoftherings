@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "lotr:block/cyan_clay_tiling",
-        "top": "lotr:block/cyan_clay_tiling",
-        "side": "lotr:block/cyan_clay_tiling"
-    }
-}

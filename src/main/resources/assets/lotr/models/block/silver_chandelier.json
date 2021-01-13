@@ -1,6 +1,0 @@
-{
-    "parent": "lotr:block/template_chandelier",
-    "textures": {
-        "chandelier": "lotr:block/silver_chandelier"
-    }
-}

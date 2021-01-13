@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lotr:block/holly_planks",
-        "top": "lotr:block/holly_planks",
-        "side": "lotr:block/holly_planks"
-    }
-}

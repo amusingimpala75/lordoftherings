@@ -1,6 +1,7 @@
 package com.github.amusingimpala75.lotr.earlyrisers;
 
 import com.github.amusingimpala75.lotr.registry.ModBlocks;
+import com.github.amusingimpala75.lotr.resources.LotrThrowawayResource;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import com.chocohead.mm.api.ClassTinkerers;
@@ -13,6 +14,11 @@ public class LotrEarlyRisers implements Runnable{
 
     @Override
     public void run() {
+        Runnable runnable = new LotrThrowawayResource();
+        Thread thread = new Thread(runnable);
+        thread.setName("LotrThrowawayResourceThread");
+        thread.start();
+
         MappingResolver remapper = FabricLoader.getInstance().getMappingResolver();
 
         //For adding to boat enum

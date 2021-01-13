@@ -1,6 +1,12 @@
 package com.github.amusingimpala75.lotr.registry;
 
+import com.github.amusingimpala75.lotr.world.MESurfaceBuilder;
+import com.github.amusingimpala75.lotr.world.MESurfaceConfig;
 import com.swordglowsblue.artifice.api.Artifice;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 import java.util.*;
 
@@ -14,11 +20,9 @@ temperature - "sea-ness"; ocean (-1.0F) -> beach (-0.3F) -> land (-0.2F)
 weirdness - "goodness"; bad (-1.0F) -> good (1.0F)
  */
 public class ModDimensions {
-    /*public static int[] imageBiomeIds;
-    public static byte[] cachedImageBytes;
-    public static int imageWidth;
-    public static int imageHeight;
-    public static Identifier mapImagePath = id("map/middle_earth.png");*/
+    public static final SurfaceBuilder<MESurfaceConfig> ME_SURFACE_CONFIG = new MESurfaceBuilder(MESurfaceBuilder.CODEC);
+    public static final RegistryKey<World> MIDDLE_EARTH = RegistryKey.of(Registry.DIMENSION, id("middle_earth"));
+    //public static final ChunkGenerator ME_CHUNK_GEN = new MEChunkGenerator();     //TODO: Fix MEChunkGenerator
 
     public static void registerDimensions() {
         Artifice.registerDataPack(id("dimensions"), (pack) -> {
@@ -262,16 +266,8 @@ public class ModDimensions {
                         noiseChunkGeneratorTypeBuilder.type("minecraft:noise");
                     }));
             pack.shouldOverwrite();
-            /*pack.addDimension(id("middle_earth"), dimensionBuilder -> {
-                dimensionBuilder.dimensionType(id("middle_earth_classic"));
-                dimensionBuilder.noiseGenerator(noiseChunkGeneratorTypeBuilder -> {
-                    noiseChunkGeneratorTypeBuilder.simpleBiomeSource("lotr:middle_earth");
-                    noiseChunkGeneratorTypeBuilder.noiseSettings("minecraft:overworld");
-                    noiseChunkGeneratorTypeBuilder.seed((new Random()).nextInt());
-                    noiseChunkGeneratorTypeBuilder.type("minecraft:noise");
-                });
-                dimensionBuilder.simpleGenerator()
-            });*/
         });
+        Registry.register(Registry.SURFACE_BUILDER, id("middle_earth_surface_builder"), ME_SURFACE_CONFIG);
+        //Registry.register(Registry.CHUNK_GENERATOR, id("middle_earth_chunk_generator"), );
     }
 }

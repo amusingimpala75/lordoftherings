@@ -1,7 +1,0 @@
-{
-    "parent": "lotr:block/flower_pot_tinted_cross_overlay",
-    "textures": {
-        "plant": "lotr:block/thistle",
-        "plant_overlay": "lotr:block/thistle_overlay"
-    }
-}

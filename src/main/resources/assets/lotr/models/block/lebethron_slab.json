@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "lotr:block/lebethron_planks",
-        "top": "lotr:block/lebethron_planks",
-        "side": "lotr:block/lebethron_planks"
-    }
-}

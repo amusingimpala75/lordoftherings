@@ -7,9 +7,10 @@ import net.minecraft.text.TranslatableText;
 public class MapScreen extends Screen {
 
     PlayerEntity player;
-    
+
     public MapScreen(PlayerEntity player) {
         super(new TranslatableText("lotr.map.title"));
         this.player = player;
     }
+
 }

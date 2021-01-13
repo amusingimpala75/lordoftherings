@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "lotr:block/dwarven_brick",
-        "top": "lotr:block/dwarven_brick",
-        "side": "lotr:block/dwarven_brick"
-    }
-}

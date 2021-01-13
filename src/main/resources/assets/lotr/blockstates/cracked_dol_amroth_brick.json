@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "above=true": { "model": "lotr:block/cracked_dol_amroth_brick" },
-        "above=false": { "model": "lotr:block/cracked_dol_amroth_brick_top" }
-    }
-}

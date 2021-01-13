@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lotr:block/dale_paving",
-        "top": "lotr:block/dale_paving",
-        "side": "lotr:block/dale_paving"
-    }
-}

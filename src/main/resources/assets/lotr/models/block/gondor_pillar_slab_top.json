@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "lotr:block/gondor_pillar_face",
-        "top": "lotr:block/gondor_pillar_face",
-        "side": "lotr:block/gondor_pillar"
-    }
-}

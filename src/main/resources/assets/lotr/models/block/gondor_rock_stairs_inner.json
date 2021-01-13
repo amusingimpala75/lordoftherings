@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "lotr:block/gondor_rock",
-        "top": "lotr:block/gondor_rock",
-        "side": "lotr:block/gondor_rock"
-    }
-}
